@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   bottomContainer: {
-    backgroundColor: "#F5F5F5",
+    backgroundColor: Theme.white,
     flex: 1,
     zIndex: 2,
     marginTop: -20,
