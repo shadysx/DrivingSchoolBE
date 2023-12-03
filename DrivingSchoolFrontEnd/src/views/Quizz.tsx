@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     },
     questionSelectedAnswerButton: {
         height: 50,
-        backgroundColor: Theme.main,
+        backgroundColor: Theme.primary,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
