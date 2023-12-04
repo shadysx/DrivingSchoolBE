@@ -12,7 +12,6 @@ import { Question } from "../interfaces/interfaces";
 import { Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ProgressBar } from "react-native-paper";
-import TimerProgressBar from "../components/TimerProgressBar";
 
 const Quizz = () => {
   const [questions, setQuestions] = useState<Question[] | null>(null);
@@ -24,9 +23,7 @@ const Quizz = () => {
   const [definedTimer] = useState<number>(5)
   const [askedQuestionsNumber] = useState<number>(10)
   const [countdown, setCountdown] = useState<number>(definedTimer)
-
   const [progress, setProgress] = useState(0);
-
 
   useEffect(() => {
     const fetchQuestionsFromApi = async () => {
@@ -49,6 +46,7 @@ const Quizz = () => {
   }, []);
 
   useEffect(() => {
+    if(questionCounter >= askedQuestionsNumber) return
     const timer = setInterval(() => {
         let needIncrementAndReset = false;
       setProgress((prevProgress) => {
@@ -83,19 +81,19 @@ const Quizz = () => {
     );
     setQuestionCounter((prev) => prev + 1);
     setSelectedAnswer(null);
-    setCountdown(30);
+    setProgress(0)
   };
 
   //#region Rendering
   const RenderQuizz = () => {
-    if (questionCounter === askedQuestionsNumber) {
+    if (questionCounter >= askedQuestionsNumber) {
       return <Text>Recap {score}/10</Text>;
     } else if (questions?.length) {
       return (
         <>
           <View style={styles.topContainer}>
           <View style={styles.progressionContainer}>
-          <TimerProgressBar progress={progress}/>
+          <ProgressBar progress={progress} style={styles.progressBar} color={Theme.primary}/>
           </View>
             <Text style={styles.questionCounter}>
               Question {questionCounter + 1}/40
