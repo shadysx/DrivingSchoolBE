@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Question } from '../interfaces/interfaces';
+import { QuestionSummary } from '../models/SummaryLine';
 
 type QuizzSummaryProps = {
     questionsWithSelectedAnswers: Map<Question, number> | null;
@@ -9,38 +10,38 @@ type QuizzSummaryProps = {
 const QuizzSummary: React.FC<QuizzSummaryProps> = ({ questionsWithSelectedAnswers }) => {
     const [score, setScore] = useState(0);
     const [questionsAmount, setQuestionsAmount] = useState(0);
-    const [questionsStr, setQuestionsStr] = useState<string[]>([]);
+    const [questionsSummaries, setQuestionsSummaries] = useState<QuestionSummary[]>([]);
 
     useEffect(() => {
-        computeScore();
+        computeSummaries();
     }, []);
 
-    const computeScore = () => {
+    const computeSummaries = () => {
         if (questionsWithSelectedAnswers === null) return;
-
+    
         let total = 0;
-        let summaries = [];
-
+        let summaries: QuestionSummary[] = [];
+    
         for (const [question, selectedAnswer] of questionsWithSelectedAnswers) {
             const isCorrect = question.answerIndex === selectedAnswer;
             if (isCorrect) {
                 total += 1;
-                summaries.push(`${question.text} - Correct`);
-            } else {
-                summaries.push(`${question.text} - Incorrect`);
             }
-        }
 
+            summaries.push(new QuestionSummary(question.text, question.answerIndex, selectedAnswer));
+        }
+    
         setScore(total);
         setQuestionsAmount(questionsWithSelectedAnswers.size);
-        setQuestionsStr(summaries);
+        setQuestionsSummaries(summaries);
     };
+    
 
     return (
         <View style={styles.container}>
             <Text style={styles.scoreText}>Votre score est : {score}/{questionsAmount}</Text>
-            {questionsStr.map((question, index) => {
-                return <Text style={styles.questionText} key={index}>{question}</Text>
+            {questionsSummaries.map((question, index) => {
+                return <Text style={styles.questionText} key={index}>{question.questionText} -- {question.isAnswerCorrect}</Text>
             })}
         </View>
     );
