@@ -4,7 +4,7 @@ import { Theme } from "../constants";
 import { StyleSheet } from "react-native";
 import React from "react";
 
-export const ProgressBarComponent: React.FC<any> = ({ definedTimer, questionCounter , handleTimeOut }) => {
+export const TimerProgressBar: React.FC<any> = ({ definedTimer, questionCounter , handleTimeOut }) => {
     const [timeLeft, setTimeLeft] = useState<number>(definedTimer);
   
     useEffect(() => {

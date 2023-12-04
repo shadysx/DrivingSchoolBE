@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Question } from '../interfaces/interfaces';
-import { QuestionSummary } from '../models/SummaryLine';
+import { QuestionSummary } from '../models/QuestionSummary';
 
 type QuizzSummaryProps = {
     questionsWithSelectedAnswers: Map<Question, number> | null;

@@ -11,8 +11,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Question } from "../interfaces/interfaces";
 import { Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ProgressBar } from "react-native-paper";
-import { ProgressBarComponent } from "../components/ProgressBar";
+import { TimerProgressBar } from "../components/TimerProgressBar";
 import QuizzSummary from "./QuizzSummary";
 
 const Quizz = () => {
@@ -93,7 +92,7 @@ const Quizz = () => {
         <>
           <View style={styles.topContainer}>
             <View style={styles.progressionContainer}>
-              <ProgressBarComponent
+              <TimerProgressBar
                 definedTimer={definedTimer}
                 questionCounter={questionCounter}
                 handleTimeOut={handleTimeOut}
