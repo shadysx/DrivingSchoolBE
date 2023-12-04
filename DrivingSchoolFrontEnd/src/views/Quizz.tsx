@@ -12,21 +12,35 @@ import { Question } from "../interfaces/interfaces";
 import { Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ProgressBar } from "react-native-paper";
+import { ProgressBarComponent } from "../components/ProgressBar";
+import QuizzSummary from "./QuizzSummary";
 
 const Quizz = () => {
   const [questions, setQuestions] = useState<Question[] | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
   const [questionCounter, setQuestionCounter] = useState<number>(0);
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<number>(-1);
   const [score, setScore] = useState<number>(0);
-  const [definedTimer] = useState<number>(5)
-  const [askedQuestionsNumber] = useState<number>(10)
-  const [countdown, setCountdown] = useState<number>(definedTimer)
-  const [progress, setProgress] = useState(0);
+  const [definedTimer] = useState<number>(5);
+  const [askedQuestionsNumber] = useState<number>(10);
+	// Todo, avoid map.set ...
+	/*
+		const updateSelectedAnswer = (question, answer) => {
+		setQuestionsWithSelectedAnswer(prevMap => {
+			const newMap = new Map(prevMap);
+			newMap.set(question, answer);
+			return newMap;
+		});
+	};
+	*/
+	const [questionsWithSelectedAnswers, setQuestionsWithSelectedAnswer] = useState<Map<Question, number> | null>(new Map<Question, number>())
+
+  useEffect(() => {
+    console.log("Rerender Quizz");
+  });
 
   useEffect(() => {
     const fetchQuestionsFromApi = async () => {
+      console.log("fetching");
       try {
         const response = await fetch(
           "http://192.168.0.99:5143/question/getall"
@@ -37,64 +51,55 @@ const Quizz = () => {
         const responseData: Question[] = await response.json();
         setQuestions(responseData);
       } catch (error: any) {
-        setError(error);
+        // setError(error);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
     fetchQuestionsFromApi();
   }, []);
 
-  useEffect(() => {
-    if(questionCounter >= askedQuestionsNumber) return
-    const timer = setInterval(() => {
-        let needIncrementAndReset = false;
-      setProgress((prevProgress) => {
-        const newProgress = prevProgress + 1 / definedTimer;
-        if (newProgress > 1) {
-            needIncrementAndReset = true;
-        }
-        return newProgress;
-      });
-      if(needIncrementAndReset){
-        setProgress(0);
-        setQuestionCounter(prev => prev + 1)
-      }
-
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
   const handleValidation = () => {
-    // Check if correct answer, increase the score if yes
-    if (
-      questions !== null &&
-      questions[questionCounter].answerIndex == selectedAnswer
-    ) {
-      setScore((prev) => prev + 1);
-    }
+		checkAnswer();
+    setQuestionCounter((prev) => prev + 1);
+    setSelectedAnswer(-1);
+  };
+
+  const handleTimeOut = () => {
+		checkAnswer();
+    setQuestionCounter((prev) => prev + 1);
+		setSelectedAnswer(-1);
+  };
+
+	const checkAnswer = () => {
+		// Logs
     console.log(
       questionCounter,
       questions !== null &&
         questions[questionCounter].answerIndex == selectedAnswer
     );
-    setQuestionCounter((prev) => prev + 1);
-    setSelectedAnswer(null);
-    setProgress(0)
-  };
 
-  //#region Rendering
-  const RenderQuizz = () => {
-    if (questionCounter >= askedQuestionsNumber) {
-      return <Text>Recap {score}/10</Text>;
-    } else if (questions?.length) {
-      return (
+		// Add the questions to a map with the associted selected answer so we can compute them in the quizz summary
+		if(questions && questionsWithSelectedAnswers){
+			questionsWithSelectedAnswers.set(questions[questionCounter], selectedAnswer)
+		}
+	}
+
+	const isQuizzPlaying: boolean = questionCounter < askedQuestionsNumber	
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      {questions && isQuizzPlaying && (
         <>
           <View style={styles.topContainer}>
-          <View style={styles.progressionContainer}>
-          <ProgressBar progress={progress} style={styles.progressBar} color={Theme.primary}/>
-          </View>
+            <View style={styles.progressionContainer}>
+              <ProgressBarComponent
+                definedTimer={definedTimer}
+                questionCounter={questionCounter}
+                handleTimeOut={handleTimeOut}
+                color={Theme.primary}
+              />
+            </View>
             <Text style={styles.questionCounter}>
               Question {questionCounter + 1}/40
             </Text>
@@ -111,21 +116,22 @@ const Quizz = () => {
             </Text>
             <View style={styles.questionsAnswerButtonsContainer}>
               <View>
-                {questions[questionCounter].answers.map((answer, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => setSelectedAnswer(index)}
-                    style={
-                      selectedAnswer === index
-                        ? styles.questionSelectedAnswerButton
-                        : styles.questionAnswerButton
-                    }
-                  >
-                    <Text style={styles.questionAnswerButtonText}>
-                      {answer}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
+                {
+                  questions[questionCounter].answers.map((answer, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => setSelectedAnswer(index)}
+                      style={
+                        selectedAnswer === index
+                          ? styles.questionSelectedAnswerButton
+                          : styles.questionAnswerButton
+                      }
+                    >
+                      <Text style={styles.questionAnswerButtonText}>
+                        {answer}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
               </View>
               <TouchableOpacity
                 onPress={() => handleValidation()}
@@ -134,22 +140,11 @@ const Quizz = () => {
                 <Text style={styles.questionValidationButtonText}>Valider</Text>
               </TouchableOpacity>
             </View>
-            
           </View>
         </>
-      );
-    } else {
-      return <Text>No questions available</Text>;
-    }
-  };
-  //#endregion
-
-  return (
-    <View style={styles.topContainer}>
-        <SafeAreaView style={{ flex: 1 }}>
-        <RenderQuizz />
-        </SafeAreaView>
-    </View>
+      )}
+			{!isQuizzPlaying && <QuizzSummary questionsWithSelectedAnswers={questionsWithSelectedAnswers}/>}
+    </SafeAreaView>
   );
 };
 
@@ -162,7 +157,7 @@ const styles = StyleSheet.create({
     flex: 1,
     zIndex: 2,
     backgroundColor: Theme.white,
-    borderRadius: 25
+    borderRadius: 25,
   },
   questionImage: {
     width: Dimensions.get("window").width,
@@ -223,7 +218,7 @@ const styles = StyleSheet.create({
     // marginRight: 20,
     height: 10,
     borderRadius: 20,
-    margin: 10
+    margin: 10,
   },
 });
 
