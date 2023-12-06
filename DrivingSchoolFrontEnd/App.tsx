@@ -5,6 +5,7 @@ import { AppRegistry, View, StyleSheet, Button, Text } from 'react-native';
 import ProfileBanner from './src/components/ProfileBanner';
 import Quizz from './src/views/Quizz';
 import { useEffect } from 'react';
+import Test from './src/views/Test';
 
 
 export default function App() {
@@ -15,7 +16,7 @@ export default function App() {
 
   return (
     <PaperProvider>
-        <AuthStack/>
+        <Test/>
     </PaperProvider>
   );   
   }
