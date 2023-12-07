@@ -1,12 +1,11 @@
 import { View, Text, Button, StyleSheet } from 'react-native'
 import React from 'react'
-import { GoogleAuth } from '../firebase/firebaseConfig'
 // 650987116196-76hpj6f7chi5qhc9fpuqe3qi9armn5ve.apps.googleusercontent.com
 const Test = () => {
   return (
     <View style={styles.container}>
       <Text>Test</Text>
-      <Button title="Sign in with Google" onPress={() => GoogleAuth()}/>
+      <Button title="Sign in with Google" onPress={() => console.log("pressed")} />
     </View>
   )
 }

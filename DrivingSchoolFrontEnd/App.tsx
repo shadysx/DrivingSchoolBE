@@ -16,7 +16,7 @@ export default function App() {
 
   return (
     <PaperProvider>
-        <Test/>
+        <AuthStack/>
     </PaperProvider>
   );   
   }
