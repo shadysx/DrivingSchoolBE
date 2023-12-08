@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IHyfIKQkoV5T7jgVzvtBUGsGO/cZ75Htx4tu3QE+S2d4JRa/KHKfo9O+864fZtyx9g2zS8+U3eWc5LZBc+L64w==",
+  "dgSpecHash": "TPz7RvC8nzn01N/Z7+0t1yyfoh6t4xXESkQLeNUIBX/6LxelXSA7yeCNNf/iM9M5yNXfEE52bbG1tvchn1XA7Q==",
   "success": true,
-  "projectFilePath": "/Users/shady/Desktop/code/DrivingSchoolBE/DrivingSchoolBackend/DrivingSchoolApi/DrivingSchoolApi.csproj",
+  "projectFilePath": "/Users/shady/Desktop/DrivingSchoolBE/DrivingSchoolBackend/DrivingSchoolApi/DrivingSchoolApi.csproj",
   "expectedPackageFiles": [
     "/Users/shady/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/shady/.nuget/packages/microsoft.aspnetcore.openapi/7.0.4/microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
@@ -33,7 +33,10 @@
     "/Users/shady/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",
     "/Users/shady/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/shady/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
-    "/Users/shady/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512"
+    "/Users/shady/.nuget/packages/system.text.json/7.0.0/system.text.json.7.0.0.nupkg.sha512",
+    "/Users/shady/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/shady/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/shady/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.14/microsoft.netcore.app.host.osx-arm64.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

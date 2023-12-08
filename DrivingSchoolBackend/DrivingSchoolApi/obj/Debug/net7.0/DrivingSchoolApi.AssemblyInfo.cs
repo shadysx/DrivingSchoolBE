@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DrivingSchoolApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc98252df0fcf4e3febda501c2e30ed4d798bc19")]
 [assembly: System.Reflection.AssemblyProductAttribute("DrivingSchoolApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DrivingSchoolApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
