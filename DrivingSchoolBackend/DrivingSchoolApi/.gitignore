@@ -1,6 +1,6 @@
 # Directories #
-*/bin
-*/obj
+[Bb]in/
+[Oo]bj/
 
 # Files #
 *.user
