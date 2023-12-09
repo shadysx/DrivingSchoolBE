@@ -1,5 +1,5 @@
 import { PaperProvider } from 'react-native-paper';
-import AuthStack from './src/navigation/navigation';
+import { AuthStack, GuestStack} from './src/navigation/navigation';
 import * as React from 'react';
 import { AppRegistry, View, StyleSheet, Button, Text } from 'react-native';
 import ProfileBanner from './src/components/ProfileBanner';
@@ -17,7 +17,9 @@ export default function App() {
 
   return (
     <PaperProvider>
-        <Auth/>
+        <Auth>
+          <GuestStack/>
+        </Auth>
     </PaperProvider>
   );   
   }

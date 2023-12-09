@@ -6,9 +6,10 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import Quizz from '../views/Quizz';
 import Home from '../views/Home';
+import Login from '../views/Login';
 
 const Stack = createStackNavigator();
-export default function AuthStack() {
+export function AuthStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -24,6 +25,19 @@ export default function AuthStack() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+  );
+}
 
+export function GuestStack() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false  }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

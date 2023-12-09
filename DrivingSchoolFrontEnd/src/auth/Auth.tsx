@@ -15,7 +15,7 @@ export function useAuth() {
   return React.useContext(AuthContext)
 }
 
-const Auth = () => {
+const Auth = ({ children }) => {
   const [userCredential, setUserCredential] = useState<UserCredential>()
   const [user, setUser] = useState<User>()
 
@@ -103,12 +103,15 @@ const Auth = () => {
   };
 
   return (
-    <View style={styles.container}>
-      {userCredential && <Text>Welcome {user.displayName}</Text>}
-      <Button title="SignIn" onPress={() => handleGoogleSignIn()}/>
-      <Button title="Check what's in cache" onPress={() => checkUserInAsyncStorage()}/>
-      <Button title="Remove cache" onPress={async () => removeUserInAsyncStorage()}/>
-    </View>
+    // <View style={styles.container}>
+    //   {userCredential && <Text>Welcome {user.displayName}</Text>}
+    //   <Button title="SignIn" onPress={() => handleGoogleSignIn()}/>
+    //   <Button title="Check what's in cache" onPress={() => checkUserInAsyncStorage()}/>
+    //   <Button title="Remove cache" onPress={async () => removeUserInAsyncStorage()}/>
+    // </View>
+    <AuthContext.Provider value={{user, auth}}>
+    {children}
+  </AuthContext.Provider>
   )
 }
 
