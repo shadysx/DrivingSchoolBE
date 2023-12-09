@@ -4,6 +4,7 @@ import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-si
 import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithCredential, UserCredential, User} from "firebase/auth";
 import { auth } from '../firebase/firebaseConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 GoogleSignin.configure({
   webClientId: '303209116814-uelgcct8h7aprkq4104to8295r3ttjnj.apps.googleusercontent.com'
@@ -25,10 +26,34 @@ const Auth = ({ children }) => {
   const [user, setUser] = useState<User>()
 
   useEffect(() => {
-    console.log("Check ");
     handleAuth();
   },[])
 
+  useEffect(() => {
+    handleAuth();
+  },[])
+
+  const handleGoogleSignIn = async (): Promise<User>  => {
+    const response: UserCredential = await googleSignIn(); 
+    const jwt = (response as any)._tokenResponse.oauthIdToken;
+
+    console.log(jwt)
+
+    try {
+      const result = await axios.post('http://localhost:5143/Auth/VerifyGoogleToken', 'hello wordl', {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log(result.data); // Log the response data from the server
+    } catch (error) {
+      console.error('Error making POST request:', error);
+    }
+
+    return null;
+  }
+
+  // Will check if there is an user in the local storage and set it if needed
   const handleAuth = async () => {
     const userInCache: UserCredential = JSON.parse(await AsyncStorage.getItem("@user")); 
     if(userInCache){
@@ -37,21 +62,22 @@ const Auth = ({ children }) => {
     }
   }
 
-  const handleGoogleSignIn = async () => {
-    console.log("HandleSignIn")
-    const userInCache: string = await AsyncStorage.getItem("@user");
-    if(!userInCache){
-      const response: UserCredential = await googleSignIn();
-       await setUserCredential(response);
-       await setUser(response.user)
-       await AsyncStorage.setItem("@user", JSON.stringify(response));
-    }
-    else {
-      setUserCredential(JSON.parse(userInCache))
-      setUser(JSON.parse(userInCache).user)
-    }
-  }
+  // const handleGoogleSignIn = async () => {
+  //   console.log("HandleSignIn")
+  //   const userInCache: string = await AsyncStorage.getItem("@user");
+  //   if(!userInCache){
+  //     const response: UserCredential = await googleSignIn();
+  //      await setUserCredential(response);
+  //      await setUser(response.user)
+  //      await AsyncStorage.setItem("@user", JSON.stringify(response));
+  //   }
+  //   else {
+  //     setUserCredential(JSON.parse(userInCache))
+  //     setUser(JSON.parse(userInCache).user)
+  //   }
+  // }
 
+  // Return the userCredentials from firebase
   const googleSignIn = async () => {
     try {
       // Check for Google Play Services
@@ -107,12 +133,6 @@ const Auth = ({ children }) => {
     setUser(null)
   }
   return (
-    // <View style={styles.container}>
-    //   {userCredential && <Text>Welcome {user.displayName}</Text>}
-    //   <Button title="SignIn" onPress={() => handleGoogleSignIn()}/>
-    //   <Button title="Check what's in cache" onPress={() => checkUserInAsyncStorage()}/>
-    //   <Button title="Remove cache" onPress={async () => removeUserInAsyncStorage()}/>
-    // </View>
     <AuthContext.Provider value={{user, handleGoogleSignIn, handleLogout, checkUserInAsyncStorage}}>
     {children}
   </AuthContext.Provider>

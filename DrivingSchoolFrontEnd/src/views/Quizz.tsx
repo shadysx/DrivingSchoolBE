@@ -42,7 +42,7 @@ const Quizz = () => {
       console.log("fetching");
       try {
         const response = await fetch(
-          "http://192.168.0.99:5143/question/getall"
+          "http://localhost:5143/question/getall"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

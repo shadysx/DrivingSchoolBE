@@ -3,11 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DrivingSchoolApi.Models
 {
-    public class Question
+    public class Question: BaseEntity
 	{
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int Id {get; set;}
 		public required string Title {get; set;}
         public required string Text {get; set;}
         // Todo add theme object?

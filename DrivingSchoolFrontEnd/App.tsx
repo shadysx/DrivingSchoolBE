@@ -20,6 +20,7 @@ export default function App() {
     <PaperProvider>
       <Auth>
         <Navigation/>
+        {/* <Quizz/> */}
       </Auth>
     </PaperProvider>
   );   
