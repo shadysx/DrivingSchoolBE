@@ -2,7 +2,9 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithCredential} from "firebase/auth";
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 
 
 // Your web app's Firebase configuration
@@ -23,3 +25,26 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
+
+export const googleSignIn = async () => {
+  try {
+    await GoogleSignin.hasPlayServices();
+    const { idToken } = await GoogleSignin.signIn();
+    console.log("first   ", idToken, googleCredentials)
+    const googleCredentials = GoogleAuthProvider.credential(idToken);
+    const result = await signInWithCredential(auth, googleCredentials);
+    console.log("result", JSON.stringify(result, null, 4))
+    
+  } catch (error) {
+    console.log(error)
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      // user cancelled the login flow
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      // operation (e.g. sign in) is in progress already
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      // play services not available or outdated
+    } else {
+      // some other error happened
+    }
+  }
+};

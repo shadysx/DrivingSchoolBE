@@ -2,3 +2,12 @@
 # macOS
 *.DS_Store
 *.pem
+DrivingSchoolBackend/DrivingSchoolApi/obj/DrivingSchoolApi.csproj.nuget.dgspec.json
+
+DrivingSchoolBackend/DrivingSchoolApi/obj/DrivingSchoolApi.csproj.nuget.g.props
+
+DrivingSchoolBackend/DrivingSchoolApi/obj/DrivingSchoolApi.csproj.nuget.g.targets
+
+DrivingSchoolBackend/DrivingSchoolApi/obj/project.assets.json
+
+DrivingSchoolBackend/DrivingSchoolApi/obj/project.nuget.cache
