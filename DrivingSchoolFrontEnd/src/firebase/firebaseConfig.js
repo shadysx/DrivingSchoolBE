@@ -22,7 +22,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth();
+export const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
 
@@ -30,10 +30,12 @@ export const googleSignIn = async () => {
   try {
     await GoogleSignin.hasPlayServices();
     const { idToken } = await GoogleSignin.signIn();
-    console.log("first   ", idToken, googleCredentials)
     const googleCredentials = GoogleAuthProvider.credential(idToken);
+    console.log("first   ", idToken, googleCredentials)
     const result = await signInWithCredential(auth, googleCredentials);
-    console.log("result", JSON.stringify(result, null, 4))
+    console.log("second", JSON.stringify(result.user.stsTokenManager.accessToken, null, 4))
+
+    return result;
     
   } catch (error) {
     console.log(error)

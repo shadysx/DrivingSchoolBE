@@ -6,6 +6,7 @@ import ProfileBanner from './src/components/ProfileBanner';
 import Quizz from './src/views/Quizz';
 import { useEffect } from 'react';
 import Login from './src/views/Login';
+import Auth from './src/auth/Auth';
 
 
 export default function App() {
@@ -16,7 +17,7 @@ export default function App() {
 
   return (
     <PaperProvider>
-        <Login/>
+        <Auth/>
     </PaperProvider>
   );   
   }
