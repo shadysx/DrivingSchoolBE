@@ -1,12 +1,14 @@
 import { View, Text, Image, StyleSheet, Dimensions, Button, TouchableOpacity } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { useAuth } from '../auth/Auth'
 
 //Screens
 
 import Quizz from '../views/Quizz';
 import Home from '../views/Home';
 import Login from '../views/Login';
+
 
 const Stack = createStackNavigator();
 export function AuthStack() {
@@ -17,12 +19,12 @@ export function AuthStack() {
           name="Quizz"
           component={Quizz}
           options={{ headerShown: false  }}
-        />
+          />
         <Stack.Screen
           name="Home"
           component={Home}
           options={{ headerShown: false  }}
-        />
+          />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -36,8 +38,15 @@ export function GuestStack() {
           name="Login"
           component={Login}
           options={{ headerShown: false  }}
-        />
+          />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+const Navigation = () => {
+  const { user } = useAuth();
+  return user ? <AuthStack/> : <GuestStack/>
+}
+
+export default Navigation;

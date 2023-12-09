@@ -9,7 +9,12 @@ GoogleSignin.configure({
   webClientId: '303209116814-uelgcct8h7aprkq4104to8295r3ttjnj.apps.googleusercontent.com'
 });
 
-export const AuthContext = React.createContext({})
+export const AuthContext = React.createContext({
+  user: null, // Assuming user is of type User or null
+  handleGoogleSignIn: () => {}, // Placeholder function
+  handleLogout: () => {}, // Placeholder function
+  checkUserInAsyncStorage: () => {}, // Placeholder function
+});
 
 export function useAuth() {
   return React.useContext(AuthContext)
@@ -29,14 +34,13 @@ const Auth = ({ children }) => {
     if(userInCache){
       setUserCredential(userInCache)
       setUser(userInCache.user)
-      console.log("userincache", userInCache.user)
     }
   }
 
   const handleGoogleSignIn = async () => {
+    console.log("HandleSignIn")
     const userInCache: string = await AsyncStorage.getItem("@user");
     if(!userInCache){
-      console.log("Signin")
       const response: UserCredential = await googleSignIn();
        await setUserCredential(response);
        await setUser(response.user)
@@ -80,11 +84,6 @@ const Auth = ({ children }) => {
     }
   };
 
-  const removeUserInAsyncStorage = async () => {
-    await AsyncStorage.removeItem("@user");
-    setUserCredential(null);
-  }
-
   const checkUserInAsyncStorage = async () => {
     try {
       // Get the value for the '@user' key
@@ -102,6 +101,11 @@ const Auth = ({ children }) => {
     }
   };
 
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem("@user");
+    setUserCredential(null);
+    setUser(null)
+  }
   return (
     // <View style={styles.container}>
     //   {userCredential && <Text>Welcome {user.displayName}</Text>}
@@ -109,7 +113,7 @@ const Auth = ({ children }) => {
     //   <Button title="Check what's in cache" onPress={() => checkUserInAsyncStorage()}/>
     //   <Button title="Remove cache" onPress={async () => removeUserInAsyncStorage()}/>
     // </View>
-    <AuthContext.Provider value={{user, auth}}>
+    <AuthContext.Provider value={{user, handleGoogleSignIn, handleLogout, checkUserInAsyncStorage}}>
     {children}
   </AuthContext.Provider>
   )
