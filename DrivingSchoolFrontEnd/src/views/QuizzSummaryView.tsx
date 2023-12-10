@@ -37,36 +37,16 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
     }
 
     const _quizzSummary: QuizzSummary = new QuizzSummary(summaryElements);
-    console.log("quizSummary", _quizzSummary);
-    console.log("score", _quizzSummary?.Score);
-
     setQuestionsAmount(summaryElements.length);
     setQuizzSummary(_quizzSummary);
-
     postQuizzSummaryToServer(_quizzSummary);
   };
 
   const postQuizzSummaryToServer = async (quizzSummary: QuizzSummary) => {
-    // Build an array of QuizzSummaryElement objects
-    const quizzSummaryElements = quizzSummary.QuizzSummaryElements.map(
-      (element) => {
-        return {
-          questionText: element.QuestionText,
-          correctAnswerIndex: element.CorrectAnswerIndex,
-          userAnswerIndex: element.UserAnswerIndex,
-          isAnswerCorrect: element.IsAnswerCorrect,
-        };
-      }
-    );
-    const objectToSend = {
-      score: quizzSummary.Score,
-      quizzSummaryElements: quizzSummary.QuizzSummaryElements,
-    };
-    console.log("tosend", JSON.stringify(quizzSummary, null, 4));
     try {
       const result = await axios.post(
         API + "QuizSummary/Create",
-        JSON.stringify(objectToSend),
+        JSON.stringify(quizzSummary),
         {
           headers: {
             "Content-Type": "application/json",

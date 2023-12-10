@@ -5,10 +5,9 @@ export class QuizzSummary {
     private creationDate: Date;
     private quizzSummaryElements: QuizzSummaryElement[];
   
-    constructor(quizzSummaryElements: QuizzSummaryElement[] = [], creationDate?: Date, score?: number) {
-        this.creationDate = creationDate
+    constructor(quizzSummaryElements: QuizzSummaryElement[] = []) {
         this.quizzSummaryElements = quizzSummaryElements
-        this.score = score 
+        this.score = this.computeScore();
     }
 
     private computeScore(): number {
@@ -26,19 +25,10 @@ export class QuizzSummary {
     }
   
     get Score(): number {
-        return this.computeScore();
+        return this.score;
     }
 
     get CreationDate(): Date {
         return this.creationDate;
-    }
-
-    // Define a toString method
-    toString(): string {
-        const summaryElementsString = this.quizzSummaryElements
-            .map(element => `Question: ${element.QuestionText}, User Answer Correct: ${element.IsAnswerCorrect}`)
-            .join(', ');
-
-        return `Quizz Summary: Date = ${this.creationDate.toISOString()}, Score = ${this.score}, Elements = [${summaryElementsString}]`;
     }
   }

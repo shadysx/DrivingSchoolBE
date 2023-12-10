@@ -34,8 +34,6 @@ const Quizz = () => {
 	const [questionsWithSelectedAnswers, setQuestionsWithSelectedAnswer] = useState<Map<Question, number> | null>(new Map<Question, number>())
 
   useEffect(() => {
-    console.log("Rerender Quizz");
-    console.log(questions)
   });
 
   useEffect(() => {
@@ -60,25 +58,18 @@ const Quizz = () => {
   }, []);
 
   const handleValidation = () => {
-		checkAnswer();
+		addAnswer();
     setQuestionCounter((prev) => prev + 1);
     setSelectedAnswer(-1);
   };
 
   const handleTimeOut = () => {
-		checkAnswer();
+		addAnswer();
     setQuestionCounter((prev) => prev + 1);
 		setSelectedAnswer(-1);
   };
 
-	const checkAnswer = () => {
-		// Logs
-    console.log(
-      questionCounter,
-      questions !== null &&
-        questions[questionCounter].answerIndex == selectedAnswer
-    );
-
+	const addAnswer = () => {
 		// Add the questions to a map with the associted selected answer so we can compute them in the quizz summary
 		if(questions && questionsWithSelectedAnswers){
 			questionsWithSelectedAnswers.set(questions[questionCounter], selectedAnswer)
