@@ -13,10 +13,10 @@ import { Switch } from "react-native-paper";
 import ProfileBanner from "../components/ProfileBanner";
 import { Theme } from "../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Education from "../../assets/education.svg";
+import Learn from "../../assets/learn.svg";
 import Chart from "../../assets/chart.svg";
-import Options from "../../assets/settings.svg"
-import Like from "../../assets/like.svg"
+import Options from "../../assets/settings.svg";
+import Like from "../../assets/like.svg";
 import HorizontalCardButton from "../components/HorizontalCardButton";
 import VerticalCardButton from "../components/VerticalCardButton";
 import { useAuth } from "../auth/Auth";
@@ -25,31 +25,79 @@ const Home: React.FC<any> = ({ navigation }) => {
   const [visible, setVisible] = React.useState(true);
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
 
-
   const hideDialog = () => setVisible(false);
 
-
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['bottom']}>
       <ProfileBanner />
       <View style={styles.bottomContainer}>
         <View style={styles.homeButtonsContainer}>
-          <HorizontalCardButton svgComponent={<Education width={"50%"} height={"70%"} style={styles.homeButtonImage}/>}/> 
+          <HorizontalCardButton
+            svgComponent={
+              <Learn
+                width={"50%"}
+                height={"70%"}
+                style={styles.homeButtonImage}
+              />
+            }
+          />
         </View>
         <View style={styles.heading}>
           <Text style={styles.headingText}>Plus</Text>
         </View>
         <View style={styles.homeVerticalButtonsContainer}>
-          <VerticalCardButton title="Stats" subTitle='Consulte ta progression' color={Theme.primary} svgComponent={<Chart width={"90%"} height={"70%"} style={styles.homeVerticalButtonImage}/>}/> 
-          <VerticalCardButton title="Favoris" subTitle='Consulte les questions sauvegardées' color={Theme.primary} svgComponent={<Like width={"90%"} height={"70%"} style={styles.homeVerticalButtonImage}/>}/> 
-          <VerticalCardButton title="Options" subTitle='Change les paramètres à ta guise' color={Theme.primary} svgComponent={<Options width={"90%"} height={"70%"} style={styles.homeVerticalButtonImage}/>}/> 
-        </View>
-        <View>
-        <Button icon="steering" mode="elevated" textColor="white" buttonColor={Theme.secondary} onPress={() => navigation.navigate("Quizz")}>
-          Commencer un examen
-        </Button>
+          <VerticalCardButton
+            title="Stats"
+            subTitle="Consulte ta progression"
+            color={"white"}
+            svgComponent={
+              <Chart
+                width={"90%"}
+                height={"70%"}
+                style={styles.homeVerticalButtonImage}
+              />
+            }
+          />
+          <VerticalCardButton
+            title="Favoris"
+            subTitle="Consulte les questions sauvegardées"
+            color={"white"}
+            svgComponent={
+              <Like
+                width={"90%"}
+                height={"70%"}
+                style={styles.homeVerticalButtonImage}
+              />
+            }
+          />
+          <VerticalCardButton
+            title="Options"
+            subTitle="Change les paramètres à ta guise"
+            color={"white"}
+            svgComponent={
+              <Options
+                width={"90%"}
+                height={"70%"}
+                style={styles.homeVerticalButtonImage}
+              />
+            }
+          />
         </View>
       </View>
+      <View
+          style={styles.startExamButtonContainer}
+        >
+          <Button
+            style={styles.startExamButton}
+            icon="steering"
+            mode="elevated"
+            textColor="white"
+            buttonColor={Theme.black}
+            onPress={() => navigation.navigate("Quizz")}
+          >
+            Commencer un examen
+          </Button>
+        </View>
 
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
@@ -70,7 +118,7 @@ const Home: React.FC<any> = ({ navigation }) => {
           </Dialog.Actions>
         </Dialog>
       </Portal>
-    </View>
+    </SafeAreaView>
   );
 };
 export default Home;
@@ -84,12 +132,12 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.white,
     flex: 1,
     zIndex: 2,
-    marginTop: -20,
+    marginTop: -50,
     borderRadius: 25,
     alignItems: "center",
   },
   heading: {
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     marginLeft: 20,
   },
   headingText: {
@@ -107,19 +155,24 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   homeVerticalButtonsContainer: {
-    width: Dimensions.get('window').width - 40,
+    width: Dimensions.get("window").width - 40,
     marginTop: 10,
-    marginBottom: 50,
     marginLeft: 20,
     marginRight: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   homeButtonImage: {
     marginRight: 50,
   },
-  homeVerticalButtonImage: {
+  homeVerticalButtonImage: {},
+  startExamButtonContainer: {
+    alignItems: 'center'
 
-  },
+  }
+  ,
+  startExamButton: {
+
+    width: "70%",
+  }
 });

@@ -91,6 +91,9 @@ const Quizz = () => {
       {questions && isQuizzPlaying && (
         <>
           <View style={styles.topContainer}>
+          <Text style={styles.questionCounter}>
+              Question {questionCounter + 1}/40
+            </Text>
             <View style={styles.progressionContainer}>
               <TimerProgressBar
                 definedTimer={definedTimer}
@@ -99,9 +102,6 @@ const Quizz = () => {
                 color={Theme.primary}
               />
             </View>
-            <Text style={styles.questionCounter}>
-              Question {questionCounter + 1}/40
-            </Text>
             <Image
               style={styles.questionImage}
               source={{
@@ -170,7 +170,6 @@ const styles = StyleSheet.create({
   questionText: {
     fontSize: 20,
     margin: 20,
-    textAlign: "justify",
   },
   questionsAnswerButtonsContainer: {
     flex: 1,
@@ -201,7 +200,7 @@ const styles = StyleSheet.create({
   },
   questionValidationButton: {
     height: 50,
-    backgroundColor: Theme.primary,
+    backgroundColor: 'black',
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",

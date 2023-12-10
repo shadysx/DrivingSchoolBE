@@ -19,13 +19,11 @@ const ProfileBanner = () => {
           <Avatar.Image
             style={styles.avatarContainer}
             size={60}
-            source={{
-              uri: user.photoURL,
-            }}
+            source={require('../../assets/avatar1.webp')}
           />
           <View style={styles.avatarTextContainer}>
             <Text style={styles.avatarTextElement}>
-              Bienvenue, {user.displayName}
+              Bienvenue, {user.userName}
             </Text>
             <Text style={[styles.avatarTextElement, styles.additionalText]}>
               Il est temps de te préparer !
@@ -44,10 +42,10 @@ const ProfileBanner = () => {
           <ProgressBar
             style={styles.progressBar}
             progress={0.65}
-            color={Theme.primary}
+            color={Theme.black}
           />
           <View style={styles.progressionTextContainer}>
-            <Text style={{ fontWeight: "normal", color: "white" }}>
+            <Text style={{ fontSize: 14, fontWeight: "normal", color: "white" }}>
               Jeune drifteur
             </Text>
             <Text

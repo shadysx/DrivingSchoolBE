@@ -35,7 +35,7 @@ export const TimerProgressBar: React.FC<any> = ({ definedTimer, questionCounter 
       <ProgressBar
         progress={timeLeft / definedTimer}
         style={styles.progressBar}
-        color={Theme.primary}
+        color={Theme.secondary}
       />
     );
   };

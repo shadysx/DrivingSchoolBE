@@ -28,17 +28,25 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         height: 130,
         borderRadius: 15,
-        backgroundColor: Theme.secondary,
+        backgroundColor: 'white',
+                // Shadow for iOS
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                // Elevation for Android
+                elevation: 5,
+           
       },
       homeButtonText: {
         marginLeft: 24,
-        color: "white",
+        color: "black",
         fontWeight: "bold",
         fontSize: 35,
       },
       homeButtonAlternativeText: {
         marginLeft: 30,
-        color: "white",
+        color: "black",
         fontSize: 14,
       },
       homeButtonImage: {

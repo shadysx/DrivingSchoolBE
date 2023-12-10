@@ -18,23 +18,36 @@ public class AuthController : ControllerBase
 
 
 
-    [HttpPost("VerifyGoogleToken")]
-    public async Task<IActionResult> VerifyGoogleToken([FromBody] string idToken)
+[HttpPost("VerifyGoogleToken")]
+public async Task<IActionResult> VerifyGoogleToken([FromBody] string idToken)
+{
+    try
     {
-        try
-        {
-            var payload = await GoogleJsonWebSignature.ValidateAsync(idToken);
-            // Check if the user exists in the database
-            // If not, create a new user record
-            // Return a response, e.g., user data or a success message
+        var payload = await GoogleJsonWebSignature.ValidateAsync(idToken);
+        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == payload.Email);
+
+        if(user == null) {
+            var newUser = new User {
+                Email = payload.Email,
+                UserName = payload.GivenName
+                // Add other properties as needed
+            };
+
+            _dbContext.Users.Add(newUser);
+            await _dbContext.SaveChangesAsync();
+
+            // Assuming you have a way to retrieve the user again after saving (like with an ID)
+            user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == newUser.Email);
         }
-        catch (Exception ex)
-        {
-            // Handle the exception (token validation failed)
-            return BadRequest();
-        }
-        return Ok(idToken);
+
+        return Ok(user);
     }
+    catch (Exception ex)
+    {
+        // Consider logging the exception for debugging
+        return BadRequest(ex.Message); // You can return the exception message or a custom error message
+    }
+}
 
     [HttpGet("GetAll")]
     public async Task<IActionResult> List()

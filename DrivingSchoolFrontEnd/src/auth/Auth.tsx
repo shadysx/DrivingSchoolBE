@@ -1,10 +1,12 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Text, Button, StyleSheet, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
-import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithCredential, UserCredential, User} from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithCredential, UserCredential } from "firebase/auth";
 import { auth } from '../firebase/firebaseConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import { User } from '../models/User';
+import { API, Theme } from '../constants';
 
 GoogleSignin.configure({
   webClientId: '303209116814-uelgcct8h7aprkq4104to8295r3ttjnj.apps.googleusercontent.com'
@@ -15,6 +17,8 @@ export const AuthContext = React.createContext({
   handleGoogleSignIn: () => {}, // Placeholder function
   handleLogout: () => {}, // Placeholder function
   checkUserInAsyncStorage: () => {}, // Placeholder function
+  isLoading: false,
+  setIsLoading: null, // Placeholder function
 });
 
 export function useAuth() {
@@ -24,58 +28,44 @@ export function useAuth() {
 const Auth = ({ children }) => {
   const [userCredential, setUserCredential] = useState<UserCredential>()
   const [user, setUser] = useState<User>()
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     handleAuth();
   },[])
 
-  useEffect(() => {
-    handleAuth();
-  },[])
-
-  const handleGoogleSignIn = async (): Promise<User>  => {
+  const handleGoogleSignIn = async () => {
     const response: UserCredential = await googleSignIn(); 
+    setIsLoading(true)
     const jwt = (response as any)._tokenResponse.oauthIdToken;
 
-    console.log(jwt)
-
     try {
-      const result = await axios.post('http://localhost:5143/Auth/VerifyGoogleToken', 'hello wordl', {
+      const result = await axios.post(API + 'Auth/VerifyGoogleToken', jwt, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
-      console.log(result.data); // Log the response data from the server
-    } catch (error) {
+      const userData = result.data;
+      const fetchedUser = new User(userData.email, userData.userName);
+      setUser(fetchedUser)
+      await AsyncStorage.setItem("@user", JSON.stringify(userData));
+    } 
+    catch (error) {
       console.error('Error making POST request:', error);
     }
-
-    return null;
+    setIsLoading(false)
   }
 
   // Will check if there is an user in the local storage and set it if needed
   const handleAuth = async () => {
-    const userInCache: UserCredential = JSON.parse(await AsyncStorage.getItem("@user")); 
+    setIsLoading(true);
+    const userInCache: User = JSON.parse(await AsyncStorage.getItem("@user")); 
     if(userInCache){
-      setUserCredential(userInCache)
-      setUser(userInCache.user)
+      setUser(userInCache)
     }
+    setIsLoading(false);
   }
 
-  // const handleGoogleSignIn = async () => {
-  //   console.log("HandleSignIn")
-  //   const userInCache: string = await AsyncStorage.getItem("@user");
-  //   if(!userInCache){
-  //     const response: UserCredential = await googleSignIn();
-  //      await setUserCredential(response);
-  //      await setUser(response.user)
-  //      await AsyncStorage.setItem("@user", JSON.stringify(response));
-  //   }
-  //   else {
-  //     setUserCredential(JSON.parse(userInCache))
-  //     setUser(JSON.parse(userInCache).user)
-  //   }
-  // }
 
   // Return the userCredentials from firebase
   const googleSignIn = async () => {
@@ -128,12 +118,23 @@ const Auth = ({ children }) => {
   };
 
   const handleLogout = async () => {
+    setIsLoading(true);
     await AsyncStorage.removeItem("@user");
     setUserCredential(null);
     setUser(null)
+    setIsLoading(false);
   }
+
+    // Render loading indicator if isLoading is true
+    if (isLoading) {
+      return (
+        <View style={styles.centered}>
+          <ActivityIndicator size="large" color={Theme.primary} />
+        </View>
+      );
+    }
   return (
-    <AuthContext.Provider value={{user, handleGoogleSignIn, handleLogout, checkUserInAsyncStorage}}>
+    <AuthContext.Provider value={{user, handleGoogleSignIn, handleLogout, checkUserInAsyncStorage, isLoading, setIsLoading}}>
     {children}
   </AuthContext.Provider>
   )
@@ -146,6 +147,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default Auth
