@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DrivingSchoolApi.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231209170125_InitalMigration")]
-    partial class InitalMigration
+    [Migration("20231210181139_NullableSummaryElem")]
+    partial class NullableSummaryElem
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,6 +62,59 @@ namespace DrivingSchoolApi.Migrations
                     b.ToTable("Questions");
                 });
 
+            modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummary", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuizSummaries");
+                });
+
+            modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummaryElement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CorrectAnswerIndex")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsAnswerCorrect")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("QuizzSummaryId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserAnswerIndex")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuizzSummaryId");
+
+                    b.ToTable("QuizzSummaryElement");
+                });
+
             modelBuilder.Entity("DrivingSchoolApi.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -84,6 +137,22 @@ namespace DrivingSchoolApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummaryElement", b =>
+                {
+                    b.HasOne("DrivingSchoolApi.Models.QuizzSummary", "QuizzSummary")
+                        .WithMany("QuizzSummaryElements")
+                        .HasForeignKey("QuizzSummaryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuizzSummary");
+                });
+
+            modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummary", b =>
+                {
+                    b.Navigation("QuizzSummaryElements");
                 });
 #pragma warning restore 612, 618
         }

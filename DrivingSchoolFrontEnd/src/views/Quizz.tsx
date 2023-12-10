@@ -12,7 +12,7 @@ import { Question } from "../interfaces/interfaces";
 import { Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TimerProgressBar } from "../components/TimerProgressBar";
-import QuizzSummary from "./QuizzSummary";
+import QuizzSummaryView from "./QuizzSummaryView";
 
 const Quizz = () => {
   const [questions, setQuestions] = useState<Question[] | null>(null);
@@ -35,6 +35,7 @@ const Quizz = () => {
 
   useEffect(() => {
     console.log("Rerender Quizz");
+    console.log(questions)
   });
 
   useEffect(() => {
@@ -142,7 +143,7 @@ const Quizz = () => {
           </View>
         </>
       )}
-			{!isQuizzPlaying && <QuizzSummary questionsWithSelectedAnswers={questionsWithSelectedAnswers}/>}
+			{!isQuizzPlaying && <QuizzSummaryView questionsWithSelectedAnswers={questionsWithSelectedAnswers}/>}
     </SafeAreaView>
   );
 };
