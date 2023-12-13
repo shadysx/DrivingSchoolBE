@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DrivingSchoolApi.Migrations
 {
     /// <inheritdoc />
-    public partial class InitalMigrations : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -70,7 +70,8 @@ namespace DrivingSchoolApi.Migrations
                     CorrectAnswerIndex = table.Column<int>(type: "integer", nullable: false),
                     UserAnswerIndex = table.Column<int>(type: "integer", nullable: false),
                     IsAnswerCorrect = table.Column<bool>(type: "boolean", nullable: false),
-                    QuizzSummaryId = table.Column<int>(type: "integer", nullable: false),
+                    PhotoUri = table.Column<string>(type: "text", nullable: false),
+                    QuizzSummaryId = table.Column<int>(type: "integer", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -80,8 +81,7 @@ namespace DrivingSchoolApi.Migrations
                         name: "FK_QuizzSummaryElement_QuizSummaries_QuizzSummaryId",
                         column: x => x.QuizzSummaryId,
                         principalTable: "QuizSummaries",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

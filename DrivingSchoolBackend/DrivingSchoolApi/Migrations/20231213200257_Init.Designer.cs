@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DrivingSchoolApi.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231210181139_NullableSummaryElem")]
-    partial class NullableSummaryElem
+    [Migration("20231213200257_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,11 +98,15 @@ namespace DrivingSchoolApi.Migrations
                     b.Property<bool>("IsAnswerCorrect")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("PhotoUri")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("QuestionText")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("QuizzSummaryId")
+                    b.Property<int?>("QuizzSummaryId")
                         .HasColumnType("integer");
 
                     b.Property<int>("UserAnswerIndex")
@@ -141,13 +145,9 @@ namespace DrivingSchoolApi.Migrations
 
             modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummaryElement", b =>
                 {
-                    b.HasOne("DrivingSchoolApi.Models.QuizzSummary", "QuizzSummary")
+                    b.HasOne("DrivingSchoolApi.Models.QuizzSummary", null)
                         .WithMany("QuizzSummaryElements")
-                        .HasForeignKey("QuizzSummaryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("QuizzSummary");
+                        .HasForeignKey("QuizzSummaryId");
                 });
 
             modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummary", b =>

@@ -1,6 +1,8 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
 import { QuizzSummary } from "../../models/QuizzSummary";
+import { QuizzSummaryElement } from "../../models/QuizzSummaryElement";
+import { Theme } from "../../constants";
 
 interface QuizSummaryBoxesProps {
   quizzSummary: QuizzSummary
@@ -24,13 +26,17 @@ const QuizzSummaryBoxes: React.FC<QuizSummaryBoxesProps>  = ({ quizzSummary }) =
   );
 };
 
-const QuizzSummaryElementBox = ({ element }) => {
-  const borderColor = element.isAnswerCorrect ? "green" : "red";
+interface QuizzSummaryProps {
+  element: QuizzSummaryElement;
+}
+
+const QuizzSummaryElementBox: React.FC<QuizzSummaryProps> = ({ element }) => {
+  const borderColor = element.IsAnswerCorrect ? Theme.secondary : "red";
   return (
     <View style={[styles.quizzSummaryElementBox]}>
       <Image
         style={[styles.image, { borderColor: borderColor }]}
-        source={{ uri: "https://via.placeholder.com/640x360" }}
+        source={{ uri: element.PhotoUrl}}
       />
     </View>
   );
@@ -41,6 +47,7 @@ const styles = StyleSheet.create({
       flex: 1,
       padding: 20,
     },
+
     scoreText: {
       fontSize: 24,
       fontWeight: "bold",
@@ -58,14 +65,14 @@ const styles = StyleSheet.create({
     },
     quizzSummaryElementBox: {
       width: "25%", // For 4 images per row
-      padding: 5, // Optional for spacing
+      padding: 4, // Optional for spacing
     },
     image: {
       width: "100%",
       borderRadius: 10,
       height: 100, // Set a fixed height or make it responsive
       resizeMode: "cover", // To maintain aspect ratio
-      borderWidth: 5, // Set the border width
+      borderWidth: 3, // Set the border width
       // borderColor is set dynamically based on the answer correctness
     },
   });

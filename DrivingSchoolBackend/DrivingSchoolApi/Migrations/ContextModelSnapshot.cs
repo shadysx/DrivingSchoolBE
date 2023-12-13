@@ -95,14 +95,15 @@ namespace DrivingSchoolApi.Migrations
                     b.Property<bool>("IsAnswerCorrect")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("PhotoUri")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("QuestionText")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int?>("QuizzSummaryId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("QuizzSummaryId1")
                         .HasColumnType("integer");
 
                     b.Property<int>("UserAnswerIndex")
@@ -111,8 +112,6 @@ namespace DrivingSchoolApi.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("QuizzSummaryId");
-
-                    b.HasIndex("QuizzSummaryId1");
 
                     b.ToTable("QuizzSummaryElement");
                 });
@@ -146,12 +145,6 @@ namespace DrivingSchoolApi.Migrations
                     b.HasOne("DrivingSchoolApi.Models.QuizzSummary", null)
                         .WithMany("QuizzSummaryElements")
                         .HasForeignKey("QuizzSummaryId");
-
-                    b.HasOne("DrivingSchoolApi.Models.QuizzSummary", "QuizzSummary")
-                        .WithMany()
-                        .HasForeignKey("QuizzSummaryId1");
-
-                    b.Navigation("QuizzSummary");
                 });
 
             modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummary", b =>

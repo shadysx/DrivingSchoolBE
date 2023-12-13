@@ -10,21 +10,21 @@ import { User } from "../models/User";
 import QuizzSummaryBoxes from "../components/Quizz/QuizzSummaryBoxes";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackNavigationProp } from "@react-navigation/stack";
 
 interface QuizzSummaryProps {
-  navigation: StackNavigationProp<any, any>
+  navigation: StackNavigationProp<any, any>;
   questionsWithSelectedAnswers: Map<Question, number> | null;
-};
+}
 
 const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
   navigation,
   questionsWithSelectedAnswers,
 }) => {
-  const [score, setScore] = useState(0);
-  const [questionsAmount, setQuestionsAmount] = useState(0);
   const [quizzSummary, setQuizzSummary] = useState<QuizzSummary>();
-  const resultText = quizzSummary?.IsSuccess ? "Le test est réussi" : "Malheureusement c'est un echec";
+  const resultText = quizzSummary?.IsSuccess
+    ? "Le test est réussi"
+    : "Malheureusement c'est un echec";
 
   useEffect(() => {
     computeSummaries();
@@ -38,15 +38,13 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
         new QuizzSummaryElement(
           question.text,
           question.answerIndex,
-          selectedAnswer
+          selectedAnswer,
+          question.imageUri
         )
       );
     }
 
-    console.log("len");
-    console.log(summaryElements.length);
     const _quizzSummary: QuizzSummary = new QuizzSummary(summaryElements);
-    setQuestionsAmount(summaryElements.length);
     setQuizzSummary(_quizzSummary);
     postQuizzSummaryToServer(_quizzSummary);
   };
@@ -69,30 +67,41 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.scoreText}>Votre score est de {quizzSummary?.Score}/40</Text>
+      <View style={styles.topPanel}>
+      <View>
+        <Text style={styles.scoreText}>{resultText}</Text>
+        <Text style={styles.scoreText}>
+          Votre score est de {quizzSummary?.Score}/40
+        </Text>
+      </View>
       <ScrollView style={styles.boxesScrollView}>
         <QuizzSummaryBoxes quizzSummary={quizzSummary} />
-        {/* Add other components here if necessary */}
       </ScrollView>
-      <Text style={styles.scoreText}>{resultText}</Text>
-      <Button
-            icon="steering"
-            mode="elevated"
-            textColor="white"
-            buttonColor={Theme.black}
-            onPress={() => navigation.navigate("HomeView")}
-          >
-            Revenir à l'accueil
-          </Button>
-          <Button
-            icon="steering"
-            mode="elevated"
-            textColor="white"
-            buttonColor={Theme.secondary}
-            onPress={() => navigation.replace("QuizzView")}
-          >
-          Recommencer 
-          </Button>
+      </View>
+      <View style={styles.bottomPanel}>
+      <View style={styles.buttomButtonsContainer}>
+        <Button
+          style={styles.button}
+          icon="home"
+          mode="elevated"
+          textColor="white"
+          buttonColor={Theme.black}
+          onPress={() => navigation.navigate("HomeView")}
+        >
+          Accueil
+        </Button>
+        <Button
+          style={styles.button}
+          icon="restart"
+          mode="elevated"
+          textColor="white"
+          buttonColor={Theme.secondary}
+          onPress={() => navigation.replace("QuizzView")}
+        >
+          Encore
+        </Button>
+      </View>
+      </View>
     </View>
   );
 };
@@ -101,8 +110,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  bottomPanel: {
+    flex: 1,
+    backgroundColor: Theme.white,
+    justifyContent: 'flex-end',
+    zIndex: 2,
+    marginTop: -20,
+    borderRadius: 25
+  },
+  topPanel: {
+    height: "95%",
+  },
   scoreText: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
@@ -119,18 +139,17 @@ const styles = StyleSheet.create({
   },
   quizzSummaryElementBox: {
     width: "25%", // For 4 images per row
-    padding: 5, // Optional for spacing
-  },
-  image: {
-    width: "100%",
-    height: 100, // Set a fixed height or make it responsive
-    resizeMode: "cover", // To maintain aspect ratio
-    borderWidth: 5, // Set the border width
-    // borderColor is set dynamically based on the answer correctness
   },
   boxesScrollView: {
-    maxHeight: '60%'
-  }
+
+  },
+  buttomButtonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  button: {
+    width: "35%",
+  },
 });
 
 export default QuizzSummaryView;

@@ -3,11 +3,13 @@ export class QuizzSummaryElement {
     private correctAnswerIndex: number;
     private userAnswerIndex: number;
     private isAnswerCorrect: boolean;
+    private photoUri: string;
   
-    constructor(questionText: string, correctAnswerIndex: number , userAnswerIndex: number) {
+    constructor(questionText: string, correctAnswerIndex: number , userAnswerIndex: number, photoUri: string) {
       this.questionText = questionText;
 			this.correctAnswerIndex = correctAnswerIndex;
   	  this.userAnswerIndex = userAnswerIndex;
+  	  this.photoUri = photoUri;
       this.isAnswerCorrect = this.checkAnswerCorrectness();
 		}
   
@@ -31,5 +33,8 @@ export class QuizzSummaryElement {
 
 		get IsAnswerCorrect(): boolean {
 			return this.isAnswerCorrect;
+		}
+    get PhotoUrl(): string {
+			return this.photoUri;
 		}
   }
