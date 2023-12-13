@@ -83,8 +83,9 @@ const QuizzView = ({navigation}) => {
 	const isQuizzPlaying: boolean = questionCounter < askedQuestionsNumber	
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       {questions && isQuizzPlaying && (
+      <SafeAreaView style={{ flex: 1 }}>
         <>
           <View style={styles.topContainer}>
           <Text style={styles.questionCounter}>
@@ -137,9 +138,10 @@ const QuizzView = ({navigation}) => {
             </View>
           </View>
         </>
+      </SafeAreaView>
       )}
 			{!isQuizzPlaying && <QuizzSummaryView navigation={navigation} questionsWithSelectedAnswers={questionsWithSelectedAnswers}/>}
-    </SafeAreaView>
+    </View>
   );
 };
 

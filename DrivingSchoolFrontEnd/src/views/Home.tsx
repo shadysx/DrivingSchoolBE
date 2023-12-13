@@ -167,12 +167,14 @@ const styles = StyleSheet.create({
   },
   homeVerticalButtonImage: {},
   startExamButtonContainer: {
-    alignItems: 'center'
-
+    alignItems: 'center',
   }
   ,
   startExamButton: {
-
     width: "70%",
+    height: 50,
+    borderRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
   }
 });

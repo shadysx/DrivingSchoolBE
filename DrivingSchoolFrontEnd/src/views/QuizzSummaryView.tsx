@@ -11,6 +11,7 @@ import QuizzSummaryBoxes from "../components/Quizz/QuizzSummaryBoxes";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface QuizzSummaryProps {
   navigation: StackNavigationProp<any, any>;
@@ -23,8 +24,8 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
 }) => {
   const [quizzSummary, setQuizzSummary] = useState<QuizzSummary>();
   const resultText = quizzSummary?.IsSuccess
-    ? "Le test est réussi"
-    : "Malheureusement c'est un echec";
+    ? <Text>Le test est réussi</Text>
+    : <Text>Le test est raté</Text>
 
   useEffect(() => {
     computeSummaries();
@@ -66,7 +67,7 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.topPanel}>
       <View>
         <Text style={styles.scoreText}>{resultText}</Text>
@@ -94,7 +95,7 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
           style={styles.button}
           icon="restart"
           mode="elevated"
-          textColor="white"
+          textColor="black"
           buttonColor={Theme.secondary}
           onPress={() => navigation.replace("QuizzView")}
         >
@@ -102,24 +103,33 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
         </Button>
       </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Theme.white
   },
   bottomPanel: {
     flex: 1,
-    backgroundColor: Theme.white,
-    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     zIndex: 2,
-    marginTop: -20,
-    borderRadius: 25
+    // marginTop: -70,
+    borderRadius: 20,
+     // Shadow for iOS
+     shadowColor: "#000",
+     shadowOffset: { width: 0, height: 2 },
+     shadowOpacity: 0.75,
+     shadowRadius: 3.84,
+     // Elevation for Android
+     elevation: 5,
   },
   topPanel: {
-    height: "95%",
+    height: "90%",
+    marginLeft: 5, 
+    marginRight: 5
   },
   scoreText: {
     textAlign: "center",
@@ -132,23 +142,20 @@ const styles = StyleSheet.create({
     textAlign: "left",
     marginVertical: 5,
   },
-  imageContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    height: "auto",
-  },
-  quizzSummaryElementBox: {
-    width: "25%", // For 4 images per row
-  },
   boxesScrollView: {
 
   },
   buttomButtonsContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
+    marginTop: 10
   },
   button: {
-    width: "35%",
+    width: "45%",
+    height: 40,
+    borderRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
