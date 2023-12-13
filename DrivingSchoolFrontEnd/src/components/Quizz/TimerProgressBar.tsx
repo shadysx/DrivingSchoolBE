@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { ProgressBar } from "react-native-paper";
-import { Theme } from "../constants";
+import { Theme } from "../../constants";
 import { StyleSheet } from "react-native";
 import React from "react";
 

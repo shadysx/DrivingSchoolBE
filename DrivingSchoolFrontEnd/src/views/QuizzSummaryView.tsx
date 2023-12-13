@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Question } from "../interfaces/interfaces";
 import { QuizzSummaryElement } from "../models/QuizzSummaryElement";
@@ -7,6 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { API } from "../constants";
 import { User } from "../models/User";
+import QuizzSummaryBoxes from "../components/Quizz/QuizzSummaryBoxes";
 
 type QuizzSummaryProps = {
   questionsWithSelectedAnswers: Map<Question, number> | null;
@@ -58,21 +59,7 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
     }
   };
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.scoreText}>
-        Votre score est : {quizzSummary?.Score}/{questionsAmount}
-      </Text>
-      {quizzSummary?.QuizzSummaryElements.map((question, index) => {
-        return (
-          <Text style={styles.questionText} key={index}>
-            {question.QuestionText} --{" "}
-            {question.IsAnswerCorrect ? "Vrai" : "Faux"}
-          </Text>
-        );
-      })}
-    </View>
-  );
+  return <QuizzSummaryBoxes quizzSummary={quizzSummary} />;
 };
 
 const styles = StyleSheet.create({
@@ -89,6 +76,22 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "left",
     marginVertical: 5,
+  },
+  imageContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    height: "auto",
+  },
+  quizzSummaryElementBox: {
+    width: "25%", // For 4 images per row
+    padding: 5, // Optional for spacing
+  },
+  image: {
+    width: "100%",
+    height: 100, // Set a fixed height or make it responsive
+    resizeMode: "cover", // To maintain aspect ratio
+    borderWidth: 5, // Set the border width
+    // borderColor is set dynamically based on the answer correctness
   },
 });
 

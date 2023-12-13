@@ -11,7 +11,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Question } from "../interfaces/interfaces";
 import { Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TimerProgressBar } from "../components/TimerProgressBar";
+import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import QuizzSummaryView from "./QuizzSummaryView";
 
 const Quizz = () => {
