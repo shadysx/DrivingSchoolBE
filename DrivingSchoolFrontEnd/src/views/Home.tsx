@@ -93,7 +93,7 @@ const Home: React.FC<any> = ({ navigation }) => {
             mode="elevated"
             textColor="white"
             buttonColor={Theme.black}
-            onPress={() => navigation.navigate("Quizz")}
+            onPress={() => navigation.navigate("QuizzView")}
           >
             Commencer un examen
           </Button>

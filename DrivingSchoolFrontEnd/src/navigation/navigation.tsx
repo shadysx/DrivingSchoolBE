@@ -5,24 +5,30 @@ import { useAuth } from '../auth/Auth'
 
 //Screens
 
-import Quizz from '../views/Quizz';
+import QuizzView from '../views/QuizzView';
 import Home from '../views/Home';
 import Login from '../views/Login';
+import QuizzSummaryView from '../views/QuizzSummaryView';
 
 
 const Stack = createStackNavigator();
 export function AuthStack() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="HomeView">
         <Stack.Screen
-          name="Quizz"
-          component={Quizz}
+          name="QuizzView"
+          component={QuizzView}
           options={{ headerShown: false  }}
           />
         <Stack.Screen
-          name="Home"
+          name="HomeView"
           component={Home}
+          options={{ headerShown: false  }}
+          />
+                  <Stack.Screen
+          name="QuizzSummaryView"
+          component={QuizzSummaryView}
           options={{ headerShown: false  }}
           />
       </Stack.Navigator>

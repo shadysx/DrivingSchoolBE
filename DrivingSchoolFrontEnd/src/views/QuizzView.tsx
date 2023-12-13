@@ -14,12 +14,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import QuizzSummaryView from "./QuizzSummaryView";
 
-const Quizz = () => {
+const QuizzView = ({navigation}) => {
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [questionCounter, setQuestionCounter] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number>(-1);
   const [score, setScore] = useState<number>(0);
   const [definedTimer] = useState<number>(5);
+  // TODO CHANGE 10
   const [askedQuestionsNumber] = useState<number>(10);
 	// Todo, avoid map.set ...
 	/*
@@ -34,7 +35,10 @@ const Quizz = () => {
 	const [questionsWithSelectedAnswers, setQuestionsWithSelectedAnswer] = useState<Map<Question, number> | null>(new Map<Question, number>())
 
   useEffect(() => {
+    console.log("----------");
   });
+
+
 
   useEffect(() => {
     const fetchQuestionsFromApi = async () => {
@@ -134,7 +138,7 @@ const Quizz = () => {
           </View>
         </>
       )}
-			{!isQuizzPlaying && <QuizzSummaryView questionsWithSelectedAnswers={questionsWithSelectedAnswers}/>}
+			{!isQuizzPlaying && <QuizzSummaryView navigation={navigation} questionsWithSelectedAnswers={questionsWithSelectedAnswers}/>}
     </SafeAreaView>
   );
 };
@@ -212,4 +216,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Quizz;
+export default QuizzView;

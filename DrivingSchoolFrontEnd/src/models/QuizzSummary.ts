@@ -4,6 +4,7 @@ export class QuizzSummary {
     private score: number;
     private creationDate: Date;
     private quizzSummaryElements: QuizzSummaryElement[];
+    private isSuccess: number;
   
     constructor(quizzSummaryElements: QuizzSummaryElement[] = []) {
         this.quizzSummaryElements = quizzSummaryElements
@@ -18,6 +19,10 @@ export class QuizzSummary {
             }
         }
         return score;
+    }
+
+    get IsSuccess(): boolean {
+        return this.score >= 41;
     }
 
     get QuizzSummaryElements(): QuizzSummaryElement[] {
