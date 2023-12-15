@@ -8,6 +8,7 @@ namespace DrivingSchoolApi.Models
 	{
 		public required int Score {get; set;}
         // Navigation property for one-to-many relationship
+        public required bool isSuccess {get; set;}
         public required List<QuizzSummaryElement> QuizzSummaryElements { get; set; }
 
     }

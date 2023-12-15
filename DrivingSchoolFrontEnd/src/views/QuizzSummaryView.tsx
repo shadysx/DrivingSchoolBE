@@ -1,7 +1,5 @@
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
-import { QuizzSummaryElement } from "../models/QuizzSummaryElement";
-import { QuizzSummary } from "../models/QuizzSummary";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { API, Theme } from "../constants";
@@ -11,7 +9,8 @@ import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Question } from "../models/Question";
+import { Question, QuizzSummary, QuizzSummaryElement } from "../interfaces/interfaces";
+import ProfileBanner from "../components/ProfileBanner";
 
 interface QuizzSummaryProps {
   navigation: StackNavigationProp<any, any>;
@@ -23,29 +22,34 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
   questionsWithSelectedAnswers,
 }) => {
   const [quizzSummary, setQuizzSummary] = useState<QuizzSummary>();
-  const resultText = quizzSummary?.IsSuccess
-    ? <Text>Le test est réussi</Text>
-    : <Text>Le test est raté</Text>
+  const resultText = quizzSummary?.isSuccess
+    ? <Text style={{color: Theme.secondary}}>Réussi !</Text>
+    : <Text style={{color: "red"}}>Raté...</Text>
 
   useEffect(() => {
     computeSummaries();
   }, []);
 
   const computeSummaries = () => {
-    let summaryElements: QuizzSummaryElement[] = [];
+    let quizzSummaryElements: QuizzSummaryElement[] = [];
 
     for (const [question, selectedAnswer] of questionsWithSelectedAnswers) {
-      summaryElements.push(
-        new QuizzSummaryElement(
-          question,
-          selectedAnswer,
-        )
-      );
+      quizzSummaryElements.push({
+          question: question,
+          userAnswerIndex: selectedAnswer,
+          isAnswerCorrect: question.answerIndex === selectedAnswer,
+      });
     }
-
-    const _quizzSummary: QuizzSummary = new QuizzSummary(summaryElements);
-    setQuizzSummary(_quizzSummary);
-    postQuizzSummaryToServer(_quizzSummary);
+    const score = quizzSummaryElements.filter((element) => element.isAnswerCorrect).length;
+    console.log(score, "score")
+    const isSuccess = score >= 41;
+    const quizzSummary: QuizzSummary = {
+      score,
+      isSuccess,
+      quizzSummaryElements,
+    };
+    setQuizzSummary(quizzSummary);
+    postQuizzSummaryToServer(quizzSummary);
   };
 
   const postQuizzSummaryToServer = async (quizzSummary: QuizzSummary) => {
@@ -68,13 +72,12 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
     <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.topPanel}>
       <View>
-        <Text style={styles.scoreText}>{resultText}</Text>
         <Text style={styles.scoreText}>
-          Votre score est de {quizzSummary?.Score}/40
+           Votre score est de {quizzSummary?.score}/40, {resultText}
         </Text>
       </View>
       <ScrollView style={styles.boxesScrollView}>
-        <QuizzSummaryBoxes quizzSummary={quizzSummary} />
+        <QuizzSummaryBoxes quizzSummary={quizzSummary} navigation={navigation}/>
       </ScrollView>
       </View>
       <View style={styles.bottomPanel}>
@@ -112,7 +115,7 @@ const styles = StyleSheet.create({
   },
   bottomPanel: {
     flex: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: 'rgba(255, 255, 255, 1)',
     zIndex: 2,
     // marginTop: -70,
     borderRadius: 20,

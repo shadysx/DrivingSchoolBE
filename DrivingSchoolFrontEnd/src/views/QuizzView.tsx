@@ -13,7 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import QuizzSummaryView from "./QuizzSummaryView";
 import { useAuth } from "../auth/Auth";
-import { Question } from "../models/Question";
+import { Question } from "../interfaces/interfaces";
 
 const QuizzView = ({navigation}) => {
   const {setIsLoading} = useAuth();

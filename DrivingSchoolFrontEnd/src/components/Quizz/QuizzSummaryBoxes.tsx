@@ -1,80 +1,101 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import React from "react";
-import { QuizzSummary } from "../../models/QuizzSummary";
-import { QuizzSummaryElement } from "../../models/QuizzSummaryElement";
 import { Theme } from "../../constants";
+import { QuizzSummary, QuizzSummaryElement } from "../../interfaces/interfaces";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface QuizSummaryBoxesProps {
-  quizzSummary: QuizzSummary
+  quizzSummary: QuizzSummary;
+  navigation: any;
 }
 
-const QuizzSummaryBoxes: React.FC<QuizSummaryBoxesProps>  = ({ quizzSummary }) => {
+const QuizzSummaryBoxes: React.FC<QuizSummaryBoxesProps> = ({
+  quizzSummary,
+  navigation,
+}) => {
   // TODO
-  const newTab = quizzSummary?.QuizzSummaryElements 
-  ? [...quizzSummary.QuizzSummaryElements, ...quizzSummary.QuizzSummaryElements, ...quizzSummary.QuizzSummaryElements, ...quizzSummary.QuizzSummaryElements] 
-  : [];
+  const newTab = quizzSummary?.quizzSummaryElements
+    ? [
+        ...quizzSummary.quizzSummaryElements,
+        ...quizzSummary.quizzSummaryElements,
+        ...quizzSummary.quizzSummaryElements,
+        ...quizzSummary.quizzSummaryElements,
+      ]
+    : [];
 
   return (
-    <View style={styles.imageContainer}>
-      {/* <Text style={styles.scoreText}>
-            Votre score est : {quizzSummary?.Score}/{questionsAmount}
-          </Text> */}
-      {newTab.map((element, index) => {
-        return <QuizzSummaryElementBox element={element} key={index} />;
-      })}
+    <View style={styles.imagesContainer}>
+      {newTab.map((element, index) => (
+        <QuizzSummaryElementBox
+          element={element}
+          navigation={navigation}
+          key={index}
+        />
+      ))}
     </View>
   );
 };
 
-interface QuizzSummaryProps {
+interface QuizzSummaryElementBoxProps {
   element: QuizzSummaryElement;
+  navigation: any;
 }
 
-const QuizzSummaryElementBox: React.FC<QuizzSummaryProps> = ({ element }) => {
-  const borderColor = element.IsAnswerCorrect ? Theme.secondary : "red";
+const QuizzSummaryElementBox: React.FC<QuizzSummaryElementBoxProps> = ({
+  element,
+  navigation,
+}) => {
+  const borderColor = element.isAnswerCorrect ? Theme.secondary : "red";
+
+  const handlePress = () => {
+    console.log(element)
+    navigation.navigate("QuizzSummaryDetailView", { element });
+  };
+
   return (
-    <View style={[styles.quizzSummaryElementBox]}>
-      <Image
-        style={[styles.image, { borderColor: borderColor }]}
-        source={{ uri: element.ImageUri}}
-      />
+    <View style={styles.quizzSummaryElementBox}>
+      <TouchableOpacity onPress={() => handlePress()}>
+        <Image
+          style={[styles.image, { borderColor: borderColor }]}
+          source={{ uri: element.question.imageUri }}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 20,
-    },
-
-    scoreText: {
-      fontSize: 24,
-      fontWeight: "bold",
-      marginBottom: 20,
-    },
-    questionText: {
-      fontSize: 18,
-      textAlign: "left",
-      marginVertical: 5,
-    },
-    imageContainer: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      height: "auto",
-    },
-    quizzSummaryElementBox: {
-      width: "25%", // For 4 images per row
-      padding: 4, // Optional for spacing
-    },
-    image: {
-      width: "100%",
-      borderRadius: 10,
-      height: 100, // Set a fixed height or make it responsive
-      resizeMode: "cover", // To maintain aspect ratio
-      borderWidth: 3, // Set the border width
-      // borderColor is set dynamically based on the answer correctness
-    },
-  });
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  scoreText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  questionText: {
+    fontSize: 18,
+    textAlign: "left",
+    marginVertical: 5,
+  },
+  imagesContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    height: "auto",
+  },
+  quizzSummaryElementBox: {
+    width: "25%", // For 4 images per row
+    padding: 4, // Optional for spacing
+  },
+  image: {
+    width: "100%",
+    borderRadius: 10,
+    height: 100, // Set a fixed height or make it responsive
+    resizeMode: "cover", // To maintain aspect ratio
+    borderWidth: 3, // Set the border width
+    // borderColor is set dynamically based on the answer correctness
+  },
+});
 
 export default QuizzSummaryBoxes;

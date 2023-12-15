@@ -1,16 +1,29 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
-import React from 'react'
-import { QuizzSummaryElement } from '../models/QuizzSummaryElement';
+import React, { useEffect } from 'react'
+import { QuizzSummaryElement } from '../interfaces/interfaces'
+import { RouteProp } from '@react-navigation/native';
+
+// interface QuizzSummaryDetailViewProps {
+//   quizzSummaryElement?: QuizzSummaryElement | null
+// }
+
 
 interface QuizzSummaryDetailViewProps {
-  quizzSummaryElement?: QuizzSummaryElement | null
+  route: RouteProp<{ params: { element: QuizzSummaryElement } }, 'params'>;
 }
 
-const QuizzSummaryDetailView: React.FC<QuizzSummaryDetailViewProps> = ({ quizzSummaryElement }) => {
+const QuizzSummaryDetailView: React.FC<QuizzSummaryDetailViewProps> = ({ route }) => {
+  const quizzSummaryElement = route.params.element
+  useEffect(() => {
+    
+  },[])
   return (
     <View style={styles.container}>
-      <Text>Hella</Text>
-      <Text>{quizzSummaryElement?.CorrectAnswerIndex}</Text>
+      <Text>{quizzSummaryElement?.question?.text}</Text>
+      <Text>{quizzSummaryElement.question.answers}</Text>
+      <Text>Vous avez choisi la réponse : {quizzSummaryElement.question.answers[quizzSummaryElement.userAnswerIndex]}</Text>
+      <Text>Votre réponse est {quizzSummaryElement.isAnswerCorrect ? "acceptée !" : "refusée !"}</Text>
+      <Text>La réponse était {quizzSummaryElement.question.answers[quizzSummaryElement.question.answerIndex]}</Text>
     </View>
   )
 }

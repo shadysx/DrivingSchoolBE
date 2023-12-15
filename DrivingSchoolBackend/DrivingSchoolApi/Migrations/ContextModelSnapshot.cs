@@ -73,6 +73,9 @@ namespace DrivingSchoolApi.Migrations
                     b.Property<int>("Score")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("isSuccess")
+                        .HasColumnType("boolean");
+
                     b.HasKey("Id");
 
                     b.ToTable("QuizSummaries");
@@ -88,6 +91,9 @@ namespace DrivingSchoolApi.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsAnswerCorrect")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("integer");

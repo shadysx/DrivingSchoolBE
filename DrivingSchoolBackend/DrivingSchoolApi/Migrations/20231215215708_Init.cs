@@ -38,6 +38,7 @@ namespace DrivingSchoolApi.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Score = table.Column<int>(type: "integer", nullable: false),
+                    isSuccess = table.Column<bool>(type: "boolean", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -68,6 +69,7 @@ namespace DrivingSchoolApi.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserAnswerIndex = table.Column<int>(type: "integer", nullable: false),
                     QuizzSummaryId = table.Column<int>(type: "integer", nullable: true),
+                    IsAnswerCorrect = table.Column<bool>(type: "boolean", nullable: false),
                     QuestionId = table.Column<int>(type: "integer", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },

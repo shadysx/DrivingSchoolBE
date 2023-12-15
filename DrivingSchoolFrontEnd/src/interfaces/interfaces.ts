@@ -1,16 +1,17 @@
-export interface QuizzSummaryDTO {
+export interface QuizzSummary {
   score: number;
-  creationDate: Date;
-  quizzSummaryElements: QuizzSummaryElementDTO[];
-  isSuccess: number;
+  creationDate?: Date;
+  quizzSummaryElements: QuizzSummaryElement[];
+  isSuccess: boolean;
 }
 
-export interface QuizzSummaryElementDTO {
-  question: QuestionDTO;
+export interface QuizzSummaryElement {
+  question: Question;
   userAnswerIndex: number;
+  isAnswerCorrect: boolean;
 }
 
-export interface QuestionDTO {
+export interface Question {
   id?: number;
   title: string;
   text: string;
@@ -18,4 +19,9 @@ export interface QuestionDTO {
   answerIndex: number;
   themes: string[];
   imageUri: string;
+}
+
+export interface User {
+  email: string;
+  userName: string;
 }

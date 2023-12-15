@@ -8,9 +8,7 @@ import { useEffect } from 'react';
 import Login from './src/views/LoginView';
 import Auth, { useAuth } from './src/auth/Auth';
 import QuizzSummaryDetailView from './src/views/QuizzSummaryDetailView';
-import { QuizzSummaryElement } from './src/models/QuizzSummaryElement';
-import { QuizzSummary } from './src/models/QuizzSummary';
-import { QuizzSummaryDTO, QuizzSummaryElementDTO } from './src/interfaces/interfaces';
+import { QuizzSummary, QuizzSummaryElement } from './src/interfaces/interfaces';
 
 
 export default function App() {
@@ -27,9 +25,10 @@ export default function App() {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const responseData: QuizzSummaryDTO[] = await response.json();
-        const quizzSummary: QuizzSummary = QuizzSummary.fromDTO(responseData[0]);
-        setQuizzSummary(quizzSummary);
+        const responseData: QuizzSummary[] = await response.json();
+        setQuizzSummary(responseData[0]);
+        setQuizzSummaryElement(responseData[0].quizzSummaryElements[0]);
+        console.log(responseData[0].quizzSummaryElements[0], "Ayo")
 
       } catch (error: any) {
         // setError(error);
@@ -40,14 +39,14 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    console.log(quizzSummary);
-  }, [quizzSummary]);
+    console.log(quizzSummaryElement, "Yooo");
+  }, [quizzSummary, quizzSummaryElement]);
 
   return (
     <PaperProvider>
       <Auth>
-        {/* <Navigation/> */}
-        <QuizzSummaryDetailView quizzSummaryElement={quizzSummaryElement}/>
+        <Navigation/>
+        {/* <QuizzSummaryDetailView quizzSummaryElement={quizzSummaryElement}/> */}
       </Auth>
     </PaperProvider>
   );   

@@ -9,7 +9,10 @@ namespace DrivingSchoolApi.Models
 		public required int UserAnswerIndex {get; set;}
 
         public int? QuizzSummaryId { get; set; }
-                // Foreign key for Question
+
+        public required bool IsAnswerCorrect {get; set;}
+
+        // Foreign key for Question
         public int QuestionId { get; set; }
         // Navigation property for the one-to-one relationship
         [ForeignKey("QuestionId")]

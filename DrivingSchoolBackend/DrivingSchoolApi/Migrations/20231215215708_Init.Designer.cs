@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DrivingSchoolApi.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231215180040_Init")]
+    [Migration("20231215215708_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -76,6 +76,9 @@ namespace DrivingSchoolApi.Migrations
                     b.Property<int>("Score")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("isSuccess")
+                        .HasColumnType("boolean");
+
                     b.HasKey("Id");
 
                     b.ToTable("QuizSummaries");
@@ -91,6 +94,9 @@ namespace DrivingSchoolApi.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsAnswerCorrect")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("integer");

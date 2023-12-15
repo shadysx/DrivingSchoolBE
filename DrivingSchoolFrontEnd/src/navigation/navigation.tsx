@@ -8,6 +8,7 @@ import QuizzView from "../views/QuizzView";
 import QuizzSummaryView from "../views/QuizzSummaryView";
 import HomeView from "../views/HomeView";
 import LoginView from "../views/LoginView";
+import QuizzSummaryDetailView from "../views/QuizzSummaryDetailView";
 
 const Stack = createStackNavigator();
 export function AuthStack() {
@@ -29,6 +30,12 @@ export function AuthStack() {
           component={QuizzSummaryView}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="QuizzSummaryDetailView"
+          component={QuizzSummaryDetailView}
+          options={{ headerShown: true }}
+        />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
