@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DrivingSchoolApi.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231213200257_Init")]
+    [Migration("20231215180040_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -89,22 +89,11 @@ namespace DrivingSchoolApi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CorrectAnswerIndex")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<bool>("IsAnswerCorrect")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("PhotoUri")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("QuestionText")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("QuizzSummaryId")
                         .HasColumnType("integer");
@@ -113,6 +102,8 @@ namespace DrivingSchoolApi.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
 
                     b.HasIndex("QuizzSummaryId");
 
@@ -145,9 +136,17 @@ namespace DrivingSchoolApi.Migrations
 
             modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummaryElement", b =>
                 {
+                    b.HasOne("DrivingSchoolApi.Models.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DrivingSchoolApi.Models.QuizzSummary", null)
                         .WithMany("QuizzSummaryElements")
                         .HasForeignKey("QuizzSummaryId");
+
+                    b.Navigation("Question");
                 });
 
             modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummary", b =>

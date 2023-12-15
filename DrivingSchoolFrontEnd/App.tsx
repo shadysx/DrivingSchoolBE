@@ -5,22 +5,49 @@ import { AppRegistry, View, StyleSheet, Button, Text } from 'react-native';
 import ProfileBanner from './src/components/ProfileBanner';
 import Quizz from './src/views/QuizzView';
 import { useEffect } from 'react';
-import Login from './src/views/Login';
+import Login from './src/views/LoginView';
 import Auth, { useAuth } from './src/auth/Auth';
+import QuizzSummaryDetailView from './src/views/QuizzSummaryDetailView';
+import { QuizzSummaryElement } from './src/models/QuizzSummaryElement';
+import { QuizzSummary } from './src/models/QuizzSummary';
+import { QuizzSummaryDTO, QuizzSummaryElementDTO } from './src/interfaces/interfaces';
 
 
 export default function App() {
-
+  const [quizzSummary, setQuizzSummary] = React.useState<QuizzSummary>();
+  const [quizzSummaryElement, setQuizzSummaryElement] = React.useState<QuizzSummaryElement>();
 
   useEffect(() => {
-    console.log('Rerender App')
-  })
+    const fetchQuestionSummariesFromApi = async () => {
+      console.log("fetching");
+      try {
+        const response = await fetch(
+          "http://localhost:5143/quizsummary/getall"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const responseData: QuizzSummaryDTO[] = await response.json();
+        const quizzSummary: QuizzSummary = QuizzSummary.fromDTO(responseData[0]);
+        setQuizzSummary(quizzSummary);
+
+      } catch (error: any) {
+        // setError(error);
+      } finally {
+      }
+    };
+    fetchQuestionSummariesFromApi();
+  }, []);
+
+  useEffect(() => {
+    console.log(quizzSummary);
+  }, [quizzSummary]);
 
   return (
     <PaperProvider>
       <Auth>
-        <Navigation/>
-        {/* <Quizz/> */}
+        {/* <Navigation/> */}
+        <QuizzSummaryDetailView quizzSummaryElement={quizzSummaryElement}/>
       </Auth>
     </PaperProvider>
   );   

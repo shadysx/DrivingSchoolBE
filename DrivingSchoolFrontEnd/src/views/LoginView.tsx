@@ -7,7 +7,7 @@ import { Theme } from '../constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Login = () => {
+const LoginView = () => {
   const { user, handleGoogleSignIn, handleLogout, checkUserInAsyncStorage } = useAuth();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Login = () => {
 
   return (
     <ImageBackground
-    source={require('../../assets/drivingSchool3.webp')} // Replace with your image path
+    source={require('../../assets/drivingSchool1.webp')} // Replace with your image path
     style={styles.backgroundGradient}
   >
       <SafeAreaView style={styles.container}>
@@ -78,4 +78,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default LoginView;

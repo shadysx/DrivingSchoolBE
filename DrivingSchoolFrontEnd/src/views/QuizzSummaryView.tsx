@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Question } from "../interfaces/interfaces";
 import { QuizzSummaryElement } from "../models/QuizzSummaryElement";
 import { QuizzSummary } from "../models/QuizzSummary";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -12,6 +11,7 @@ import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Question } from "../models/Question";
 
 interface QuizzSummaryProps {
   navigation: StackNavigationProp<any, any>;
@@ -37,10 +37,8 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
     for (const [question, selectedAnswer] of questionsWithSelectedAnswers) {
       summaryElements.push(
         new QuizzSummaryElement(
-          question.text,
-          question.answerIndex,
+          question,
           selectedAnswer,
-          question.imageUri
         )
       );
     }

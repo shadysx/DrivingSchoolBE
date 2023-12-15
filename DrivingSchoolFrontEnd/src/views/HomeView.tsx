@@ -21,7 +21,7 @@ import HorizontalCardButton from "../components/HorizontalCardButton";
 import VerticalCardButton from "../components/VerticalCardButton";
 import { useAuth } from "../auth/Auth";
 
-const Home: React.FC<any> = ({ navigation }) => {
+const HomeView: React.FC<any> = ({ navigation }) => {
   const [visible, setVisible] = React.useState(true);
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
 
@@ -121,7 +121,7 @@ const Home: React.FC<any> = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-export default Home;
+export default HomeView;
 
 const styles = StyleSheet.create({
   container: {

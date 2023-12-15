@@ -8,17 +8,18 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useMemo, useState } from "react";
-import { Question } from "../interfaces/interfaces";
 import { Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import QuizzSummaryView from "./QuizzSummaryView";
+import { useAuth } from "../auth/Auth";
+import { Question } from "../models/Question";
 
 const QuizzView = ({navigation}) => {
+  const {setIsLoading} = useAuth();
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [questionCounter, setQuestionCounter] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number>(-1);
-  const [score, setScore] = useState<number>(0);
   const [definedTimer] = useState<number>(5);
   // TODO CHANGE 10
   const [askedQuestionsNumber] = useState<number>(10);
@@ -38,8 +39,6 @@ const QuizzView = ({navigation}) => {
     console.log("----------");
   });
 
-
-
   useEffect(() => {
     const fetchQuestionsFromApi = async () => {
       console.log("fetching");
@@ -55,10 +54,11 @@ const QuizzView = ({navigation}) => {
       } catch (error: any) {
         // setError(error);
       } finally {
-        // setLoading(false);
       }
     };
+    setIsLoading(true)
     fetchQuestionsFromApi();
+    setIsLoading(false)
   }, []);
 
   const handleValidation = () => {

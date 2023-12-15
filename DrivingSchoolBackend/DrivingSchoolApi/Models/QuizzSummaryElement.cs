@@ -6,13 +6,13 @@ namespace DrivingSchoolApi.Models
 {
     public class QuizzSummaryElement: BaseEntity 
 	{
-		public required string QuestionText {get; set;}
-		public required int CorrectAnswerIndex {get; set;}
 		public required int UserAnswerIndex {get; set;}
-        public required bool IsAnswerCorrect {get; set;}
-        public required string PhotoUri {get; set;}
 
-        // Foreign key and navigation property back to QuizzSummary
         public int? QuizzSummaryId { get; set; }
+                // Foreign key for Question
+        public int QuestionId { get; set; }
+        // Navigation property for the one-to-one relationship
+        [ForeignKey("QuestionId")]
+        public Question? Question { get; set; }
     }
 }

@@ -66,23 +66,31 @@ namespace DrivingSchoolApi.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    QuestionText = table.Column<string>(type: "text", nullable: false),
-                    CorrectAnswerIndex = table.Column<int>(type: "integer", nullable: false),
                     UserAnswerIndex = table.Column<int>(type: "integer", nullable: false),
-                    IsAnswerCorrect = table.Column<bool>(type: "boolean", nullable: false),
-                    PhotoUri = table.Column<string>(type: "text", nullable: false),
                     QuizzSummaryId = table.Column<int>(type: "integer", nullable: true),
+                    QuestionId = table.Column<int>(type: "integer", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_QuizzSummaryElement", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_QuizzSummaryElement_Questions_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Questions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_QuizzSummaryElement_QuizSummaries_QuizzSummaryId",
                         column: x => x.QuizzSummaryId,
                         principalTable: "QuizSummaries",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuizzSummaryElement_QuestionId",
+                table: "QuizzSummaryElement",
+                column: "QuestionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_QuizzSummaryElement_QuizzSummaryId",
@@ -94,13 +102,13 @@ namespace DrivingSchoolApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Questions");
-
-            migrationBuilder.DropTable(
                 name: "QuizzSummaryElement");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "QuizSummaries");

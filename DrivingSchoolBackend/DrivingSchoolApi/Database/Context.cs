@@ -22,5 +22,9 @@ public class Context : DbContext
             .HasMany(q => q.QuizzSummaryElements)
             .WithOne()
             .HasForeignKey(e => e.QuizzSummaryId); // Foreign key
+        modelBuilder.Entity<QuizzSummaryElement>()
+            .HasOne(q => q.Question)
+            .WithMany() // No need to specify the collection property since it's not in Question
+            .HasForeignKey(q => q.QuestionId);
     }
 }

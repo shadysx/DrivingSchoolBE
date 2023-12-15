@@ -18,7 +18,10 @@ public class QuizSummaryController : ControllerBase
     [HttpGet("GetAll")]
     public async Task<IActionResult> List()
     {
-        var quizzSummaries = await _dbContext.QuizSummaries.ToListAsync();
+        var quizzSummaries = await _dbContext.QuizSummaries
+            .Include(q => q.QuizzSummaryElements)
+            .ThenInclude(q => q.Question)
+            .ToListAsync();
         return Ok(quizzSummaries);
     }
 
@@ -28,6 +31,12 @@ public class QuizSummaryController : ControllerBase
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
+        }
+
+        foreach(QuizzSummaryElement quizzSummaryElement in model.QuizzSummaryElements)
+        {
+            quizzSummaryElement.QuestionId = quizzSummaryElement.Question?.Id ?? 0;
+            quizzSummaryElement.Question = null;
         }
 
         _dbContext.QuizSummaries?.Add(model);

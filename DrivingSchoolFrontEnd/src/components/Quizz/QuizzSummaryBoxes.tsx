@@ -36,7 +36,7 @@ const QuizzSummaryElementBox: React.FC<QuizzSummaryProps> = ({ element }) => {
     <View style={[styles.quizzSummaryElementBox]}>
       <Image
         style={[styles.image, { borderColor: borderColor }]}
-        source={{ uri: element.PhotoUrl}}
+        source={{ uri: element.ImageUri}}
       />
     </View>
   );
