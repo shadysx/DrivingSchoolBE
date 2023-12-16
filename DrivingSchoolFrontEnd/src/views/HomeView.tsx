@@ -126,7 +126,7 @@ export default HomeView;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: Theme.white,
   },
   bottomContainer: {
     backgroundColor: Theme.white,

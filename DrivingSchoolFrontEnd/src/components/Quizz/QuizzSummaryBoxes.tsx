@@ -48,7 +48,6 @@ const QuizzSummaryElementBox: React.FC<QuizzSummaryElementBoxProps> = ({
   const borderColor = element.isAnswerCorrect ? Theme.secondary : "red";
 
   const handlePress = () => {
-    console.log(element)
     navigation.navigate("QuizzSummaryDetailView", { element });
   };
 
