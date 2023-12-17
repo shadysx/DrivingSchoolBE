@@ -49,12 +49,7 @@ public async Task<IActionResult> VerifyGoogleToken([FromBody] string idToken)
     }
 }
 
-    [HttpGet("GetAll")]
-    public async Task<IActionResult> List()
-    {
-        var users = await _dbContext.Users.ToListAsync();
-        return Ok(users);
-    }
+
 
     [HttpPost("Create")]
     public async Task<IActionResult> Create(User model)

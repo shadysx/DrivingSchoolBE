@@ -72,7 +72,13 @@ const QuizzSummaryDetailView: React.FC<QuizzSummaryDetailViewProps> = ({
           </View>
         </View>
         <View style={styles.explanationContainer}>
-          <Text style={styles.answerExplanation}>Vous ne pouvez pas y stationner, par contre vous pouvez vous arrêter pour déposer un passager sur les emplacements de stationnement réservé aux personnes handicapées.</Text>
+          <Text style={styles.answerExplanation}>
+            {
+              (quizzSummaryElement.question.explanation !== null 
+                  ? quizzSummaryElement.question.explanation
+                  : "Pas encore d'explication pour cette question, si vous avez une erreur à signaler n'hésitez pas a nous contacter (Accueil => Paramètres => Contact)")
+            }
+          </Text>
         </View>
       </View>
     </View>
@@ -80,8 +86,7 @@ const QuizzSummaryDetailView: React.FC<QuizzSummaryDetailViewProps> = ({
 };
 
 const styles = StyleSheet.create({
-  topContainer: {
-  },
+  topContainer: {},
   bottomContainer: {
     marginTop: -50,
     zIndex: 2,
@@ -148,9 +153,9 @@ const styles = StyleSheet.create({
   },
   answerExplanation: {
     margin: 10,
-    color: '#222', // Lighter color
-    fontFamily: 'System', // Use the system font
-    fontWeight: '200', // Thinner weight
+    color: "#222", // Lighter color
+    fontFamily: "System", // Use the system font
+    fontWeight: "200", // Thinner weight
     fontSize: 14, // Smaller size
   },
 });

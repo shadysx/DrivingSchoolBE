@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { API, Theme } from "../constants";
-import { User } from "../models/User";
 import QuizzSummaryBoxes from "../components/Quizz/QuizzSummaryBoxes";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";

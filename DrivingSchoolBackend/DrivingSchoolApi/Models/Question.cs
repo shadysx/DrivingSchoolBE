@@ -12,5 +12,6 @@ namespace DrivingSchoolApi.Models
         public required int AnswerIndex {get; set;}
         public string[]? Themes {get; set;}
         public required string ImageUri {get; set;}
+        public string? explanation {get; set;}
     }
 }

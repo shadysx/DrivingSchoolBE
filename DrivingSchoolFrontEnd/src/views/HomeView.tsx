@@ -20,16 +20,16 @@ import Like from "../../assets/like.svg";
 import HorizontalCardButton from "../components/HorizontalCardButton";
 import VerticalCardButton from "../components/VerticalCardButton";
 import { useAuth } from "../auth/Auth";
+import SettingsMenu from "../components/SettingsMenu";
 
 const HomeView: React.FC<any> = ({ navigation }) => {
-  const [visible, setVisible] = React.useState(true);
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+  const [visible, setVisible] = React.useState(false);
 
   const hideDialog = () => setVisible(false);
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <ProfileBanner />
+      <ProfileBanner/>
       <View style={styles.bottomContainer}>
         <View style={styles.homeButtonsContainer}>
           <HorizontalCardButton
@@ -42,6 +42,7 @@ const HomeView: React.FC<any> = ({ navigation }) => {
             }
           />
         </View>
+
         <View style={styles.heading}>
           <Text style={styles.headingText}>Plus</Text>
         </View>
@@ -71,8 +72,8 @@ const HomeView: React.FC<any> = ({ navigation }) => {
             }
           />
           <VerticalCardButton
-            title="Options"
-            subTitle="Change les paramètres à ta guise"
+            title="Succès"
+            subTitle="Accomplit des défis"
             color={"white"}
             svgComponent={
               <Options
@@ -98,7 +99,6 @@ const HomeView: React.FC<any> = ({ navigation }) => {
             Commencer un examen
           </Button>
         </View>
-
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
           <Dialog.Title>Bienvenue sur DrivingSchoolBelgium</Dialog.Title>

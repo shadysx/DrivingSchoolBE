@@ -5,20 +5,29 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithCredential, Use
 import { auth } from '../firebase/firebaseConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { User } from '../models/User';
+import { User } from '../interfaces/interfaces';
 import { API, Theme } from '../constants';
 
 GoogleSignin.configure({
   webClientId: '303209116814-uelgcct8h7aprkq4104to8295r3ttjnj.apps.googleusercontent.com'
 });
 
-export const AuthContext = React.createContext({
-  user: null, // Assuming user is of type User or null
-  handleGoogleSignIn: () => {}, // Placeholder function
-  handleLogout: () => {}, // Placeholder function
-  checkUserInAsyncStorage: () => {}, // Placeholder function
+interface AuthContextType {
+  user: User | null;
+  handleGoogleSignIn: () => Promise<void>;
+  handleLogout: () => Promise<void>;
+  checkUserInAsyncStorage: () => Promise<void>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const AuthContext = React.createContext<AuthContextType>({
+  user: null,
+  handleGoogleSignIn: async () => {},
+  handleLogout: async () => {},
+  checkUserInAsyncStorage: async () => {},
   isLoading: false,
-  setIsLoading: null, // Placeholder function
+  setIsLoading: () => {},
 });
 
 export function useAuth() {
@@ -27,7 +36,7 @@ export function useAuth() {
 
 const Auth = ({ children }) => {
   const [userCredential, setUserCredential] = useState<UserCredential>()
-  const [user, setUser] = useState<User>()
+  const [user, setUser] = useState<User | null>()
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
@@ -45,8 +54,8 @@ const Auth = ({ children }) => {
           'Content-Type': 'application/json'
         }
       });
-      const userData = result.data;
-      const fetchedUser = new User(userData.email, userData.userName);
+      const userData: User = result.data;
+      const fetchedUser: User = {email: userData.email, userName: userData.userName, savedQuestions: userData.savedQuestions};
       setUser(fetchedUser)
       await AsyncStorage.setItem("@user", JSON.stringify(userData));
     } 

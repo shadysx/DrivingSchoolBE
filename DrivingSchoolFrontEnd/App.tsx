@@ -9,6 +9,7 @@ import Login from './src/views/LoginView';
 import Auth, { useAuth } from './src/auth/Auth';
 import QuizzSummaryDetailView from './src/views/QuizzSummaryDetailView';
 import { QuizzSummary, QuizzSummaryElement } from './src/interfaces/interfaces';
+import TestView from './src/views/TestView';
 
 
 export default function App() {
@@ -46,6 +47,7 @@ export default function App() {
     <PaperProvider>
       <Auth>
         <Navigation/>
+        {/* <TestView/> */}
         {/* <QuizzSummaryDetailView quizzSummaryElement={quizzSummaryElement}/> */}
       </Auth>
     </PaperProvider>
