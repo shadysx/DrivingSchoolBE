@@ -20,16 +20,16 @@ import Like from "../../assets/like.svg";
 import HorizontalCardButton from "../components/HorizontalCardButton";
 import VerticalCardButton from "../components/VerticalCardButton";
 import { useAuth } from "../auth/Auth";
+import SettingsMenu from "../components/SettingsMenu";
 
-const Home: React.FC<any> = ({ navigation }) => {
-  const [visible, setVisible] = React.useState(true);
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+const HomeView: React.FC<any> = ({ navigation }) => {
+  const [visible, setVisible] = React.useState(false);
 
   const hideDialog = () => setVisible(false);
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      <ProfileBanner />
+      <ProfileBanner/>
       <View style={styles.bottomContainer}>
         <View style={styles.homeButtonsContainer}>
           <HorizontalCardButton
@@ -42,6 +42,7 @@ const Home: React.FC<any> = ({ navigation }) => {
             }
           />
         </View>
+
         <View style={styles.heading}>
           <Text style={styles.headingText}>Plus</Text>
         </View>
@@ -71,8 +72,8 @@ const Home: React.FC<any> = ({ navigation }) => {
             }
           />
           <VerticalCardButton
-            title="Options"
-            subTitle="Change les paramètres à ta guise"
+            title="Succès"
+            subTitle="Accomplit des défis"
             color={"white"}
             svgComponent={
               <Options
@@ -93,12 +94,11 @@ const Home: React.FC<any> = ({ navigation }) => {
             mode="elevated"
             textColor="white"
             buttonColor={Theme.black}
-            onPress={() => navigation.navigate("Quizz")}
+            onPress={() => navigation.navigate("QuizzView")}
           >
             Commencer un examen
           </Button>
         </View>
-
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
           <Dialog.Title>Bienvenue sur DrivingSchoolBelgium</Dialog.Title>
@@ -121,12 +121,12 @@ const Home: React.FC<any> = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-export default Home;
+export default HomeView;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: Theme.white,
   },
   bottomContainer: {
     backgroundColor: Theme.white,
@@ -167,12 +167,14 @@ const styles = StyleSheet.create({
   },
   homeVerticalButtonImage: {},
   startExamButtonContainer: {
-    alignItems: 'center'
-
+    alignItems: 'center',
   }
   ,
   startExamButton: {
-
     width: "70%",
+    height: 50,
+    borderRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
   }
 });

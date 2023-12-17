@@ -28,6 +28,7 @@ builder.Services.AddDbContext<Context>();
 //     });
 // });
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,6 +38,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 // Configure CORS to allow any origin
+
 
 
 // To open outside localhost, be carefull for security

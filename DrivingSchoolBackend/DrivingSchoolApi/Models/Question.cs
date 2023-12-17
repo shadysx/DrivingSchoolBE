@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace DrivingSchoolApi.Models
 {
@@ -12,5 +13,8 @@ namespace DrivingSchoolApi.Models
         public required int AnswerIndex {get; set;}
         public string[]? Themes {get; set;}
         public required string ImageUri {get; set;}
+        public string? Explanation {get; set;}
+        [JsonIgnore]
+        public List<User>? Users { get; set; } 
     }
 }

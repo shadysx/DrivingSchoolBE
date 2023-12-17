@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DrivingSchoolApi.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231215215708_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,9 +41,6 @@ namespace DrivingSchoolApi.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Explanation")
-                        .HasColumnType("text");
 
                     b.Property<string>("ImageUri")
                         .IsRequired()
@@ -140,21 +140,6 @@ namespace DrivingSchoolApi.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("QuestionUser", b =>
-                {
-                    b.Property<int>("SavedQuestionsId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("SavedQuestionsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("QuestionUser");
-                });
-
             modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummaryElement", b =>
                 {
                     b.HasOne("DrivingSchoolApi.Models.Question", "Question")
@@ -168,21 +153,6 @@ namespace DrivingSchoolApi.Migrations
                         .HasForeignKey("QuizzSummaryId");
 
                     b.Navigation("Question");
-                });
-
-            modelBuilder.Entity("QuestionUser", b =>
-                {
-                    b.HasOne("DrivingSchoolApi.Models.Question", null)
-                        .WithMany()
-                        .HasForeignKey("SavedQuestionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DrivingSchoolApi.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummary", b =>

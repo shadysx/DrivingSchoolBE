@@ -24,7 +24,9 @@ public async Task<IActionResult> VerifyGoogleToken([FromBody] string idToken)
     try
     {
         var payload = await GoogleJsonWebSignature.ValidateAsync(idToken);
-        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == payload.Email);
+        var user = await _dbContext.Users
+            .Include(u => u.SavedQuestions)
+            .FirstOrDefaultAsync(u => u.Email == payload.Email);
 
         if(user == null) {
             var newUser = new User {
@@ -49,12 +51,7 @@ public async Task<IActionResult> VerifyGoogleToken([FromBody] string idToken)
     }
 }
 
-    [HttpGet("GetAll")]
-    public async Task<IActionResult> List()
-    {
-        var users = await _dbContext.Users.ToListAsync();
-        return Ok(users);
-    }
+
 
     [HttpPost("Create")]
     public async Task<IActionResult> Create(User model)
@@ -68,22 +65,5 @@ public async Task<IActionResult> VerifyGoogleToken([FromBody] string idToken)
         await _dbContext.SaveChangesAsync();
         
         return Ok(model);
-    }
-
-    [HttpPost("BulkCreate")]
-    public async Task<IActionResult> BulkCreate(Question[] models)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
-        foreach(Question model in models){
-            _dbContext.Questions?.Add(model);
-            await _dbContext.SaveChangesAsync();
-        }
-
-        
-        return Ok(models);
     }
 }

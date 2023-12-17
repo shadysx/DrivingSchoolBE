@@ -8,18 +8,20 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useMemo, useState } from "react";
-import { Question } from "../interfaces/interfaces";
 import { Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TimerProgressBar } from "../components/TimerProgressBar";
-import QuizzSummary from "./QuizzSummary";
+import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
+import QuizzSummaryView from "./QuizzSummaryView";
+import { useAuth } from "../auth/Auth";
+import { Question } from "../interfaces/interfaces";
 
-const Quizz = () => {
+const QuizzView = ({navigation}) => {
+  const {setIsLoading} = useAuth();
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [questionCounter, setQuestionCounter] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number>(-1);
-  const [score, setScore] = useState<number>(0);
   const [definedTimer] = useState<number>(5);
+  // TODO CHANGE 10
   const [askedQuestionsNumber] = useState<number>(10);
 	// Todo, avoid map.set ...
 	/*
@@ -34,7 +36,7 @@ const Quizz = () => {
 	const [questionsWithSelectedAnswers, setQuestionsWithSelectedAnswer] = useState<Map<Question, number> | null>(new Map<Question, number>())
 
   useEffect(() => {
-    console.log("Rerender Quizz");
+    console.log("----------");
   });
 
   useEffect(() => {
@@ -52,32 +54,26 @@ const Quizz = () => {
       } catch (error: any) {
         // setError(error);
       } finally {
-        // setLoading(false);
       }
     };
+    setIsLoading(true)
     fetchQuestionsFromApi();
+    setIsLoading(false)
   }, []);
 
   const handleValidation = () => {
-		checkAnswer();
+		addAnswer();
     setQuestionCounter((prev) => prev + 1);
     setSelectedAnswer(-1);
   };
 
   const handleTimeOut = () => {
-		checkAnswer();
+		addAnswer();
     setQuestionCounter((prev) => prev + 1);
 		setSelectedAnswer(-1);
   };
 
-	const checkAnswer = () => {
-		// Logs
-    console.log(
-      questionCounter,
-      questions !== null &&
-        questions[questionCounter].answerIndex == selectedAnswer
-    );
-
+	const addAnswer = () => {
 		// Add the questions to a map with the associted selected answer so we can compute them in the quizz summary
 		if(questions && questionsWithSelectedAnswers){
 			questionsWithSelectedAnswers.set(questions[questionCounter], selectedAnswer)
@@ -87,8 +83,9 @@ const Quizz = () => {
 	const isQuizzPlaying: boolean = questionCounter < askedQuestionsNumber	
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       {questions && isQuizzPlaying && (
+      <SafeAreaView style={{ flex: 1 }}>
         <>
           <View style={styles.topContainer}>
           <Text style={styles.questionCounter}>
@@ -141,9 +138,10 @@ const Quizz = () => {
             </View>
           </View>
         </>
+      </SafeAreaView>
       )}
-			{!isQuizzPlaying && <QuizzSummary questionsWithSelectedAnswers={questionsWithSelectedAnswers}/>}
-    </SafeAreaView>
+			{!isQuizzPlaying && <QuizzSummaryView navigation={navigation} questionsWithSelectedAnswers={questionsWithSelectedAnswers}/>}
+    </View>
   );
 };
 
@@ -220,4 +218,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Quizz;
+export default QuizzView;

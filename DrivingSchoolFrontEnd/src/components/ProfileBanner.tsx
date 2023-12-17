@@ -5,6 +5,7 @@ import { Avatar } from "react-native-paper";
 import { IconButton, ProgressBar, MD3Colors } from "react-native-paper";
 import { Theme } from "../constants";
 import { useAuth } from "../auth/Auth";
+import SettingsMenu from "./SettingsMenu";
 
 const ProfileBanner = () => {
   const { handleLogout, user } = useAuth();
@@ -12,6 +13,7 @@ const ProfileBanner = () => {
     console.log(user)
     console.log(JSON.stringify(user.photoURL, null, 4))
   })
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -30,12 +32,7 @@ const ProfileBanner = () => {
             </Text>
           </View>
           <View style={styles.profileBannerSettingsButton}>
-            <IconButton
-              icon="cog"
-              iconColor={"white"}
-              size={30}
-              onPress={() => handleLogout()}
-            />
+            <SettingsMenu />
           </View>
         </View>
         <View style={styles.progressionContainer}>
