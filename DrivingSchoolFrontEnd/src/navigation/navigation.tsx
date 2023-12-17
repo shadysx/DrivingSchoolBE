@@ -15,9 +15,11 @@ import { QuizzSummaryElement, User } from "../interfaces/interfaces";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import BookmarkButton from "../components/BookmarkButton";
 
 const Stack = createStackNavigator();
 export function AuthStack() {
+  const { user } = useAuth();
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HomeView">
@@ -45,52 +47,7 @@ export function AuthStack() {
           options={({ route }) => ({
             //TODO: Make a component for this
             headerRight: () => {
-              const { user } = useAuth();
-              const params = route.params as {element: QuizzSummaryElement}; 
-              const initialIcon = user.savedQuestions && user.savedQuestions.some(q => q.id === params.element.question.id) 
-              ? "bookmark" 
-              : "bookmark-outline";
-              const [icon, setIcon] = useState(initialIcon);
-
-              const handlePress = async () => {
-                if (user.savedQuestions === null) {
-                  user.savedQuestions = [];
-                }
-              
-                const questionIndex = user.savedQuestions.findIndex(q => q.id === params.element.question.id);
-              
-                if (questionIndex >= 0) {
-                  // Question already exists, remove it
-                  user.savedQuestions.splice(questionIndex, 1);
-                  setIcon("bookmark-outline");
-                } else {
-                  // Question doesn't exist, add it
-                  user.savedQuestions.push(params.element.question);
-                  setIcon("bookmark");
-                }
-              
-                try {
-                  const result = await axios.put(`${API}Update/${user.id}`, JSON.stringify(user), {
-                    headers: {
-                      'Content-Type': 'application/json'
-                    }
-                  });
-              
-                  // Assuming result.data contains the updated user data
-                  await AsyncStorage.setItem("@user", JSON.stringify(result.data));
-                } catch (error) {
-                  console.error('Error making PUT request:', error);
-                }
-              };
-
-              return (
-                <IconButton
-                icon={icon}
-                  iconColor={Theme.secondary}
-                  size={30}
-                  onPress={handlePress}
-                />
-              );
+              return <BookmarkButton route={route} user={user} />;
             },
             title: "Résumé du quizz",
           })}

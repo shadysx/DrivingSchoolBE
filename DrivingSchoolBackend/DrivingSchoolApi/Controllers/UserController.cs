@@ -69,7 +69,7 @@ public class UserController: ControllerBase
             // Handle the exception
         }
 
-        return NoContent();
+        return Ok(existingUser);
     }
 
 
