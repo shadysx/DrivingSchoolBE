@@ -16,7 +16,10 @@ public class UserController: ControllerBase
     [HttpGet("GetAll")]
     public async Task<IActionResult> List()
     {
-        var users = await _dbContext.Users.ToListAsync();
+        var users = await _dbContext.Users
+            .Include(u => u.SavedQuestions)
+            .ToListAsync();
+
         return Ok(users);
     }
     
@@ -33,13 +36,28 @@ public class UserController: ControllerBase
             return BadRequest("ID mismatch");
         }
 
-        var existingUser = await _dbContext.Users.FindAsync(id);
+        var existingUser = await _dbContext.Users
+            .Include(u => u.SavedQuestions)
+            .FirstOrDefaultAsync(u => u.Id == id);
         if (existingUser == null)
         {
             return NotFound();
         }
 
-        // Update the properties of the existing user
+        // Remove existing associations
+        existingUser.SavedQuestions.Clear();
+
+        // Add new associations
+        foreach (var question in updatedUser.SavedQuestions)
+        {
+            var existingQuestion = await _dbContext.Questions.FindAsync(question.Id);
+            if (existingQuestion != null)
+            {
+                existingUser.SavedQuestions.Add(existingQuestion);
+            }
+        }
+
+        // Update the scalar properties of the existing user
         _dbContext.Entry(existingUser).CurrentValues.SetValues(updatedUser);
 
         try
@@ -48,11 +66,12 @@ public class UserController: ControllerBase
         }
         catch (DbUpdateConcurrencyException)
         {
-            
+            // Handle the exception
         }
 
         return NoContent();
     }
+
 
     private bool UserExists(int id)
     {

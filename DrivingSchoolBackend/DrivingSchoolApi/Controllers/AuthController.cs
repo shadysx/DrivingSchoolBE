@@ -24,7 +24,9 @@ public async Task<IActionResult> VerifyGoogleToken([FromBody] string idToken)
     try
     {
         var payload = await GoogleJsonWebSignature.ValidateAsync(idToken);
-        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == payload.Email);
+        var user = await _dbContext.Users
+            .Include(u => u.SavedQuestions)
+            .FirstOrDefaultAsync(u => u.Email == payload.Email);
 
         if(user == null) {
             var newUser = new User {

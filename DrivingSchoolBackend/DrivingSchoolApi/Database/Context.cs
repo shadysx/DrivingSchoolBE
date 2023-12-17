@@ -26,5 +26,19 @@ public class Context : DbContext
             .HasOne(q => q.Question)
             .WithMany() // No need to specify the collection property since it's not in Question
             .HasForeignKey(q => q.QuestionId);
+        
+        // Many to Many UserQuestion
+        // modelBuilder.Entity<UserQuestion>()
+        //     .HasKey(uq => new { uq.UserId, uq.QuestionId });
+        //
+        // modelBuilder.Entity<UserQuestion>()
+        //     .HasOne<User>(uq => uq.User)
+        //     .WithMany(u => u.UserQuestions)
+        //     .HasForeignKey(uq => uq.UserId);
+        //
+        // modelBuilder.Entity<UserQuestion>()
+        //     .HasOne<Question>(uq => uq.Question)
+        //     .WithMany() // No navigation property in Question
+        //     .HasForeignKey(uq => uq.QuestionId);
     }
 }

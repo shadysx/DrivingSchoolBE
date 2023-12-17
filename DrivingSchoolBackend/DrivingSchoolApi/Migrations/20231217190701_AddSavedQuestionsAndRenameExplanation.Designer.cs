@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DrivingSchoolApi.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231217190701_AddSavedQuestionsAndRenameExplanation")]
+    partial class AddSavedQuestionsAndRenameExplanation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,19 +143,19 @@ namespace DrivingSchoolApi.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("QuestionUser", b =>
+            modelBuilder.Entity("DrivingSchoolApi.Models.UserQuestion", b =>
                 {
-                    b.Property<int>("SavedQuestionsId")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("UsersId")
+                    b.Property<int>("QuestionId")
                         .HasColumnType("integer");
 
-                    b.HasKey("SavedQuestionsId", "UsersId");
+                    b.HasKey("UserId", "QuestionId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("QuestionId");
 
-                    b.ToTable("QuestionUser");
+                    b.ToTable("UserQuestion");
                 });
 
             modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummaryElement", b =>
@@ -170,24 +173,33 @@ namespace DrivingSchoolApi.Migrations
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("QuestionUser", b =>
+            modelBuilder.Entity("DrivingSchoolApi.Models.UserQuestion", b =>
                 {
-                    b.HasOne("DrivingSchoolApi.Models.Question", null)
+                    b.HasOne("DrivingSchoolApi.Models.Question", "Question")
                         .WithMany()
-                        .HasForeignKey("SavedQuestionsId")
+                        .HasForeignKey("QuestionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DrivingSchoolApi.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
+                    b.HasOne("DrivingSchoolApi.Models.User", "User")
+                        .WithMany("UserQuestions")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Question");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DrivingSchoolApi.Models.QuizzSummary", b =>
                 {
                     b.Navigation("QuizzSummaryElements");
+                });
+
+            modelBuilder.Entity("DrivingSchoolApi.Models.User", b =>
+                {
+                    b.Navigation("UserQuestions");
                 });
 #pragma warning restore 612, 618
         }

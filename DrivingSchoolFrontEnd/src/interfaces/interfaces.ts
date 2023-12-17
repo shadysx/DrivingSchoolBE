@@ -22,9 +22,11 @@ export interface Question {
   themes: string[];
   imageUri: string;
   explanation: string;
+  users: User[];
 }
 
 export interface User {
+  id?: number;
   email: string;
   userName: string;
   savedQuestions?: Question[];

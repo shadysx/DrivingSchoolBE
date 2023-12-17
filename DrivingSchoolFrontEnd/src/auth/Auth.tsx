@@ -49,15 +49,18 @@ const Auth = ({ children }) => {
     const jwt = (response as any)._tokenResponse.oauthIdToken;
 
     try {
+      console.log('ehllo')
       const result = await axios.post(API + 'Auth/VerifyGoogleToken', jwt, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
+      console.log("userData", result)
       const userData: User = result.data;
-      const fetchedUser: User = {email: userData.email, userName: userData.userName, savedQuestions: userData.savedQuestions};
+      const fetchedUser: User = {id: userData.id, email: userData.email, userName: userData.userName, savedQuestions: userData.savedQuestions};
       setUser(fetchedUser)
       await AsyncStorage.setItem("@user", JSON.stringify(userData));
+      console.log('logged user', fetchedUser)
     } 
     catch (error) {
       console.error('Error making POST request:', error);
