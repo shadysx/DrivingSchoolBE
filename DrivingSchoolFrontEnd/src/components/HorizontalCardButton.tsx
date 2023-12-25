@@ -2,11 +2,11 @@ import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from "react-nati
 import React from "react";
 import { Theme } from "../constants";
 
-const HorizontalCardButton : React.FC<any> = ({svgComponent}) => {
+const HorizontalCardButton : React.FC<any> = ({svgComponent, isComingSoon}) => {
   return (
+        <View style={{alignItems: 'center'}}>
+      <TouchableOpacity style={[styles.homeButton, {opacity: isComingSoon ? 0.4 : 1}]} disabled={isComingSoon} >
     <View>
-      <TouchableOpacity style={styles.homeButton}>
-        <View>
           <Text style={styles.homeButtonText}>Théorie</Text>
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.homeButtonAlternativeText}>
@@ -16,6 +16,11 @@ const HorizontalCardButton : React.FC<any> = ({svgComponent}) => {
         </View>
         {svgComponent}
       </TouchableOpacity>
+      {isComingSoon && (
+            <View style={[styles.comingSoonBadge]}>
+              <Text style={styles.comingSoonText}>Bientôt disponible</Text>
+            </View>
+      )}
     </View>
   );
 };
@@ -51,6 +56,20 @@ const styles = StyleSheet.create({
       },
       homeButtonImage: {
         marginRight: 50,
+      },
+      comingSoonBadge: {
+        position: "absolute",
+        top: 10,
+        backgroundColor: Theme.secondary,
+        padding: 5,
+        borderRadius: 5,
+        zIndex: 2,
+        opacity: 1
+      },
+      comingSoonText: {
+        color: "white",
+        fontWeight: "bold",
+        fontSize: 10,
       },
 })
 

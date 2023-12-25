@@ -28,11 +28,12 @@ const HomeView: React.FC<any> = ({ navigation }) => {
   const hideDialog = () => setVisible(false);
 
   return (
-    <SafeAreaView style={styles.container} edges={['bottom']}>
-      <ProfileBanner/>
+    <SafeAreaView style={styles.container} edges={["bottom"]}>
+      <ProfileBanner />
       <View style={styles.bottomContainer}>
         <View style={styles.homeButtonsContainer}>
           <HorizontalCardButton
+          isComingSoon={true}
             svgComponent={
               <Learn
                 width={"50%"}
@@ -42,24 +43,11 @@ const HomeView: React.FC<any> = ({ navigation }) => {
             }
           />
         </View>
-
         <View style={styles.heading}>
           <Text style={styles.headingText}>Plus</Text>
         </View>
         <View style={styles.homeVerticalButtonsContainer}>
-          <VerticalCardButton
-            title="Stats"
-            subTitle="Consulte ta progression"
-            color={"white"}
-            svgComponent={
-              <Chart
-                width={"90%"}
-                height={"70%"}
-                style={styles.homeVerticalButtonImage}
-              />
-            }
-          />
-          <VerticalCardButton
+        <VerticalCardButton
           handlePress={() => navigation.navigate("FavoritesView")}
             title="Favoris"
             subTitle="Consulte les questions sauvegardées"
@@ -73,6 +61,20 @@ const HomeView: React.FC<any> = ({ navigation }) => {
             }
           />
           <VerticalCardButton
+            isComingSoon={true}
+            title="Stats"
+            subTitle="Consulte ta progression"
+            color={"white"}
+            svgComponent={
+              <Chart
+                width={"90%"}
+                height={"70%"}
+                style={styles.homeVerticalButtonImage}
+              />
+            }
+          />
+          <VerticalCardButton
+            isComingSoon={true}
             title="Succès"
             subTitle="Accomplit des défis"
             color={"white"}
@@ -86,20 +88,18 @@ const HomeView: React.FC<any> = ({ navigation }) => {
           />
         </View>
       </View>
-      <View
-          style={styles.startExamButtonContainer}
+      <View style={styles.startExamButtonContainer}>
+        <Button
+          style={styles.startExamButton}
+          icon="steering"
+          mode="elevated"
+          textColor="white"
+          buttonColor={Theme.black}
+          onPress={() => navigation.navigate("QuizzView")}
         >
-          <Button
-            style={styles.startExamButton}
-            icon="steering"
-            mode="elevated"
-            textColor="white"
-            buttonColor={Theme.black}
-            onPress={() => navigation.navigate("QuizzView")}
-          >
-            Commencer un examen
-          </Button>
-        </View>
+          Commencer un examen
+        </Button>
+      </View>
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
           <Dialog.Title>Bienvenue sur DrivingSchoolBelgium</Dialog.Title>
@@ -168,14 +168,14 @@ const styles = StyleSheet.create({
   },
   homeVerticalButtonImage: {},
   startExamButtonContainer: {
-    alignItems: 'center',
-  }
-  ,
+    alignItems: "center",
+  },
   startExamButton: {
     width: "70%",
     height: 50,
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
-  }
+  },
 });
+
