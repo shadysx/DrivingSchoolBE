@@ -13,9 +13,10 @@ const VerticalCardButton: React.FC<any> = ({
   title,
   subTitle,
   color,
+  handlePress
 }) => {
   return (
-    <TouchableOpacity style={[styles.homeButton, { backgroundColor: color }]}>
+    <TouchableOpacity style={[styles.homeButton, { backgroundColor: color }]} onPress={() => handlePress()}>
       {svgComponent}
       <View>
         <Text style={styles.homeButtonText}>{title}</Text>

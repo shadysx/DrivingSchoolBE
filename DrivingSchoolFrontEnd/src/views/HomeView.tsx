@@ -60,6 +60,7 @@ const HomeView: React.FC<any> = ({ navigation }) => {
             }
           />
           <VerticalCardButton
+          handlePress={() => navigation.navigate("FavoritesView")}
             title="Favoris"
             subTitle="Consulte les questions sauvegardées"
             color={"white"}

@@ -13,9 +13,6 @@ import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import { Theme } from "../constants";
 import { TextInput } from "react-native-paper";
 
-// interface QuizzSummaryDetailViewProps {
-//   quizzSummaryElement?: QuizzSummaryElement | null
-// }
 
 interface QuizzSummaryDetailViewProps {
   route: RouteProp<{ params: { element: QuizzSummaryElement } }, "params">;

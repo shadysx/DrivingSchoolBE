@@ -40,7 +40,7 @@ const LoginView = () => {
             Se connecter avec Apple
           </Button>
         </View>
-        {user && <Text>Welcome {user.displayName}</Text>}
+        {user && <Text>Welcome {user.userName}</Text>}
       </SafeAreaView>
       </ImageBackground>
   );

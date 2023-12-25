@@ -16,6 +16,7 @@ import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import BookmarkButton from "../components/BookmarkButton";
+import FavoritesView from "../views/FavoritesView";
 
 const Stack = createStackNavigator();
 export function AuthStack() {
@@ -34,7 +35,12 @@ export function AuthStack() {
         <Stack.Screen
           name="HomeView"
           component={HomeView}
-          options={{ headerShown: false }}
+          options={{ headerShown: false}}
+        />
+        <Stack.Screen
+          name="FavoritesView"
+          component={FavoritesView}
+          options={{ headerShown: true, headerBackTitle: "Accueil", title: "Favoris" }}
         />
         <Stack.Screen
           name="QuizzSummaryView"
