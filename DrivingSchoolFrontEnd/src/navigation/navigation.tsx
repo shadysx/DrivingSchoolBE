@@ -17,6 +17,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import BookmarkButton from "../components/BookmarkButton";
 import FavoritesView from "../views/FavoritesView";
+import AboutUsView from "../views/AboutUsView";
+import ContactView from "../views/ContactView";
 
 const Stack = createStackNavigator();
 export function AuthStack() {
@@ -33,6 +35,16 @@ export function AuthStack() {
           }}
         />
         <Stack.Screen
+          name="ContactView"
+          component={ContactView}
+          options={{ headerShown: true}}
+        />
+        <Stack.Screen
+          name="AboutUsView"
+          component={AboutUsView}
+          options={{ headerShown: true, headerBackTitle: "Accueil", title: "A propos de nous"}}
+        />
+                <Stack.Screen
           name="HomeView"
           component={HomeView}
           options={{ headerShown: false}}

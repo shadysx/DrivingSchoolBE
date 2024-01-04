@@ -49,7 +49,8 @@ const QuizzView = ({navigation}) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const responseData: Question[] = await response.json();
+        let responseData: Question[] = await response.json();
+        responseData = responseData.sort(() => Math.random() - 0.5);
         setQuestions(responseData);
       } catch (error: any) {
         // setError(error);
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bottomContainer: {
-    marginTop: -50,
+    marginTop: -20,
     flex: 1,
     zIndex: 2,
     backgroundColor: Theme.white,

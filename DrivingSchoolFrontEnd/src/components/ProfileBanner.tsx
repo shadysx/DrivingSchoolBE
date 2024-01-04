@@ -7,11 +7,9 @@ import { Theme } from "../constants";
 import { useAuth } from "../auth/Auth";
 import SettingsMenu from "./SettingsMenu";
 
-const ProfileBanner = () => {
+const ProfileBanner = ({navigation}) => {
   const { handleLogout, user } = useAuth();
   useEffect(() => {
-    console.log(user)
-    console.log(JSON.stringify(user.photoURL, null, 4))
   })
 
   return (
@@ -32,13 +30,13 @@ const ProfileBanner = () => {
             </Text>
           </View>
           <View style={styles.profileBannerSettingsButton}>
-            <SettingsMenu />
+            <SettingsMenu navigation={navigation} />
           </View>
         </View>
         <View style={styles.progressionContainer}>
           <ProgressBar
             style={styles.progressBar}
-            progress={0.65}
+            progress={0.05}
             color={Theme.black}
           />
           <View style={styles.progressionTextContainer}>
@@ -48,7 +46,7 @@ const ProfileBanner = () => {
             <Text
               style={{ fontSize: 14, fontWeight: "normal", color: "white" }}
             >
-              Chapitre 14/21
+              EXP 10/200
             </Text>
           </View>
         </View>

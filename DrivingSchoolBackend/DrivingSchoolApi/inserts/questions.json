@@ -102,5 +102,75 @@
         "AnswerIndex": "0",
         "Themes": ["Priorité"],
         "ImageUri": "https://diy7ta1tt6jst.cloudfront.net/prod/okulus/1a377c16-df7f-412e-a0f9-f831d52fa922"
+    },
+    {
+        "Title": "Virage dangereux. Virage à gauche",
+        "Text": "Quel danger représente ce panneau ?",
+        "Answers": ["Un virage dangereux à gauche dans 150m", "Un cul de sac", "Un virage dangereux à droite dans 150m"],
+        "AnswerIndex": "0",
+        "Themes": ["Panneau"],
+        "ImageUri": "https://i.imgur.com/QR9fSky_d.jpg?maxwidth=520&shape=thumb&fidelity=high",
+        "explanation": "Le panneau indique un virage dangereux à gauche dans 150m"
+    },
+    {
+        "Title": "Virage dangereux. Double virage ou succession de plus de deux virages, le premier à gauche",
+        "Text": "Quel danger représente ce panneau ?",
+        "Answers": [
+            "Virage dangereux. Double virage ou succession de plus de deux virages, le premier à droite",
+            "Virage dangereux. Double virage ou succession de plus de deux virages, le premier à gauche", 
+            "Un virage dangereux à gauche"],
+        "AnswerIndex": "1",
+        "Themes": ["Panneau"],
+        "ImageUri": "https://i.imgur.com/DfHeDV4_d.jpg?maxwidth=520&shape=thumb&fidelity=high" ,
+        "explanation": "Virage dangereux. Double virage ou succession de plus de deux virages, le premier à gauche" 
+    },
+    {
+        "Title": "Descente dangereuse",
+        "Text": "Quel danger représente ce panneau ?",
+        "Answers": [
+            "Montée à forte inclinaison",
+            "Descente dangereuse", 
+            "Un virage dangereux à gauche"],
+        "AnswerIndex": "1",
+        "Themes": ["Panneau"],
+        "ImageUri": "https://i.imgur.com/zxUGQB5_d.jpg?maxwidth=520&shape=thumb&fidelity=high",
+        "explanation": "Pour se rapeller du sens, imaginez la voiture venant de gauche, si elle descend c'est un panneau qui indique une descente, sinon une montée."
+    },
+    {
+        "Title": "Rétrécissement de la chaussée",
+        "Text": "Quel danger représente ce panneau ?",
+        "Answers": [
+            "Rétrécissement de la chaussée par la gauche",
+            "Rétrécissement de la chaussée par la droite", 
+            "Travaux sur la bande de gauche"],
+        "AnswerIndex": "0",
+        "Themes": ["Panneau"],
+        "ImageUri": "https://i.imgur.com/Dw4VfnZ_d.jpg?maxwidth=520&shape=thumb&fidelity=high",
+        "explanation": "Rétrécissement de la chaussée par la gauche"
+    },
+    {
+        "Title": "Chaussée glissante",
+        "Text": "Quel danger représente ce panneau ?",
+        "Answers": [
+            "Possiblité de verglas",
+            "Succession de virages dangereux", 
+            "Chaussée glissante"],
+        "AnswerIndex": "2",
+        "Themes": ["Panneau"],
+        "ImageUri": "https://i.imgur.com/BmewDnL_d.jpg?maxwidth=520&shape=thumb&fidelity=high",
+        "explanation": "Chaussée glissante"
+    },
+    {
+        "Title": "Type de panneau",
+        "Text": "Que représente un panneau rond à fond bleu",
+        "Answers": [
+            "Une interiction", 
+            "Une indication",
+            "Une obligation"
+        ],
+        "AnswerIndex": "2",
+        "Themes": ["Panneau"],
+        "ImageUri": "https://i.imgur.com/U1ArMbp.png",
+        "explanation": "Chaussée glissante"
     }
 ]

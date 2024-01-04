@@ -29,7 +29,7 @@ const HomeView: React.FC<any> = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container} edges={["bottom"]}>
-      <ProfileBanner />
+      <ProfileBanner navigation={navigation}/>
       <View style={styles.bottomContainer}>
         <View style={styles.homeButtonsContainer}>
           <HorizontalCardButton

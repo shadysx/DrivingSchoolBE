@@ -1,19 +1,36 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { useAuth } from "../auth/Auth";
 import { Theme } from "../constants";
 import { Question, QuizzSummaryElement } from "../interfaces/interfaces";
 
 const FavoritesView = ({ navigation }) => {
+  const [questions, setQuestions] = useState<Question[] | null>(null);
   const { user } = useAuth();
 
   useEffect(() => {
-    console.log(user, "User");
-  });
+    const fetchQuestionsFromApi = async () => {
+      console.log("fetching");
+      try {
+        const response = await fetch(
+          "http://localhost:5143/question/getall"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        let responseData: Question[] = await response.json();
+        responseData = responseData.sort(() => Math.random() - 0.5);
+        setQuestions(responseData);
+      } catch (error: any) {
+        // setError(error);
+      } 
+    };
+    fetchQuestionsFromApi();
+  },[]);
   return (
     <ScrollView style={styles.container}>
-      {user.savedQuestions.map((question, index) => {
+      {questions?.map((question, index) => {
         return (
           <FavoriteLine
             key={index}

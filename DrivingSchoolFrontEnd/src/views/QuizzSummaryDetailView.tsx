@@ -85,7 +85,7 @@ const QuizzSummaryDetailView: React.FC<QuizzSummaryDetailViewProps> = ({
 const styles = StyleSheet.create({
   topContainer: {},
   bottomContainer: {
-    marginTop: -50,
+    marginTop: -20,
     zIndex: 2,
     backgroundColor: Theme.white,
     borderRadius: 25,
