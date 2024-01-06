@@ -49,7 +49,7 @@
             "L'essence",
             "Le gaz (LPG)"
         ],
-        "answerIndex": 0,
+        "answerIndex": 2,
         "themes": [
             "Equipement"
         ],
@@ -109,7 +109,7 @@
         "Answers": ["Un virage dangereux à gauche dans 150m", "Un cul de sac", "Un virage dangereux à droite dans 150m"],
         "AnswerIndex": "0",
         "Themes": ["Panneau"],
-        "ImageUri": "https://i.imgur.com/QR9fSky_d.jpg?maxwidth=520&shape=thumb&fidelity=high",
+        "ImageUri": "https://i.imgur.com/4DCV0ck.png",
         "explanation": "Le panneau indique un virage dangereux à gauche dans 150m"
     },
     {
@@ -121,7 +121,7 @@
             "Un virage dangereux à gauche"],
         "AnswerIndex": "1",
         "Themes": ["Panneau"],
-        "ImageUri": "https://i.imgur.com/DfHeDV4_d.jpg?maxwidth=520&shape=thumb&fidelity=high" ,
+        "ImageUri": "https://i.imgur.com/PgMoS2b.png" ,
         "explanation": "Virage dangereux. Double virage ou succession de plus de deux virages, le premier à gauche" 
     },
     {
@@ -133,7 +133,7 @@
             "Un virage dangereux à gauche"],
         "AnswerIndex": "1",
         "Themes": ["Panneau"],
-        "ImageUri": "https://i.imgur.com/zxUGQB5_d.jpg?maxwidth=520&shape=thumb&fidelity=high",
+        "ImageUri": "https://i.imgur.com/H753mkR.png",
         "explanation": "Pour se rapeller du sens, imaginez la voiture venant de gauche, si elle descend c'est un panneau qui indique une descente, sinon une montée."
     },
     {
@@ -145,7 +145,7 @@
             "Travaux sur la bande de gauche"],
         "AnswerIndex": "0",
         "Themes": ["Panneau"],
-        "ImageUri": "https://i.imgur.com/Dw4VfnZ_d.jpg?maxwidth=520&shape=thumb&fidelity=high",
+        "ImageUri": "https://i.imgur.com/iHJrzWZ.png",
         "explanation": "Rétrécissement de la chaussée par la gauche"
     },
     {
@@ -157,7 +157,7 @@
             "Chaussée glissante"],
         "AnswerIndex": "2",
         "Themes": ["Panneau"],
-        "ImageUri": "https://i.imgur.com/BmewDnL_d.jpg?maxwidth=520&shape=thumb&fidelity=high",
+        "ImageUri": "https://i.imgur.com/sqSbqt9.png",
         "explanation": "Chaussée glissante"
     },
     {
@@ -171,6 +171,145 @@
         "AnswerIndex": "2",
         "Themes": ["Panneau"],
         "ImageUri": "https://i.imgur.com/U1ArMbp.png",
-        "explanation": "Chaussée glissante"
+        "explanation": ""
+    },
+    {
+        "Title": "Modification du constat",
+        "Text": "Après avoir quitté les lieux de l'accident je me rends compte que le recto remplit avec l'autre partie est erroné. Puis-je la modifier ?",
+        "Answers": [
+            "Oui", 
+            "Non"
+        ],
+        "AnswerIndex": "1",
+        "Themes": ["Accident"],
+        "ImageUri": "https://i.imgur.com/wy4jCoa.png",
+        "explanation": "Dans aucun cas il n'est toléré de modifier le recto du constat. Si vous vous rendez compte d'une erreur, vous devez le signaler à votre assureur",
+        "isSerious": false
+    },
+    {
+        "Title": "Moteur 4 temps",
+        "Text": "Dans l'ordre, le cycle d'un moteur 4 temps est :",
+        "Answers": [
+            "Explosion, admission, compression, échappement", 
+            "Admission, compression, explosion, échappement",
+            "Echappement , explosion, compression, admission"
+        ],
+        "AnswerIndex": "1",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/FJjPSsZ.jpg",
+        "explanation": "Le cycle d'un moteur 4 temps est : admission, compression, explosion, échappement. L'air-carburant entre pendant l'admission, se comprime pendant la compression, explose lors de l'explosion, puis les gaz brûlés sont évacués pendant l'échappement, générant ainsi de la puissance.",
+        "isSerious": false
+    },
+    {
+        "Title": "Avertir",
+        "Text": "Lorsque je suis sur route ordinaire, un accident doit être signalé:",
+        "Answers": [
+            "Uniquement en amont",
+            "Des deux côtés, en amont et en aval de l'accident", 
+            "Uniquement en aval"
+        ],
+        "AnswerIndex": "1",
+        "Themes": ["Accident"],
+        "ImageUri": "https://i.imgur.com/y9MEvmo.jpg",
+        "explanation": "Il faut impérativement signaler un accident des deux côtés lorsqu'on est sur route ordinaire, en amont et en aval de l'accident. Sur route ordinaire il faut placer le triangle à 30m en amont et en aval de l'accident",
+        "isSerious": false
+    }, 
+    {
+        "Title": "Régime moteur",
+        "Text": "Lorsque je roule à l'essence, je dois passer une vitesse lorsque le régime moteur atteint :",
+        "Answers": [
+            "1500 tours/minute",
+            "2000 tours/minute", 
+            "2500 tours/minute"
+        ],
+        "AnswerIndex": "2",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/jWAV9xD.jpg",
+        "explanation": "Lorsque vous roulez à l'essence, il est généralement recommandé de passer une vitesse lorsque le régime moteur atteint environ 2500 tours/minute. Cela permet d'optimiser l'efficacité du moteur, assurant une consommation de carburant raisonnable tout en offrant une puissance adéquate pour la conduite. Le choix précis du régime moteur pour passer à une vitesse supérieure peut varier en fonction du véhicule et des conditions de conduite, mais 2500 tours/minute est une référence courante.",
+        "isSerious": false
+    },
+    {
+        "Title": "Régime moteur",
+        "Text": "Lorsque je roule au diesel, je dois passer une vitesse lorsque le régime moteur atteint :",
+        "Answers": [
+            "1500 tours/minute",
+            "2000 tours/minute",
+            "2500 tours/minute"
+        ],
+        "AnswerIndex": "1",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/jWAV9xD.jpg",
+        "explanation": "Lorsque vous roulez au diesel, il est généralement recommandé de passer une vitesse lorsque le régime moteur atteint environ 2000 tours/minute. Cela permet d'optimiser l'efficacité du moteur, assurant une consommation de carburant raisonnable tout en offrant une puissance adéquate pour la conduite. Le choix précis du régime moteur pour passer à une vitesse supérieure peut varier en fonction du véhicule et des conditions de conduite, mais 2000 tours/minute est une référence courante.",
+        "isSerious": false
+    },
+    {
+        "Title": "Transport vélo",
+        "Text": "Lorsque je transporte des vélos, quel est l'endroit ou ils augmenterons la consommation du véhicule le moins possible:",
+        "Answers": [
+            "A l'arrière du véhicule",
+            "Sur le toit du véhicule",
+            "Peu importe"
+        ],
+        "AnswerIndex": "0",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/vx3HhDC.png",
+        "explanation": "Lorsque vous transportez des vélos, les placer à l'arrière du véhicule est généralement préférable pour minimiser la consommation de carburant. Cela s'explique par la moindre résistance à l'air à l'arrière du véhicule, réduisant ainsi la traînée aérodynamique.",
+        "isSerious": false
+    },
+    {
+        "Title": "Inscriptions sur le pneu",
+        "Text": "Sur le flanc de ce pneu, je peux lire : 215/60 R 16 91V. Que signifie le 65?",
+        "Answers": [
+            "La largeur de la bande de roulement (en mm)",
+            "Le rapport hauteur/largeur du pneu",
+            "Le diamètre de la jante en pouces "
+        ],
+        "AnswerIndex": "1",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/xg253cb.jpg",
+        "explanation": "Le nombre 60 dans l'inscription du pneu (215/60 R 16 91V) représente le rapport hauteur/largeur du pneu.",
+        "isSerious": false
+    },
+    {
+        "Title": "Inscriptions sur le pneu",
+        "Text": "Sur le flanc de ce pneu, je peux lire : 215/60 R 16 91V. Que signifie le 16?",
+        "Answers": [
+            "La largeur de la bande de roulement (en mm)",
+            "Le rapport hauteur/largeur du pneu",
+            "Le diamètre de la jante en pouces "
+        ],
+        "AnswerIndex": "2",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/xg253cb.jpg",
+        "explanation": "Le nombre 16 dans l'inscription du pneu (215/60 R 16 91V) représente la taille de la jante en pouces.",
+        "isSerious": false
+    },
+    {
+        "Title": "Inscriptions sur le pneu",
+        "Text": "Sur le flanc de ce pneu je peux lire : 215/60 R 16 91V. Que signifie le 215?",
+        "Answers": [
+            "La largeur de la bande de roulement (en mm)",
+            "Le rapport hauteur/largeur du pneu",
+            "Le diamètre de la jante en pouces "
+        ],
+        "AnswerIndex": "0",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/xg253cb.jpg",
+        "explanation": "Le nombre 16 dans l'inscription du pneu (215/60 R 16 91V) représente la taille de la jante en pouces.",
+        "isSerious": false
+    },
+    {
+        "Title": "Consommation carburant",
+        "Text": "Lorsque je roule à haut régime moteur, ma consommation de carburant :",
+        "Answers": [
+            "Est diminuée",
+            "Est augmentée",
+            "N'est pas impactée"
+        ],
+        "AnswerIndex": "1",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/oNlJxss.jpg",
+        "explanation": "Lorsque vous roulez à haut régime moteur, votre consommation de carburant a tendance à augmenter. Cela est dû à une combustion plus rapide du carburant pour fournir l'énergie nécessaire à des régimes élevés. En général, maintenir un régime moteur modéré peut contribuer à une meilleure efficacité énergétique et donc à une consommation de carburant plus faible.",
+        "isSerious": false
     }
 ]

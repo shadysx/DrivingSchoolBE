@@ -14,6 +14,7 @@ namespace DrivingSchoolApi.Models
         public string[]? Themes {get; set;}
         public required string ImageUri {get; set;}
         public string? Explanation {get; set;}
+        public bool IsSerious { get; set; }
         [JsonIgnore]
         public List<User>? Users { get; set; } 
     }
