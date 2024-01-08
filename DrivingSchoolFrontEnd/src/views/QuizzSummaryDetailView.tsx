@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
   questionImage: {
     width: Dimensions.get("window").width,
     height: 300,
+    resizeMode: 'cover', 
   },
   questionCounter: {
     fontSize: 30,
