@@ -22,7 +22,7 @@ const QuizzView = ({navigation}) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number>(-1);
   const [definedTimer] = useState<number>(15);
   // TODO CHANGE 10
-  const [askedQuestionsNumber] = useState<number>(40);
+  const [askedQuestionsNumber] = useState<number>(50);
 	// Todo, avoid map.set ...
 	/*
 		const updateSelectedAnswer = (question, answer) => {

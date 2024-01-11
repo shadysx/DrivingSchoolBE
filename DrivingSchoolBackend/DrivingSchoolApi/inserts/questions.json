@@ -53,7 +53,7 @@
         "themes": [
             "Equipement"
         ],
-        "imageUri": "https://i.imgur.com/oNlJxss.jpg"
+        "imageUri": "https://i.imgur.com/n4WstbJ.jpg"
     },
 		{
         "Title": "Sample Question TODO Image",
@@ -84,7 +84,7 @@
         "Text": "Celui qui pousse à la main une moto doit être considéré comme :",
         "Answers": ["Piéton", "Conducteur", "Passager"],
         "AnswerIndex": "1",
-        "Themes": ["TODO"],
+        "Themes": ["Divers"],
         "ImageUri": "https://i.imgur.com/7DK3eHO.jpg"
     },
     {
@@ -170,7 +170,7 @@
         ],
         "AnswerIndex": "2",
         "Themes": ["Panneau"],
-        "ImageUri": "https://i.imgur.com/U1ArMbp.png",
+        "ImageUri": "https://i.imgur.com/SbrSltU.jpg",
         "explanation": ""
     },
     {
@@ -355,7 +355,7 @@
         "isSerious": true
     },
     {
-        "Title": "Feux brouillard lors de forte pluie TODO Image",
+        "Title": "Feux brouillard lors de forte pluie",
         "Text": "Lors de forte pluie, les feux suivants sont obligatoires",
         "Answers": [
             "Brouillard avant",
@@ -364,12 +364,12 @@
         ],
         "AnswerIndex": "1",
         "Themes": ["Feux"],
-        "ImageUri": "https://i.imgur.com/oNlJxss.jpg",
+        "ImageUri": "https://i.imgur.com/6Zu40uS.jpg",
         "explanation": "L'usage des feux de brouillard arrière est obligatoire en cas de forte pluie. (Infraction du 3e degré)",
         "isSerious": true
     },
     {
-        "Title": "Cyclomoteur avec permis B provisoire TODO Image",
+        "Title": "Cyclomoteur avec permis B provisoire",
         "Text": "Ai-je le droit de conduire un cyclomoteur avec un permis B provisoire ?",
         "Answers": [
             "Oui",
@@ -377,7 +377,7 @@
         ],
         "AnswerIndex": "1",
         "Themes": ["Permis"],
-        "ImageUri": "https://i.imgur.com/oNlJxss.jpg",
+        "ImageUri": "https://i.imgur.com/CmK27J9.jpg",
         "explanation": "Pour conduire un cyclomoteur, il faut être titulaire d'un permis AM ou d'un permis B définitif. Le permis B provisoire ne permet pas de conduire un cyclomoteur.",
         "isSerious": false
     },
@@ -410,7 +410,7 @@
         "isSerious": false
     },
     {
-        "Title": "Hiérarie des indications a suivre TODO Image",
+        "Title": "Hiérarie des indications a suivre",
         "Text": "Je dois suivre les indications données dans cette priorité :",
         "Answers": [
             "Agent de police, signaux lumineux, signaux routiers, règles normales de circulation",
@@ -425,7 +425,7 @@
     },
     {
         "Title": "Evitement travaux en agglomération TODO Image",
-        "Text": "En aglomération, des travaux obligent les piétons à emprunter la chaussée. Je dois :",
+        "Text": "En agglomération, des travaux obligent les piétons à emprunter la chaussée. Je dois :",
         "Answers": [
             "M'écarter de 0,50m",
             "M'écarter de 1m",
@@ -438,7 +438,7 @@
         "isSerious": true
     },
     {
-        "Title": "Perception immédiate résident belge TODO Image",
+        "Title": "Perception immédiate résident belge",
         "Text": "Un résidant belge peut-il faire l'objet d'une perception immédiate dans le cas d'une infraction du 4eme degré ?",
         "Answers": [
             "De 1500 euros",
@@ -447,7 +447,7 @@
         ],
         "AnswerIndex": "2",
         "Themes": ["Divers"],
-        "ImageUri": "https://i.imgur.com/broOTrM.png",
+        "ImageUri": "https://i.imgur.com/S8tldG2.jpg",
         "explanation": "Un résidant belge ne peut pas faire l'objet d'une perception immédiate dans le cas d'une infraction du 4eme degré.",
         "isSerious": false
     },
@@ -549,5 +549,113 @@
         "ImageUri": "https://i.imgur.com/CEFDjDF.png",
         "explanation": "Interdiction pour les camions et véhicules d'une M.M.A qui excède 3500 kg de dépasser un véhicule a plus de 2 roues ou attelé, jusqu'au carrefour suivant. Une voiture peut donc dépasser une voiture après ce panneau.",
         "isSerious": false
+    },
+    {
+        "Title": "Dechéance par le juge exces de vitesse en agglo",
+        "Text": "Le juge sera dans l'obligation de prononcer une déchéance du permis de conduire si l'exces de vitesse en agglomération dépasse: ?",
+        "Answers": [
+            "20 km/h",
+            "30 km/h",
+            "40 km/h"
+        ],
+        "AnswerIndex": "1",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/S8tldG2.jpg",
+        "Explanation": "Les déchéances sont: \n\nPossible en cas de conduite sous influence, infraction du 2eme ou 3eme degré, pour les excès de plus de 30km/h ou de 20km/h dans les zones lentes\n\nObligatoires: infraction du 4eme degré, excès de vitesse de plus de 40km/h ou plus de 30km/h en zone lente. \n\nObligatoire pour les permis B de moins de 2 ans: pour toute infraction qui rend une déchéance possible (Voir plus haut). "
+    },
+    {
+        "Title": "Retirer pour écologie",
+        "Text": "Lorsque je n'en n'ai plus besoin, pour une conduite plus économique:",
+        "Answers": [
+            "Je retire le coffre de toît",
+            "Le coffre de toît n'a pas d'influence sur la consommation"
+        ],
+        "AnswerIndex": "0",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/nG9iwte.jpg"
+    },
+    {
+        "Title": "Voiture sans abs",
+        "Text": "Je n'ai pas d'ABS (Anti - Blocking - System) sur mon véhicule, pour garantir un bon freinage je dois: ",
+        "Answers": [
+            "Enfoncer violemment là pédale pour bloquer les roues",
+            "Enfoncer violemment, relacher quand les roues se bloquent, et recommencer",
+            "Enfoncer très progressivement la pédale"
+        ],
+        "AnswerIndex": "1",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/ly1L7g3.jpg",
+        "Explanation": " C'est comme ça, mais en beaucoup plus rapide, que fonctionne l'ABS en desserrant le freinage chaque fois que les roues se bloquent."
+    },
+    {
+        "Title": "Pieton impliqué dans un accident indirectement",
+        "Text": "Un conducteur freine brutalement pour laisser passer cette dame et se fait emboutir par l'arrière, quelle affirmation est vraie:",
+        "Answers": [
+            "Elle doit rester, si elle quitte les lieux elle commet un délit de fuite",
+            "Elle n'est pas impliquée dans l'accident elle peut donc partir",
+            "Elle n'est pas blessée et donc rien ne l'implique dans l'accident"
+        ],
+        "AnswerIndex": "0",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/ZBmj6NT.jpg",
+        "Explanation": "On ne peut rien reprocher à cette dame mais étant donné que si elle n'était pas sur les lieux l'évenement ne se serait pas déroulé de la même façon, elle est impliquée dans l'accidente.",
+        "IsSerious": true
+    },
+    {
+        "Title": "Consommation et pression de pneu",
+        "Text": "Si mes pneus sont sous-gonflés, ma consommation de carburant",
+        "Answers": [
+            "Augmente",
+            "Diminue",
+            "N'est pas impactée"
+        ],
+        "AnswerIndex": "0",
+        "Themes": ["Divers"],
+        "ImageUri": "https://i.imgur.com/hepsX4f.jpg",
+        "Explanation": "Des pneus qui ne sont pas suffisamment gonflés augmentent la résistance au roulement et augmentent donc la consommation",
+        "IsSerious": false
+    },
+    {
+        "Title": "Hors agglo vitesse flandre",
+        "Text": "Sur cette route hors agglomération en flandre je suis limité à :",
+        "Answers": [
+            "50 km/h",
+            "70 km/h",
+            "90 km/h"
+        ],
+        "AnswerIndex": "1",
+        "Themes": ["Vitesse"],
+        "ImageUri": "https://i.imgur.com/2ztZQJm.jpg",
+        "Explanation": "Sur route ordinaire hors agglomération la vitesse est limitée à \n\n- 90km/h en région wallonne \n\n- 70km/h en région flammande et Bruxelles-capitale",
+        "IsSerious": false
+    },
+    {
+        "Title": "Hors agglo vitesse wallonnie",
+        "Text": "Sur cette route hors agglomération en Wallonnie je suis limité à :",
+        "Answers": [
+            "50 km/h",
+            "70 km/h",
+            "90 km/h"
+        ],
+        "AnswerIndex": "2",
+        "Themes": ["Vitesse"],
+        "ImageUri": "https://i.imgur.com/EoOP6ac.jpg",
+        "Explanation": "Sur route ordinaire hors agglomération la vitesse est limitée à \n\n- 90km/h en région wallonne \n\n- 70km/h en région flammande et Bruxelles-capitale",
+        "IsSerious": false
+    },
+    {
+        "Title": "Hors agglo vitesse Wallonnie (avec panneau 70)",
+        "Text": "Sur cette route hors agglomération en Wallonnie je suis limité à :",
+        "Answers": [
+            "50 km/h",
+            "70 km/h",
+            "90 km/h"
+        ],
+        "AnswerIndex": "1",
+        "Themes": ["Vitesse"],
+        "ImageUri": "https://i.imgur.com/4RwS0pQ.jpg",
+        "Explanation": "Sur route ordinaire hors agglomération la vitesse est limitée à \n\n- 90km/h en région wallonne \n\n- 70km/h en région flammande et Bruxelles-capitale \n\nHors ici il y a un panneau qui indique 70 km/h, c'est donc lui qui est prioritaire (Agent de police, feux lumineux, panneaux, règles normales de circulation.",
+        "IsSerious": false
     }
+
 ]

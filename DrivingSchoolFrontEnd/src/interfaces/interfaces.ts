@@ -23,6 +23,7 @@ export interface Question {
   imageUri: string;
   explanation: string;
   users: User[];
+  isSerious: boolean;
 }
 
 export interface User {

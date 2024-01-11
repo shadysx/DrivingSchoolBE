@@ -39,7 +39,23 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
           isAnswerCorrect: question.answerIndex === selectedAnswer,
       });
     }
-    const score = quizzSummaryElements.filter((element) => element.isAnswerCorrect).length;
+
+    // Score computing
+    let score = 0;
+    quizzSummaryElements.forEach((element) => {
+      // -5 for every serious question that is not answered correctly
+      if (!element.isAnswerCorrect && element.question.isSerious) {
+        score -= 5;
+      }
+      // +1 for every question that is answered correctly
+      if (element.isAnswerCorrect){
+        score += 1;
+      }
+    });
+
+
+    console.log(quizzSummaryElements.filter((element) => !element.isAnswerCorrect && element.question.isSerious).length * 5)
+
     console.log(score, "score")
     const isSuccess = score >= 41;
     const quizzSummary: QuizzSummary = {
@@ -72,7 +88,7 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
       <View style={styles.topPanel}>
       <View>
         <Text style={styles.scoreText}>
-           Votre score est de {quizzSummary?.score}/40, {resultText}
+           Votre score est de {quizzSummary?.score}/50, {resultText}
         </Text>
       </View>
       <ScrollView style={styles.boxesScrollView}>
