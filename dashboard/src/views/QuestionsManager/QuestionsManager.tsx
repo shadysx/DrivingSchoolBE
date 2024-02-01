@@ -22,7 +22,7 @@ function QuestionsManager({ questions }: QuestionsManagerProps) {
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
+            paginationModel: { page: 0, pageSize: 50 },
           },
         }}
         pageSizeOptions={[50, 100]}
