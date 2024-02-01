@@ -1,0 +1,915 @@
+[
+  {
+    "title": "Taille minimual intérieure",
+    "text": "Quelle est la largeur minimale intérieure pour que 2 passagers puissent prendre place à côté du conducteur ?",
+    "answers": [
+      "1,20 m",
+      "1,35 m",
+      "1,65 m"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Equipement"
+    ],
+    "imageUri": "https://i.imgur.com/RMnWOBq.jpg",
+    "explanation": null,
+    "isSerious": false,
+    "id": 1,
+    "creationDate": "2024-01-31T12:51:46.098314Z"
+  },
+  {
+    "title": "Chargement qui dépasse à l'arrière TODO Image",
+    "text": "Un chargement constitué d'objets indivisibles ne peut jamais dépasser l'arrière de plus de :",
+    "answers": [
+      "1 m",
+      "2 m, mais doit être signalé dès qu'il dépasse de plus de 1 m",
+      "3 m, mais doit être signalé dès qu'il dépasse de plus de 1 m"
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Equipement"
+    ],
+    "imageUri": "https://diy7ta1tt6jst.cloudfront.net/prod/okulus/3224e3d8-e2cd-468b-a6e6-d3cf5c62994b",
+    "explanation": null,
+    "isSerious": false,
+    "id": 2,
+    "creationDate": "2024-01-31T12:51:46.100636Z"
+  },
+  {
+    "title": "Sample Question TODO Image",
+    "text": "Cette veste de sécurité est un accessoire :",
+    "answers": [
+      "Conseillé",
+      "Obligatoire",
+      "Interdit"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Equipement"
+    ],
+    "imageUri": "https://diy7ta1tt6jst.cloudfront.net/prod/okulus/2480037b-6c78-496c-b7e6-47aaf4e8ded7",
+    "explanation": null,
+    "isSerious": false,
+    "id": 3,
+    "creationDate": "2024-01-31T12:51:46.100656Z"
+  },
+  {
+    "title": "Carburant le plus écologique",
+    "text": "Quel carburant se montre le plus écologique :",
+    "answers": [
+      "Le diesel",
+      "L'essence",
+      "Le gaz (LPG)"
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Equipement"
+    ],
+    "imageUri": "https://i.imgur.com/n4WstbJ.jpg",
+    "explanation": null,
+    "isSerious": false,
+    "id": 4,
+    "creationDate": "2024-01-31T12:51:46.100663Z"
+  },
+  {
+    "title": "Sample Question TODO Image",
+    "text": "Les quatre chiffres précédés de la mention DOT vous indiquent la date de fabrication de ce pneu :",
+    "answers": [
+      "Oui, les deux premiers chiffres indiquent la semaine, les deux suivants, l'année",
+      "Oui, les deux premiers chiffres indiquent l'année, les deux suivants, la semaine",
+      "Non"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Equipement"
+    ],
+    "imageUri": "https://diy7ta1tt6jst.cloudfront.net/prod/okulus/98f3472d-b769-4cb8-b525-ce68298f0e07",
+    "explanation": null,
+    "isSerious": false,
+    "id": 5,
+    "creationDate": "2024-01-31T12:51:46.10067Z"
+  },
+  {
+    "title": "Sample Question TODO Image and explanation",
+    "text": "Après avoir déposé son passager, ce conducteur sort les bagages du coffre. Ce véhicule doit être considéré comme :",
+    "answers": [
+      "Arrêté",
+      "A l'arrêt",
+      "En stationnement"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Equipement"
+    ],
+    "imageUri": "https://diy7ta1tt6jst.cloudfront.net/prod/okulus/ecc87641-444e-4a8e-91a6-b71aaaa19ac3",
+    "explanation": null,
+    "isSerious": false,
+    "id": 6,
+    "creationDate": "2024-01-31T12:51:46.101446Z"
+  },
+  {
+    "title": "Déposer passager sur place handicapé",
+    "text": "Je peux m'immobiliser sur cet emplacement pour déposer mon passager :",
+    "answers": [
+      "Oui",
+      "Non"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/MLQlLV6.png",
+    "explanation": null,
+    "isSerious": false,
+    "id": 7,
+    "creationDate": "2024-01-31T12:51:46.101459Z"
+  },
+  {
+    "title": "Sample Question",
+    "text": "Celui qui pousse à la main une moto doit être considéré comme :",
+    "answers": [
+      "Piéton",
+      "Conducteur",
+      "Passager"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/7DK3eHO.jpg",
+    "explanation": null,
+    "isSerious": false,
+    "id": 8,
+    "creationDate": "2024-01-31T12:51:46.101464Z"
+  },
+  {
+    "title": "Sample Question",
+    "text": "Je peux m'engager dans ce carrefour pour virer à gauche :",
+    "answers": [
+      "Oui",
+      "Non"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Priorité"
+    ],
+    "imageUri": "https://diy7ta1tt6jst.cloudfront.net/prod/okulus/26dcbf26-03a6-4380-b5c7-e872150c92ad",
+    "explanation": null,
+    "isSerious": false,
+    "id": 9,
+    "creationDate": "2024-01-31T12:51:46.101468Z"
+  },
+  {
+    "title": "Sample Question",
+    "text": "Qui décide d'une interdiction temporaire de conduire ?",
+    "answers": [
+      "L'agent qualifié",
+      "Le procureur du Roi",
+      "Le juge"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Priorité"
+    ],
+    "imageUri": "https://diy7ta1tt6jst.cloudfront.net/prod/okulus/1a377c16-df7f-412e-a0f9-f831d52fa922",
+    "explanation": null,
+    "isSerious": false,
+    "id": 10,
+    "creationDate": "2024-01-31T12:51:46.101472Z"
+  },
+  {
+    "title": "Virage dangereux. Virage à gauche",
+    "text": "Quel danger représente ce panneau ?",
+    "answers": [
+      "Un virage dangereux à gauche dans 150m",
+      "Un cul de sac",
+      "Un virage dangereux à droite dans 150m"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/4DCV0ck.png",
+    "explanation": "Le panneau indique un virage dangereux à gauche dans 150m",
+    "isSerious": false,
+    "id": 11,
+    "creationDate": "2024-01-31T12:51:46.101476Z"
+  },
+  {
+    "title": "Virage dangereux. Double virage ou succession de plus de deux virages, le premier à gauche",
+    "text": "Quel danger représente ce panneau ?",
+    "answers": [
+      "Virage dangereux. Double virage ou succession de plus de deux virages, le premier à droite",
+      "Virage dangereux. Double virage ou succession de plus de deux virages, le premier à gauche",
+      "Un virage dangereux à gauche"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/PgMoS2b.png",
+    "explanation": "Virage dangereux. Double virage ou succession de plus de deux virages, le premier à gauche",
+    "isSerious": false,
+    "id": 12,
+    "creationDate": "2024-01-31T12:51:46.101633Z"
+  },
+  {
+    "title": "Descente dangereuse",
+    "text": "Quel danger représente ce panneau ?",
+    "answers": [
+      "Montée à forte inclinaison",
+      "Descente dangereuse",
+      "Un virage dangereux à gauche"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/H753mkR.png",
+    "explanation": "Pour se rapeller du sens, imaginez la voiture venant de gauche, si elle descend c'est un panneau qui indique une descente, sinon une montée.",
+    "isSerious": false,
+    "id": 13,
+    "creationDate": "2024-01-31T12:51:46.101643Z"
+  },
+  {
+    "title": "Rétrécissement de la chaussée",
+    "text": "Quel danger représente ce panneau ?",
+    "answers": [
+      "Rétrécissement de la chaussée par la gauche",
+      "Rétrécissement de la chaussée par la droite",
+      "Travaux sur la bande de gauche"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/iHJrzWZ.png",
+    "explanation": "Rétrécissement de la chaussée par la gauche",
+    "isSerious": false,
+    "id": 14,
+    "creationDate": "2024-01-31T12:51:46.101648Z"
+  },
+  {
+    "title": "Chaussée glissante",
+    "text": "Quel danger représente ce panneau ?",
+    "answers": [
+      "Possiblité de verglas",
+      "Succession de virages dangereux",
+      "Chaussée glissante"
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/sqSbqt9.png",
+    "explanation": "Chaussée glissante",
+    "isSerious": false,
+    "id": 15,
+    "creationDate": "2024-01-31T12:51:46.101653Z"
+  },
+  {
+    "title": "Type de panneau",
+    "text": "Que représente un panneau rond à fond bleu",
+    "answers": [
+      "Une interiction",
+      "Une indication",
+      "Une obligation"
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/SbrSltU.jpg",
+    "explanation": "",
+    "isSerious": false,
+    "id": 16,
+    "creationDate": "2024-01-31T12:51:46.101659Z"
+  },
+  {
+    "title": "Modification du constat",
+    "text": "Après avoir quitté les lieux de l'accident je me rends compte que le recto remplit avec l'autre partie est erroné. Puis-je la modifier ?",
+    "answers": [
+      "Oui",
+      "Non"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Accident"
+    ],
+    "imageUri": "https://i.imgur.com/wy4jCoa.png",
+    "explanation": "Dans aucun cas il n'est toléré de modifier le recto du constat. Si vous vous rendez compte d'une erreur, vous devez le signaler à votre assureur",
+    "isSerious": false,
+    "id": 17,
+    "creationDate": "2024-01-31T12:51:46.101664Z"
+  },
+  {
+    "title": "Moteur 4 temps",
+    "text": "Dans l'ordre, le cycle d'un moteur 4 temps est :",
+    "answers": [
+      "Explosion, admission, compression, échappement",
+      "Admission, compression, explosion, échappement",
+      "Echappement , explosion, compression, admission"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/FJjPSsZ.jpg",
+    "explanation": "Le cycle d'un moteur 4 temps est : admission, compression, explosion, échappement. L'air-carburant entre pendant l'admission, se comprime pendant la compression, explose lors de l'explosion, puis les gaz brûlés sont évacués pendant l'échappement, générant ainsi de la puissance.",
+    "isSerious": false,
+    "id": 18,
+    "creationDate": "2024-01-31T12:51:46.102026Z"
+  },
+  {
+    "title": "Avertir",
+    "text": "Lorsque je suis sur route ordinaire, un accident doit être signalé:",
+    "answers": [
+      "Uniquement en amont",
+      "Des deux côtés, en amont et en aval de l'accident",
+      "Uniquement en aval"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Accident"
+    ],
+    "imageUri": "https://i.imgur.com/y9MEvmo.jpg",
+    "explanation": "Il faut impérativement signaler un accident des deux côtés lorsqu'on est sur route ordinaire, en amont et en aval de l'accident. Sur route ordinaire il faut placer le triangle à 30m en amont et en aval de l'accident",
+    "isSerious": false,
+    "id": 19,
+    "creationDate": "2024-01-31T12:51:46.102039Z"
+  },
+  {
+    "title": "Régime moteur",
+    "text": "Lorsque je roule à l'essence, je dois passer une vitesse lorsque le régime moteur atteint :",
+    "answers": [
+      "1500 tours/minute",
+      "2000 tours/minute",
+      "2500 tours/minute"
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/jWAV9xD.jpg",
+    "explanation": "Lorsque vous roulez à l'essence, il est généralement recommandé de passer une vitesse lorsque le régime moteur atteint environ 2500 tours/minute. Cela permet d'optimiser l'efficacité du moteur, assurant une consommation de carburant raisonnable tout en offrant une puissance adéquate pour la conduite. Le choix précis du régime moteur pour passer à une vitesse supérieure peut varier en fonction du véhicule et des conditions de conduite, mais 2500 tours/minute est une référence courante.",
+    "isSerious": false,
+    "id": 20,
+    "creationDate": "2024-01-31T12:51:46.102045Z"
+  },
+  {
+    "title": "Régime moteur",
+    "text": "Lorsque je roule au diesel, je dois passer une vitesse lorsque le régime moteur atteint :",
+    "answers": [
+      "1500 tours/minute",
+      "2000 tours/minute",
+      "2500 tours/minute"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/jWAV9xD.jpg",
+    "explanation": "Lorsque vous roulez au diesel, il est généralement recommandé de passer une vitesse lorsque le régime moteur atteint environ 2000 tours/minute. Cela permet d'optimiser l'efficacité du moteur, assurant une consommation de carburant raisonnable tout en offrant une puissance adéquate pour la conduite. Le choix précis du régime moteur pour passer à une vitesse supérieure peut varier en fonction du véhicule et des conditions de conduite, mais 2000 tours/minute est une référence courante.",
+    "isSerious": false,
+    "id": 21,
+    "creationDate": "2024-01-31T12:51:46.102052Z"
+  },
+  {
+    "title": "Transport vélo",
+    "text": "Lorsque je transporte des vélos, quel est l'endroit ou ils augmenterons la consommation du véhicule le moins possible:",
+    "answers": [
+      "A l'arrière du véhicule",
+      "Sur le toit du véhicule",
+      "Peu importe"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/vx3HhDC.png",
+    "explanation": "Lorsque vous transportez des vélos, les placer à l'arrière du véhicule est généralement préférable pour minimiser la consommation de carburant. Cela s'explique par la moindre résistance à l'air à l'arrière du véhicule, réduisant ainsi la traînée aérodynamique.",
+    "isSerious": false,
+    "id": 22,
+    "creationDate": "2024-01-31T12:51:46.102062Z"
+  },
+  {
+    "title": "Inscriptions sur le pneu",
+    "text": "Sur le flanc de ce pneu, je peux lire : 215/60 R 16 91V. Que signifie le 60?",
+    "answers": [
+      "La largeur de la bande de roulement (en mm)",
+      "Le rapport hauteur/largeur du pneu",
+      "Le diamètre de la jante en pouces "
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/xg253cb.jpg",
+    "explanation": "Le nombre 60 dans l'inscription du pneu (215/60 R 16 91V) représente le rapport hauteur/largeur du pneu.",
+    "isSerious": false,
+    "id": 23,
+    "creationDate": "2024-01-31T12:51:46.102069Z"
+  },
+  {
+    "title": "Inscriptions sur le pneu",
+    "text": "Sur le flanc de ce pneu, je peux lire : 215/60 R 16 91V. Que signifie le 16?",
+    "answers": [
+      "La largeur de la bande de roulement (en mm)",
+      "Le rapport hauteur/largeur du pneu",
+      "Le diamètre de la jante en pouces "
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/xg253cb.jpg",
+    "explanation": "Le nombre 16 dans l'inscription du pneu (215/60 R 16 91V) représente la taille de la jante en pouces.",
+    "isSerious": false,
+    "id": 24,
+    "creationDate": "2024-01-31T12:51:46.102074Z"
+  },
+  {
+    "title": "Inscriptions sur le pneu",
+    "text": "Sur le flanc de ce pneu je peux lire : 215/60 R 16 91V. Que signifie le 215?",
+    "answers": [
+      "La largeur de la bande de roulement (en mm)",
+      "Le rapport hauteur/largeur du pneu",
+      "Le diamètre de la jante en pouces "
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/xg253cb.jpg",
+    "explanation": "Le nombre 16 dans l'inscription du pneu (215/60 R 16 91V) représente la taille de la jante en pouces.",
+    "isSerious": false,
+    "id": 25,
+    "creationDate": "2024-01-31T12:51:46.102079Z"
+  },
+  {
+    "title": "Consommation carburant",
+    "text": "Lorsque je roule à haut régime moteur, ma consommation de carburant :",
+    "answers": [
+      "Est diminuée",
+      "Est augmentée",
+      "N'est pas impactée"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/oNlJxss.jpg",
+    "explanation": "Lorsque vous roulez à haut régime moteur, votre consommation de carburant a tendance à augmenter. Cela est dû à une combustion plus rapide du carburant pour fournir l'énergie nécessaire à des régimes élevés. En général, maintenir un régime moteur modéré peut contribuer à une meilleure efficacité énergétique et donc à une consommation de carburant plus faible.",
+    "isSerious": false,
+    "id": 26,
+    "creationDate": "2024-01-31T12:51:46.102084Z"
+  },
+  {
+    "title": "Feux de routes TODO Image",
+    "text": "Je circule en feux de route et je rattrape une voiture. Je dois repasser un feux de croisement si je suis a moins de:",
+    "answers": [
+      "50m de la voiture",
+      "100m de la voiture",
+      "200m de la voiture"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Feux"
+    ],
+    "imageUri": "https://i.imgur.com/oNlJxss.jpg",
+    "explanation": "TODO",
+    "isSerious": true,
+    "id": 27,
+    "creationDate": "2024-01-31T12:51:46.102093Z"
+  },
+  {
+    "title": "Depasser cycliste hors agglomération TODO Image",
+    "text": "Je me déplace hors agglomération, je veux dépasser un cycliste. Je dois respecter une distance latérale de:",
+    "answers": [
+      "0,5m",
+      "1m",
+      "1,5m"
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Dépassements"
+    ],
+    "imageUri": "https://i.imgur.com/oNlJxss.jpg",
+    "explanation": "Respectez un distance de 1,5m lors d'un dépassement de cycliste hors agglomération et de 1m en agglomération.",
+    "isSerious": true,
+    "id": 28,
+    "creationDate": "2024-01-31T12:51:46.102098Z"
+  },
+  {
+    "title": "Depasser cycliste en agglomération TODO Image",
+    "text": "Je me déplace en agglomération, je veux dépasser un cycliste. Je dois respecter une distance latérale de:",
+    "answers": [
+      "0,5m",
+      "1m",
+      "1,5m"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Dépassements"
+    ],
+    "imageUri": "https://i.imgur.com/oNlJxss.jpg",
+    "explanation": "Respectez un distance de 1,5m lors d'un dépassement de cycliste hors agglomération et de 1m en agglomération.",
+    "isSerious": true,
+    "id": 29,
+    "creationDate": "2024-01-31T12:51:46.102104Z"
+  },
+  {
+    "title": "Feux brouillard lors de forte pluie",
+    "text": "Lors de forte pluie, les feux suivants sont obligatoires",
+    "answers": [
+      "Brouillard avant",
+      "Brouillard arrière",
+      "Les deux"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Feux"
+    ],
+    "imageUri": "https://i.imgur.com/6Zu40uS.jpg",
+    "explanation": "L'usage des feux de brouillard arrière est obligatoire en cas de forte pluie. (Infraction du 3e degré)",
+    "isSerious": true,
+    "id": 30,
+    "creationDate": "2024-01-31T12:51:46.10211Z"
+  },
+  {
+    "title": "Cyclomoteur avec permis B provisoire",
+    "text": "Ai-je le droit de conduire un cyclomoteur avec un permis B provisoire ?",
+    "answers": [
+      "Oui",
+      "Non"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Permis"
+    ],
+    "imageUri": "https://i.imgur.com/CmK27J9.jpg",
+    "explanation": "Pour conduire un cyclomoteur, il faut être titulaire d'un permis AM ou d'un permis B définitif. Le permis B provisoire ne permet pas de conduire un cyclomoteur.",
+    "isSerious": false,
+    "id": 31,
+    "creationDate": "2024-01-31T12:51:46.102405Z"
+  },
+  {
+    "title": "Status du véhicule pour téléphoner",
+    "text": "Pour répondre au téléphone, mon véhicule doit être considéré comme :",
+    "answers": [
+      "En stationnement",
+      "Arrêté",
+      "A l'arrêt"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/trFixDQ.png",
+    "explanation": "Un véhicule à l’arrêt est un véhicule ne participant plus à la circulation et qui est rangé par la volonté de son conducteur pour embarquer ou débarquer des personnes ou des choses.\n\nUn véhicule en stationnement est un véhicule ne participant plus à la circulation, qui est rangé par la volonté de son conducteur pour d’autres raisons que l’embarquement ou le débarquement de personnes ou de choses, ou qui reste rangé au-delà du temps nécessaire à ces opérations.\n\nUn véhicule arrêté est simplement un véhicule qui ne bouge pas mais qui est dans la circulation, devant un feu rouge par exemple.",
+    "isSerious": false,
+    "id": 32,
+    "creationDate": "2024-01-31T12:51:46.102412Z"
+  },
+  {
+    "title": "Voiture sans abs",
+    "text": "Je n'ai pas d'ABS (Anti - Blocking - System) sur mon véhicule, pour garantir un bon freinage je dois: ",
+    "answers": [
+      "Enfoncer violemment là pédale pour bloquer les roues",
+      "Enfoncer violemment, relacher quand les roues se bloquent, et recommencer",
+      "Enfoncer très progressivement la pédale"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/ly1L7g3.jpg",
+    "explanation": " C'est comme ça, mais en beaucoup plus rapide, que fonctionne l'ABS en desserrant le freinage chaque fois que les roues se bloquent.",
+    "isSerious": false,
+    "id": 46,
+    "creationDate": "2024-01-31T12:51:46.102561Z"
+  },
+  {
+    "title": "Franchissement passage a niveau",
+    "text": "Lorsqu'un train passe sur un passage à niveau, je peux le franchir :",
+    "answers": [
+      "Quand la barrière est complètement levée et que les feux rouges sont éteints",
+      "Juste après le passage du train",
+      "Dès que la barrière se lève"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/KtQ97iE.png",
+    "explanation": "Un véhicule à l’arrêt est un véhicule ne participant plus à la circulation et qui est rangé par la volonté de son conducteur pour embarquer ou débarquer des personnes ou des choses.\n\nUn véhicule en stationnement est un véhicule ne participant plus à la circulation, qui est rangé par la volonté de son conducteur pour d’autres raisons que l’embarquement ou le débarquement de personnes ou de choses, ou qui reste rangé au-delà du temps nécessaire à ces opérations.\n\nUn véhicule arrêté est simplement un véhicule qui ne bouge pas mais qui est dans la circulation, devant un feu rouge par exemple.",
+    "isSerious": false,
+    "id": 33,
+    "creationDate": "2024-01-31T12:51:46.102467Z"
+  },
+  {
+    "title": "Hiérarie des indications a suivre",
+    "text": "Je dois suivre les indications données dans cette priorité :",
+    "answers": [
+      "Agent de police, signaux lumineux, signaux routiers, règles normales de circulation",
+      "Signaux lumineux, agent de police, règles normales de circulation, signaux routiers",
+      "Signaux routiers, agent de police, signaux lumineux, règles normales de circulation"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/broOTrM.png",
+    "explanation": "L'ordre hiérarchique des indications à suivre est le suivant : agent de police, signaux lumineux, signaux routiers, règles normales de circulation",
+    "isSerious": true,
+    "id": 34,
+    "creationDate": "2024-01-31T12:51:46.102478Z"
+  },
+  {
+    "title": "Evitement travaux en agglomération TODO Image",
+    "text": "En agglomération, des travaux obligent les piétons à emprunter la chaussée. Je dois :",
+    "answers": [
+      "M'écarter de 0,50m",
+      "M'écarter de 1m",
+      "M'écarter de 1,5m"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/broOTrM.png",
+    "explanation": "1m en agglomération et 1,5m hors agglomération, facile a retenir c'est la même distance que pour les dépassemnts de cyclistes.",
+    "isSerious": true,
+    "id": 35,
+    "creationDate": "2024-01-31T12:51:46.102484Z"
+  },
+  {
+    "title": "Perception immédiate résident belge",
+    "text": "Un résidant belge peut-il faire l'objet d'une perception immédiate dans le cas d'une infraction du 4eme degré ?",
+    "answers": [
+      "De 1500 euros",
+      "De 1250 euros",
+      "Non"
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/S8tldG2.jpg",
+    "explanation": "Un résidant belge ne peut pas faire l'objet d'une perception immédiate dans le cas d'une infraction du 4eme degré.",
+    "isSerious": false,
+    "id": 36,
+    "creationDate": "2024-01-31T12:51:46.10249Z"
+  },
+  {
+    "title": "Numéro européen des urgences",
+    "text": "Quel est le numéro d'urgence gratuit qui permet de joindre les services de secours partout en Europe ?",
+    "answers": [
+      "Le 100",
+      "Le 101",
+      "Le 112"
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/JfhzzO4.png",
+    "explanation": "Le 112 est le numéro de téléphone réservé aux appels d’urgence et valide dans l’ensemble de l’Union européenne (il est aussi utilisé dans la plupart des autres pays européens, selon les opérateurs de télécommunications ou les législations locales).",
+    "isSerious": false,
+    "id": 37,
+    "creationDate": "2024-01-31T12:51:46.102501Z"
+  },
+  {
+    "title": "Panneau voie prioritaire",
+    "text": "Ce panneau indique que :",
+    "answers": [
+      "Je suis sur un autoroute",
+      "Je suis sur une voie prioritaire",
+      "J'ai priorité au prochain carrefour"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/2a1c2PW.png",
+    "explanation": "Ce panneau jaune indique que vous circulez sur une voie prioritaire, vous avez donc priorité dans les carrefours suivants.",
+    "isSerious": false,
+    "id": 38,
+    "creationDate": "2024-01-31T12:51:46.102507Z"
+  },
+  {
+    "title": "Panneau ceder passager 200m",
+    "text": "Ce panneau indique que :",
+    "answers": [
+      "Je dois céder le passage pendant 200m",
+      "Dans 200m je devrais céder le passage",
+      "Carrefour dans 200m"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/6U5g7a5.png",
+    "explanation": "Ce panneau jaune indique que vous circulez sur une voie prioritaire, vous avez donc priorité dans les carrefours suivants.",
+    "isSerious": false,
+    "id": 39,
+    "creationDate": "2024-01-31T12:51:46.102511Z"
+  },
+  {
+    "title": "Priorité ponctuelle",
+    "text": "Ce panneau indique:",
+    "answers": [
+      "Intersection dans 150m",
+      "Voie prioritaire",
+      "J'ai priorité à gauche et a droite au prochain carrefour"
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/1JePkjk.png",
+    "explanation": "Ce panneau indique que vous avez la priorité sur tous les véhicules qui viennent de gauche ou de droite",
+    "isSerious": false,
+    "id": 40,
+    "creationDate": "2024-01-31T12:51:46.102516Z"
+  },
+  {
+    "title": "Interdiction de dépasser un véhicule a plus de 2 roues",
+    "text": "Ce panneau indique qu'il est interdit de :",
+    "answers": [
+      "Dépasser pour tout les conducteurs",
+      "Dépasser un véhicule attelé ou à plus de 2 roues",
+      "Rester sur la bande de gauche"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/RT8GLcN.png",
+    "explanation": "Le signal d'interdiction interdit aux conducteurs de dépasser par la gauche: \n\n Un véhicule attelé ou un véhicule a plus de deux roues. \n\n On peut donc dépasser un véhicule à deux roues, par contre un deux roues ne peut pas dépasser un véhicule attelé ou à plus de deux roues.",
+    "isSerious": false,
+    "id": 41,
+    "creationDate": "2024-01-31T12:51:46.102521Z"
+  },
+  {
+    "title": "Interdiction de dépasser un véhicule a plus de 2 roues",
+    "text": "Après ce panneau, qui puis-je dépasser par la gauche ?",
+    "answers": [
+      "Une motocyclette",
+      "Tout type de véhicules à moteur",
+      "Aucun véhicule"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/RT8GLcN.png",
+    "explanation": "Le signal d'interdiction interdit aux conducteurs de dépasser par la gauche: \n\n Un véhicule attelé ou un véhicule a plus de deux roues. \n\n On peut donc dépasser un véhicule à deux roues, par contre un deux roues ne peut pas dépasser un véhicule attelé ou à plus de deux roues.",
+    "isSerious": false,
+    "id": 42,
+    "creationDate": "2024-01-31T12:51:46.102528Z"
+  },
+  {
+    "title": "Interdiction de dépasser un véhicule a plus de 2 roues pour les camions",
+    "text": "Quelle est la signification de ce panneau ?",
+    "answers": [
+      "Interdiction pour les camions et véhicules d'une M.M.A qui excède 3500 kg de dépasser un véhicule a plus de 2 roues ou attelé",
+      "Interdiction pour tout les véhicules de dépasser un véhicule a plus de 2 roues ou attelé",
+      "Interdiction pour un camion de dépasser une voiture"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Panneau"
+    ],
+    "imageUri": "https://i.imgur.com/CEFDjDF.png",
+    "explanation": "Interdiction pour les camions et véhicules d'une M.M.A qui excède 3500 kg de dépasser un véhicule a plus de 2 roues ou attelé, jusqu'au carrefour suivant. Une voiture peut donc dépasser une voiture après ce panneau.",
+    "isSerious": false,
+    "id": 43,
+    "creationDate": "2024-01-31T12:51:46.102541Z"
+  },
+  {
+    "title": "Dechéance par le juge exces de vitesse en agglo",
+    "text": "Le juge sera dans l'obligation de prononcer une déchéance du permis de conduire si l'exces de vitesse en agglomération dépasse: ?",
+    "answers": [
+      "20 km/h",
+      "30 km/h",
+      "40 km/h"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/S8tldG2.jpg",
+    "explanation": "Les déchéances sont: \n\nPossible en cas de conduite sous influence, infraction du 2eme ou 3eme degré, pour les excès de plus de 30km/h ou de 20km/h dans les zones lentes\n\nObligatoires: infraction du 4eme degré, excès de vitesse de plus de 40km/h ou plus de 30km/h en zone lente. \n\nObligatoire pour les permis B de moins de 2 ans: pour toute infraction qui rend une déchéance possible (Voir plus haut). ",
+    "isSerious": false,
+    "id": 44,
+    "creationDate": "2024-01-31T12:51:46.102547Z"
+  },
+  {
+    "title": "Retirer pour écologie",
+    "text": "Lorsque je n'en n'ai plus besoin, pour une conduite plus économique:",
+    "answers": [
+      "Je retire le coffre de toît",
+      "Le coffre de toît n'a pas d'influence sur la consommation"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/nG9iwte.jpg",
+    "explanation": null,
+    "isSerious": false,
+    "id": 45,
+    "creationDate": "2024-01-31T12:51:46.102557Z"
+  },
+  {
+    "title": "Pieton impliqué dans un accident indirectement",
+    "text": "Un conducteur freine brutalement pour laisser passer cette dame et se fait emboutir par l'arrière, quelle affirmation est vraie:",
+    "answers": [
+      "Elle doit rester, si elle quitte les lieux elle commet un délit de fuite",
+      "Elle n'est pas impliquée dans l'accident elle peut donc partir",
+      "Elle n'est pas blessée et donc rien ne l'implique dans l'accident"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/ZBmj6NT.jpg",
+    "explanation": "On ne peut rien reprocher à cette dame mais étant donné que si elle n'était pas sur les lieux l'évenement ne se serait pas déroulé de la même façon, elle est impliquée dans l'accidente.",
+    "isSerious": true,
+    "id": 47,
+    "creationDate": "2024-01-31T12:51:46.102569Z"
+  },
+  {
+    "title": "Consommation et pression de pneu",
+    "text": "Si mes pneus sont sous-gonflés, ma consommation de carburant",
+    "answers": [
+      "Augmente",
+      "Diminue",
+      "N'est pas impactée"
+    ],
+    "answerIndex": 0,
+    "themes": [
+      "Divers"
+    ],
+    "imageUri": "https://i.imgur.com/hepsX4f.jpg",
+    "explanation": "Des pneus qui ne sont pas suffisamment gonflés augmentent la résistance au roulement et augmentent donc la consommation",
+    "isSerious": false,
+    "id": 48,
+    "creationDate": "2024-01-31T12:51:46.102577Z"
+  },
+  {
+    "title": "Hors agglo vitesse flandre",
+    "text": "Sur cette route hors agglomération en flandre je suis limité à :",
+    "answers": [
+      "50 km/h",
+      "70 km/h",
+      "90 km/h"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Vitesse"
+    ],
+    "imageUri": "https://i.imgur.com/2ztZQJm.jpg",
+    "explanation": "Sur route ordinaire hors agglomération la vitesse est limitée à \n\n- 90km/h en région wallonne \n\n- 70km/h en région flammande et Bruxelles-capitale",
+    "isSerious": false,
+    "id": 49,
+    "creationDate": "2024-01-31T12:51:46.102582Z"
+  },
+  {
+    "title": "Hors agglo vitesse wallonnie",
+    "text": "Sur cette route hors agglomération en Wallonnie je suis limité à :",
+    "answers": [
+      "50 km/h",
+      "70 km/h",
+      "90 km/h"
+    ],
+    "answerIndex": 2,
+    "themes": [
+      "Vitesse"
+    ],
+    "imageUri": "https://i.imgur.com/EoOP6ac.jpg",
+    "explanation": "Sur route ordinaire hors agglomération la vitesse est limitée à \n\n- 90km/h en région wallonne \n\n- 70km/h en région flammande et Bruxelles-capitale",
+    "isSerious": false,
+    "id": 50,
+    "creationDate": "2024-01-31T12:51:46.102591Z"
+  },
+  {
+    "title": "Hors agglo vitesse Wallonnie (avec panneau 70)",
+    "text": "Sur cette route hors agglomération en Wallonnie je suis limité à :",
+    "answers": [
+      "50 km/h",
+      "70 km/h",
+      "90 km/h"
+    ],
+    "answerIndex": 1,
+    "themes": [
+      "Vitesse"
+    ],
+    "imageUri": "https://i.imgur.com/4RwS0pQ.jpg",
+    "explanation": "Sur route ordinaire hors agglomération la vitesse est limitée à \n\n- 90km/h en région wallonne \n\n- 70km/h en région flammande et Bruxelles-capitale \n\nHors ici il y a un panneau qui indique 70 km/h, c'est donc lui qui est prioritaire (Agent de police, feux lumineux, panneaux, règles normales de circulation.",
+    "isSerious": false,
+    "id": 51,
+    "creationDate": "2024-01-31T12:51:46.102599Z"
+  }
+]

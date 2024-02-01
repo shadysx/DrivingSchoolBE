@@ -42,7 +42,7 @@ if (app.Environment.IsDevelopment())
 
 
 // To open outside localhost, be carefull for security
-// builder.WebHost.UseUrls("http://0.0.0.0:5143");
+builder.WebHost.UseUrls("http://0.0.0.0:5143");
 
 app.UseCors("AllowAnyOrigin"); // Use the CORS policy
 
