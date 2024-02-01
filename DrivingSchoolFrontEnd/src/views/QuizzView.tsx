@@ -20,9 +20,9 @@ const QuizzView = ({navigation}) => {
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [questionCounter, setQuestionCounter] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number>(-1);
-  const [definedTimer] = useState<number>(5);
+  const [definedTimer] = useState<number>(15);
   // TODO CHANGE 10
-  const [askedQuestionsNumber] = useState<number>(10);
+  const [askedQuestionsNumber] = useState<number>(50);
 	// Todo, avoid map.set ...
 	/*
 		const updateSelectedAnswer = (question, answer) => {
@@ -49,7 +49,8 @@ const QuizzView = ({navigation}) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const responseData: Question[] = await response.json();
+        let responseData: Question[] = await response.json();
+        responseData = responseData.sort(() => Math.random() - 0.5);
         setQuestions(responseData);
       } catch (error: any) {
         // setError(error);
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bottomContainer: {
-    marginTop: -50,
+    marginTop: -45,
     flex: 1,
     zIndex: 2,
     backgroundColor: Theme.white,

@@ -13,15 +13,32 @@ const VerticalCardButton: React.FC<any> = ({
   title,
   subTitle,
   color,
+  handlePress,
+  isComingSoon,
 }) => {
   return (
-    <TouchableOpacity style={[styles.homeButton, { backgroundColor: color }]}>
+    <View style={{alignItems: "center"}}>
+    <TouchableOpacity
+      style={[
+        styles.homeButton,
+        { backgroundColor: color, opacity: isComingSoon ? 0.3 : 1 },
+      ]}  
+      disabled={isComingSoon}
+      onPress={() => handlePress()}
+    >
       {svgComponent}
+
       <View>
         <Text style={styles.homeButtonText}>{title}</Text>
         <Text style={styles.homeButtonAlternativeText}>{subTitle}</Text>
       </View>
     </TouchableOpacity>
+          {isComingSoon && (
+            <View style={[styles.comingSoonBadge]}>
+              <Text style={styles.comingSoonText}>Bientôt disponible</Text>
+            </View>
+      )}
+      </View>
   );
 };
 
@@ -56,6 +73,20 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   homeButtonImage: {},
+  comingSoonBadge: {
+    position: "absolute",
+    top: 10,
+    backgroundColor: Theme.secondary,
+    padding: 5,
+    borderRadius: 5,
+    zIndex: 2,
+    opacity: 1
+  },
+  comingSoonText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 10,
+  },
 });
 
 export default VerticalCardButton;

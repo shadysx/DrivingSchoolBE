@@ -17,7 +17,8 @@
     "ios": {
       "supportsTablet": true,
       "googleServicesFile": "./GoogleService-Info.plist",
-      "bundleIdentifier": "com.anonymous.DrivingSchoolFrontEnd"
+      "bundleIdentifier": "com.anonymous.DrivingSchoolFrontEnd",
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {

@@ -13,19 +13,9 @@ const QuizzSummaryBoxes: React.FC<QuizSummaryBoxesProps> = ({
   quizzSummary,
   navigation,
 }) => {
-  // TODO
-  const newTab = quizzSummary?.quizzSummaryElements
-    ? [
-        ...quizzSummary.quizzSummaryElements,
-        ...quizzSummary.quizzSummaryElements,
-        ...quizzSummary.quizzSummaryElements,
-        ...quizzSummary.quizzSummaryElements,
-      ]
-    : [];
-
   return (
     <View style={styles.imagesContainer}>
-      {newTab.map((element, index) => (
+      {quizzSummary?.quizzSummaryElements?.map((element, index) => (
         <QuizzSummaryElementBox
           element={element}
           navigation={navigation}

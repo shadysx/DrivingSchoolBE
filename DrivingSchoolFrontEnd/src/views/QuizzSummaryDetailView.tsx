@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { QuizzSummaryElement } from "../interfaces/interfaces";
@@ -12,10 +13,8 @@ import { RouteProp } from "@react-navigation/native";
 import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import { Theme } from "../constants";
 import { TextInput } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-// interface QuizzSummaryDetailViewProps {
-//   quizzSummaryElement?: QuizzSummaryElement | null
-// }
 
 interface QuizzSummaryDetailViewProps {
   route: RouteProp<{ params: { element: QuizzSummaryElement } }, "params">;
@@ -46,7 +45,7 @@ const QuizzSummaryDetailView: React.FC<QuizzSummaryDetailViewProps> = ({
 
   useEffect(() => {}, []);
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }} edges={["bottom"]}>
       <View style={styles.topContainer}>
         <Image
           style={styles.questionImage}
@@ -71,7 +70,7 @@ const QuizzSummaryDetailView: React.FC<QuizzSummaryDetailViewProps> = ({
             ))}
           </View>
         </View>
-        <View style={styles.explanationContainer}>
+        <ScrollView style={styles.explanationContainer}>
           <Text style={styles.answerExplanation}>
             {
               (quizzSummaryElement.question.explanation !== null 
@@ -79,23 +78,25 @@ const QuizzSummaryDetailView: React.FC<QuizzSummaryDetailViewProps> = ({
                   : "Pas encore d'explication pour cette question, si vous avez une erreur à signaler n'hésitez pas a nous contacter (Accueil => Paramètres => Contact)")
             }
           </Text>
-        </View>
+        </ScrollView>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   topContainer: {},
   bottomContainer: {
-    marginTop: -50,
+    marginTop: -20,
     zIndex: 2,
     backgroundColor: Theme.white,
     borderRadius: 25,
+    flex: 1
   },
   questionImage: {
     width: Dimensions.get("window").width,
     height: 300,
+    resizeMode: 'cover', 
   },
   questionCounter: {
     fontSize: 30,
@@ -150,6 +151,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 20,
     backgroundColor: "white",
+    flex: 1
   },
   answerExplanation: {
     margin: 10,

@@ -5,8 +5,6 @@ import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, signInWithPopup, signInWithCredential} from "firebase/auth";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
-
-
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -24,7 +22,6 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth();
 const provider = new GoogleAuthProvider();
-
 
 export const googleSignIn = async () => {
   try {
