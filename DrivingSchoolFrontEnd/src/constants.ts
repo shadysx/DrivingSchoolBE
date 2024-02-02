@@ -8,4 +8,4 @@ export const Theme = {
     
 }
 
-export const API = "http://213.213.230.92:5143"
+export const API = "http://213.213.230.92:5143/"

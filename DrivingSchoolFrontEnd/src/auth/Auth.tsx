@@ -40,6 +40,7 @@ const Auth = ({ children }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
+      console.log(API + 'Auth/VerifyGoogleToken')
     handleAuth();
   },[])
 
@@ -49,7 +50,6 @@ const Auth = ({ children }) => {
     const jwt = (response as any)._tokenResponse.oauthIdToken;
 
     try {
-      console.log('ehllo')
       const result = await axios.post(API + 'Auth/VerifyGoogleToken', jwt, {
         headers: {
           'Content-Type': 'application/json'
