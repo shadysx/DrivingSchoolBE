@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "DrivingSchoolFrontEnd",
-    "slug": "DrivingSchoolFrontEnd",
+    "slug": "drivingschool",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -35,8 +35,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "468ce158-a3b6-4d27-a292-67e3ecbe506e"
+        "projectId": "5ab78136-c953-4164-96e9-4466d9254f5f"
       }
-    }
+    },
+    "owner": "shadysxcode"
   }
 }
