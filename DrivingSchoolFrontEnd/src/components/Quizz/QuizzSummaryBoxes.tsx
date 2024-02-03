@@ -1,8 +1,7 @@
-import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
 import React from "react";
 import { Theme } from "../../constants";
 import { QuizzSummary, QuizzSummaryElement } from "../../interfaces/interfaces";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface QuizSummaryBoxesProps {
   quizzSummary: QuizzSummary;

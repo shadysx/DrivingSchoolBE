@@ -23,7 +23,7 @@ const ProfileBanner = ({navigation}) => {
           />
           <View style={styles.avatarTextContainer}>
             <Text style={styles.avatarTextElement}>
-              Bienvenue, {user.userName}
+              Bienvenue, {user?.userName}
             </Text>
             <Text style={[styles.avatarTextElement, styles.additionalText]}>
               Il est temps de te préparer !

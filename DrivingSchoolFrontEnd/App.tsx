@@ -10,45 +10,17 @@ import Auth, { useAuth } from './src/auth/Auth';
 import QuizzSummaryDetailView from './src/views/QuizzSummaryDetailView';
 import { QuizzSummary, QuizzSummaryElement } from './src/interfaces/interfaces';
 import TestView from './src/views/TestView';
-
+import HomeView from './src/views/HomeView';
+import 'react-native-gesture-handler';
 
 export default function App() {
   const [quizzSummary, setQuizzSummary] = React.useState<QuizzSummary>();
   const [quizzSummaryElement, setQuizzSummaryElement] = React.useState<QuizzSummaryElement>();
 
-  useEffect(() => {
-    const fetchQuestionSummariesFromApi = async () => {
-      console.log("fetching");
-      try {
-        const response = await fetch(
-          "http://localhost:5143/quizsummary/getall"
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const responseData: QuizzSummary[] = await response.json();
-        setQuizzSummary(responseData[0]);
-        setQuizzSummaryElement(responseData[0].quizzSummaryElements[0]);
-        console.log(responseData[0].quizzSummaryElements[0], "Ayo")
-
-      } catch (error: any) {
-        // setError(error);
-      } finally {
-      }
-    };
-    fetchQuestionSummariesFromApi();
-  }, []);
-
-  useEffect(() => {
-    console.log(quizzSummaryElement, "Yooo");
-  }, [quizzSummary, quizzSummaryElement]);
-
   return (
     <PaperProvider>
       <Auth>
         <Navigation/>
-        {/* <TestView/> */}
-        {/* <QuizzSummaryDetailView quizzSummaryElement={quizzSummaryElement}/> */}
       </Auth>
     </PaperProvider>
   );   

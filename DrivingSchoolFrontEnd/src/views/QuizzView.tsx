@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useMemo, useState } from "react";
-import { Theme } from "../constants";
+import { API, Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import QuizzSummaryView from "./QuizzSummaryView";
@@ -44,7 +44,7 @@ const QuizzView = ({navigation}) => {
       console.log("fetching");
       try {
         const response = await fetch(
-          "http://localhost:5143/question/getall"
+          API + "question/getall"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

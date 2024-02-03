@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, useRoute } from "@react-navigation/native";
 import { useAuth } from "../auth/Auth";
+import 'react-native-gesture-handler';
 
 //Screens
 
@@ -91,7 +92,7 @@ export function GuestStack() {
 
 const Navigation = () => {
   const { user } = useAuth();
-  return user ? <AuthStack /> : <GuestStack />;
+  return <AuthStack />;
 };
 
 export default Navigation;
