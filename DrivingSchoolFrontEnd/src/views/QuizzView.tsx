@@ -20,19 +20,8 @@ const QuizzView = ({navigation}) => {
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [questionCounter, setQuestionCounter] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number>(-1);
-  const [definedTimer] = useState<number>(15);
-  // TODO CHANGE 10
+  const [definedTimer] = useState<number>(30);
   const [askedQuestionsNumber] = useState<number>(50);
-	// Todo, avoid map.set ...
-	/*
-		const updateSelectedAnswer = (question, answer) => {
-		setQuestionsWithSelectedAnswer(prevMap => {
-			const newMap = new Map(prevMap);
-			newMap.set(question, answer);
-			return newMap;
-		});
-	};
-	*/
 	const [questionsWithSelectedAnswers, setQuestionsWithSelectedAnswer] = useState<Map<Question, number> | null>(new Map<Question, number>())
 
   useEffect(() => {
@@ -90,7 +79,7 @@ const QuizzView = ({navigation}) => {
         <>
           <View style={styles.topContainer}>
           <Text style={styles.questionCounter}>
-              Question {questionCounter + 1}/40
+              Question {questionCounter + 1}/50
             </Text>
             <View style={styles.progressionContainer}>
               <TimerProgressBar
@@ -151,7 +140,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bottomContainer: {
-    marginTop: -45,
+    marginTop: 0,
     flex: 1,
     zIndex: 2,
     backgroundColor: Theme.white,
