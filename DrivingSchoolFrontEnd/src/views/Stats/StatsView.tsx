@@ -27,6 +27,7 @@ const StatsView = ({scores, mean}) => {
         height={256}
         verticalLabelRotation={0}
         bezier
+        fromZero
         withInnerLines={false}
         withOuterLines={false}
         withVerticalLabels={false}
