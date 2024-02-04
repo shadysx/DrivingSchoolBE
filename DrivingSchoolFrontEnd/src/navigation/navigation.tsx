@@ -1,7 +1,9 @@
+
+import 'react-native-gesture-handler';
+import React from 'react'
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, useRoute } from "@react-navigation/native";
 import { useAuth } from "../auth/Auth";
-import 'react-native-gesture-handler';
 
 //Screens
 
@@ -45,7 +47,7 @@ export function AuthStack() {
           component={AboutUsView}
           options={{ headerShown: true, headerBackTitle: "Accueil", title: "A propos de nous"}}
         />
-                <Stack.Screen
+        <Stack.Screen
           name="HomeView"
           component={HomeView}
           options={{ headerShown: false}}
@@ -92,7 +94,7 @@ export function GuestStack() {
 
 const Navigation = () => {
   const { user } = useAuth();
-  return <AuthStack />;
+  return user ? <AuthStack /> : <GuestStack/>;
 };
 
 export default Navigation;
