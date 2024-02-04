@@ -5,10 +5,13 @@ import { Question } from '../../interfaces/Interfaces';
 import axios from "axios"
 import { API, CREATE_QUESTION, GET_QUESTIONS, UPDATE_QUESTION, UPDATE_QUESTIONS } from '../../constants';
 import { GridRowId } from '@mui/x-data-grid';
+import QuestionViewDialog from '../../components/dialogs/QuestionViewDialog/QuestionViewDialog';
 
 function QuestionsManagerContainer() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [editedData, setEditedData] = useState<Question[]>([]);
+  const [selectedQuestion, setSelectedQuestion] = useState<Question>();
+  const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
     console.log(editedData)
@@ -34,13 +37,19 @@ function QuestionsManagerContainer() {
     });
   };
 
-  const handleEdit= (id: GridRowId) => {
+  const handleEdit = (id: GridRowId) => {
+    let question = questions.find(q => q.id == id)
+    setSelectedQuestion(question) 
+    setOpen(true)
+  };
+
+  const handleDelete = (id: GridRowId) => {
 
   };
 
-  const handleDelete= (id: GridRowId) => {
-
-  };
+  const handleCloseDialog = () => {
+    setOpen(false);
+  }
 
   // Save the questions
   const saveQuestionsToServer = async () => {
@@ -74,12 +83,20 @@ function QuestionsManagerContainer() {
   }, []);
 
   // Pass the data as props to the presentational component
-  return <QuestionsManagerView  
+  return (
+    <>
+
+    <QuestionsManagerView  
             questions={questions} 
             handleCellEdit={addQuestionToEditedData} 
             handleDelete={handleDelete}
             handleEdit={handleEdit}
-            handleSaveChanges={saveQuestionsToServer}/>;
+            handleSaveChanges={saveQuestionsToServer}/>
+    <QuestionViewDialog open={open} onClose={handleCloseDialog} question={selectedQuestion} />
+    </>
+
+
+  )
 }
 
 export default QuestionsManagerContainer;

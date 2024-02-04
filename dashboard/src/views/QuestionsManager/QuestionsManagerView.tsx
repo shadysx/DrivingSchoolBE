@@ -3,7 +3,6 @@ import { Question } from '../../interfaces/Interfaces';
 import { DataGrid, GridActionsCellItem, GridColDef, GridEditCellValueParams, GridRowId, GridRowModes, GridRowModesModel, GridRowsProp, GridToolbarContainer, GridValueGetterParams } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -15,7 +14,7 @@ interface QuestionsManagerProps {
   handleDelete: (id: GridRowId) => void
 }
 
-function QuestionsManagerView({ questions, handleCellEdit, handleSaveChanges, handleEdit, handleDelete }: QuestionsManagerProps) {
+function QuestionsManagerView({ questions, handleEdit, handleDelete }: QuestionsManagerProps) {
   const handleProcessRowUpdateError = () => {
     // TODO
   }
@@ -86,6 +85,7 @@ function QuestionsManagerView({ questions, handleCellEdit, handleSaveChanges, ha
         }}
       />
     </div>       
+
     </>
   );
       }
