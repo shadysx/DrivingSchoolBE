@@ -10,11 +10,22 @@ import {
 } from "react-native-chart-kit";import { Theme } from "../../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 const StatsView = ({scores}) => {
+
+  console.log(scores)
+  scores = scores?.map(score => score < 0 ? 0 : score)  
+
+  if(scores?.length >= 20){
+    scores = scores?.slice(-20);
+  }
+  else {
+    scores = scores?.slice(-scores?.length);
+  }
+
   const sum = scores?.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   const mean = sum / scores?.length;
 
   const data = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: [],
     datasets: [
       {
         data: scores ?? [0], // Prevent crash when the score need time to lead TODO handle loading

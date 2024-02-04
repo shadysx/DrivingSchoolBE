@@ -24,13 +24,10 @@ const StatsViewContainer = ({navigation}) => {
           throw new Error("Network response was not ok");
         }
         let responseData: QuizzSummary[] = await response.json();
-        console.log("response data", responseData)
         responseData = responseData.filter(rd => rd.userId == user.id);
-        let scoresData = responseData.map(questionSummaries => questionSummaries.score < 0 ? 0 : questionSummaries.score)
-        const last20scores = scoresData.slice(-20);
+        let scoresRaw = responseData.map(qs => qs.score)
         setQuizzSummaries(responseData);
-        setScores(last20scores)
-        console.log(scores)
+        setScores(scoresRaw)
       } catch (error: any) {
         // setError(error);
       } 
