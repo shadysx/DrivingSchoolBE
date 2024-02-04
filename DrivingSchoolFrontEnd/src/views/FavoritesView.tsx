@@ -90,14 +90,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginLeft: 5,
     marginRight: 5,
-    // borderRadius: 5,
-    // // Shadow for iOS
-    // shadowColor: "#000",
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.25,
-    // shadowRadius: 3.84,
-    // // Elevation for Android
-    // elevation: 5,
   },
   leftContainer: {
     flex: 1,

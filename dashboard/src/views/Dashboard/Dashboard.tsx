@@ -2,7 +2,7 @@
 import React from 'react';
 import "./styles.css";
 import { Link } from "react-router-dom";
-import QuestionsManager from '../QuestionsManager/QuestionsManagerContainer';
+import QuestionsManager from '../QuestionsManager/QuestionsManagerViewContainer';
 
 export default function Dashboard() {
   return (

@@ -61,7 +61,8 @@ const HomeView: React.FC<any> = ({ navigation }) => {
             }
           />
           <VerticalCardButton
-            isComingSoon={true}
+            handlePress={() => navigation.navigate("StatsViewContainer")}
+            isComingSoon={false}
             title="Stats"
             subTitle="Consulte ta progression"
             color={"white"}
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
   },
   homeButtonsContainer: {
     marginTop: 20,
-    marginBottom: 30,
+    marginBottom: 50,
   },
   homeVerticalButtonsContainer: {
     width: Dimensions.get("window").width - 40,

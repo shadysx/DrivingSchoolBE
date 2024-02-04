@@ -5,6 +5,7 @@ export interface QuizzSummary {
   creationDate?: Date;
   quizzSummaryElements: QuizzSummaryElement[];
   isSuccess: boolean;
+  userId: number;
 }
 
 export interface QuizzSummaryElement {

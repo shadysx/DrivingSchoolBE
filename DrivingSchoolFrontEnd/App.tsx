@@ -12,6 +12,8 @@ import { QuizzSummary, QuizzSummaryElement } from './src/interfaces/interfaces';
 import TestView from './src/views/TestView';
 import HomeView from './src/views/HomeView';
 import 'react-native-gesture-handler';
+import StatsView from './src/views/Stats/StatsView';
+import { Theme } from './src/constants';
 
 export default function App() {
   const [quizzSummary, setQuizzSummary] = React.useState<QuizzSummary>();
@@ -31,6 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: Theme.white
   }
 })
 

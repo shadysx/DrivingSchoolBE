@@ -12,16 +12,11 @@ import QuizzSummaryView from "../views/QuizzSummaryView";
 import HomeView from "../views/HomeView";
 import LoginView from "../views/LoginView";
 import QuizzSummaryDetailView from "../views/QuizzSummaryDetailView";
-import { Button, IconButton } from "react-native-paper";
-import { API, Theme } from "../constants";
-import { QuizzSummaryElement, User } from "../interfaces/interfaces";
-import { useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
 import BookmarkButton from "../components/BookmarkButton";
 import FavoritesView from "../views/FavoritesView";
 import AboutUsView from "../views/AboutUsView";
 import ContactView from "../views/ContactView";
+import StatsViewContainer from '../views/Stats/StatsViewContainer';
 
 const Stack = createStackNavigator();
 export function AuthStack() {
@@ -61,6 +56,11 @@ export function AuthStack() {
           name="QuizzSummaryView"
           component={QuizzSummaryView}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="StatsViewContainer"
+          component={StatsViewContainer}
+          options={{ headerShown: true, headerBackTitle: "Accueil", title: "Statistiques" }}
         />
         <Stack.Screen
           name="QuizzSummaryDetailView"
