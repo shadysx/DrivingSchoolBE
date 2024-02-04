@@ -71,7 +71,6 @@ const QuizzView = ({navigation}) => {
 	}
 
 	const isQuizzPlaying: boolean = questionCounter < askedQuestionsNumber	
-
   return (
     <View style={{ flex: 1 }}>
       {questions && isQuizzPlaying && (

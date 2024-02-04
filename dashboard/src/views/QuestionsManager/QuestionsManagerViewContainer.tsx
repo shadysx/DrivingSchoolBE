@@ -7,7 +7,7 @@ import { API, CREATE_QUESTION, GET_QUESTIONS, UPDATE_QUESTION, UPDATE_QUESTIONS 
 import { GridRowId } from '@mui/x-data-grid';
 import QuestionViewDialog from '../../components/dialogs/QuestionViewDialog/QuestionViewDialog';
 
-function QuestionsManagerContainer() {
+function QuestionsManagerViewContainer() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [editedData, setEditedData] = useState<Question[]>([]);
   const [selectedQuestion, setSelectedQuestion] = useState<Question>();

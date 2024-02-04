@@ -10,6 +10,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Question, QuizzSummary, QuizzSummaryElement } from "../interfaces/interfaces";
 import ProfileBanner from "../components/ProfileBanner";
+import { useAuth } from "../auth/Auth";
 
 interface QuizzSummaryProps {
   navigation: StackNavigationProp<any, any>;
@@ -21,6 +22,8 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
   questionsWithSelectedAnswers,
 }) => {
   const [quizzSummary, setQuizzSummary] = useState<QuizzSummary>();
+  const {user} = useAuth();
+  const userId = user.id
   const resultText = quizzSummary?.isSuccess
     ? <Text style={{color: Theme.secondary}}>Réussi !</Text>
     : <Text style={{color: "red"}}>Raté...</Text>
@@ -53,15 +56,13 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
       }
     });
 
-
-    console.log(quizzSummaryElements.filter((element) => !element.isAnswerCorrect && element.question.isSerious).length * 5)
-
-    console.log(score, "score")
     const isSuccess = score >= 41;
+
     const quizzSummary: QuizzSummary = {
       score,
       isSuccess,
       quizzSummaryElements,
+      userId 
     };
     setQuizzSummary(quizzSummary);
     postQuizzSummaryToServer(quizzSummary);

@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Dashboard from './views/Dashboard/Dashboard';
-import QuestionsManager from './views/QuestionsManager/QuestionsManagerContainer';
+import QuestionsManager from './views/QuestionsManager/QuestionsManagerViewContainer';
 
 // MUI 
 import '@fontsource/roboto/300.css';
