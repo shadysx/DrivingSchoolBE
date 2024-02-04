@@ -29,7 +29,7 @@ const FavoritesView = ({ navigation }) => {
   },[]);
   return (
     <ScrollView style={styles.container}>
-      {questions?.map((question, index) => {
+      {user.savedQuestions?.map((question, index) => {
         return (
           <FavoriteLine
             key={index}
