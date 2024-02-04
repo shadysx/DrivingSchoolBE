@@ -2,28 +2,10 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import React from "react"
 import {
   LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
 } from "react-native-chart-kit";import { Theme } from "../../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
-const StatsView = ({scores}) => {
 
-  console.log(scores)
-  scores = scores?.map(score => score < 0 ? 0 : score)  
-
-  if(scores?.length >= 20){
-    scores = scores?.slice(-20);
-  }
-  else {
-    scores = scores?.slice(-scores?.length);
-  }
-
-  const sum = scores?.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-  const mean = sum / scores?.length;
-
+const StatsView = ({scores, mean}) => {
   const data = {
     labels: [],
     datasets: [
