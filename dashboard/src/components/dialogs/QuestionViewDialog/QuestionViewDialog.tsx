@@ -1,65 +1,118 @@
-import React, { FC } from 'react';
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FormControlLabel, Grid, Typography } from '@mui/material';
-import { Question } from '../../../interfaces/Interfaces';
+import { Question, createInitialQuestion } from '../../../interfaces/Interfaces';
 import Checkbox from '@mui/material/Checkbox';
+import axios from 'axios';
+import { API, UPDATE_QUESTION, UPDATE_QUESTIONS } from '../../../constants';
 
 interface QuestionViewDialogProps {
   open: boolean;
   onClose: () => void;
-  question: Question;
+  selectedQuestion: Question;
 };
 
-const QuestionViewDialog: FC<QuestionViewDialogProps> = ({ open, onClose, question }) => {
+
+const QuestionViewDialog: FC<QuestionViewDialogProps> = ({ open, onClose, selectedQuestion}) => {
+  const [editedQuestion, setEditedQuestion] = useState<Question>({});
+  const [isModified, setIsModified] = useState(false);
+
+  useEffect(() => {
+    setEditedQuestion({...selectedQuestion})
+  }, [selectedQuestion])
+
+  const handleInputChange = (field: string, value: string | boolean) => {
+    setEditedQuestion((prevQuestion) => ({ ...prevQuestion, [field]: value }));
+    setIsModified(true);
+  };
+
+  const handleAnswerChange = (index: number, value: string) => {
+    const updatedAnswers = [...editedQuestion.answers];
+    updatedAnswers[index] = value;
+    setEditedQuestion((prevQuestion) => ({ ...prevQuestion, answers: updatedAnswers }));
+    setIsModified(true);
+  };
+
+  const handleIsModifiedData = () => {
+    if (isModified) {
+      const userConfirmed = window.confirm("Vous allez perdre les changements en cours, voulez-vous quand même quitter ?");
+        if (userConfirmed) {
+          setIsModified(false);
+          onClose();
+      }
+    }
+    else {
+      onClose();
+    }
+  }
+
+  const handleSaveQuestion = async (editedQuestion: Question) => {
+    try {
+      console.log(editedQuestion)
+      console.log("LOG (QuestionManager: saveQuestionToServer):", JSON.stringify(editedQuestion, null, 4))
+      const result = await axios.put(
+        API + UPDATE_QUESTION,
+        JSON.stringify(editedQuestion),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setIsModified(false);
+      onClose();
+    } catch (error) {
+      alert("ERROR making POST request: (QuestionManager: saveQuestionToServer) " + error);
+    }
+  };
+
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleIsModifiedData} fullWidth maxWidth="md">
     <DialogTitle>Question</DialogTitle>
     <DialogContent>
       <div style={{display: "flex", flexDirection: "row"}}>
         <div style={{flex: 1, padding: 30}}> 
-          <img src={question?.imageUri} alt="Question" style={{ maxWidth: '100%', height: 'auto', objectFit: "cover"}} />
+          <img src={editedQuestion?.imageUri} alt="Question" style={{ maxWidth: '100%', height: 'auto', objectFit: "cover"}} />
           <TextField
             label="Question"
             variant="outlined"
             multiline
             fullWidth
-            value={question?.text}
+            value={editedQuestion?.text}
             InputProps={{
               readOnly: false,
             }}
             style={{ marginTop: 10 }}
+            onChange={(e) => handleInputChange('text', e.target.value)}
           />
           <TextField
-            label="Explanation"
+            label="Explications"
             variant="outlined"
             multiline
             fullWidth
             rows={4}
-            value={question?.explanation}
+            value={editedQuestion?.explanation || ""}
             InputProps={{
               readOnly: false,
             }}
             style={{ marginTop: 10 }}
+            onChange={(e) => handleInputChange('explanation', e.target.value)}
           />
         </div>
         <div style={{flex: 1, padding: 30}}> 
         <div style={{}}>
-        <FormControlLabel
-              control={<Checkbox checked={question?.isSerious}/>}
-              label="Is Serious"
-              style={{ marginTop: 10 }}
-            />
+
+        
           {/* Right side for Answers */}
-          {question?.answers.map((answer, index) => (
+          {editedQuestion?.answers?.map((answer, index) => (
             <TextField
               key={index}
-              label={`Answer ${index + 1}`}
+              label={`Réponse ${index + 1}`}
               variant="outlined"
               multiline
               fullWidth
@@ -68,19 +121,37 @@ const QuestionViewDialog: FC<QuestionViewDialogProps> = ({ open, onClose, questi
                 readOnly: false,
               }}
               style={{ marginTop: 10}}
+              onChange={(e) => handleAnswerChange(index, e.target.value)}
             />
           ))}
+          <TextField
+            label="Url Image"
+            variant="outlined"
+            fullWidth
+            value={editedQuestion?.imageUri}
+            InputProps={{
+              readOnly: false,
+            }}
+            style={{ marginTop: 10 }}
+            onChange={(e) => handleInputChange('imageUri', e.target.value)}
+          />
+          <FormControlLabel
+              control={<Checkbox checked={editedQuestion?.isSerious || false}/>}
+              label="Faute grave"
+              style={{ marginTop: 10 }}
+              onChange={() => handleInputChange('isSerious', !editedQuestion.isSerious)}
+            />
         </div>
         </div>
 
       </div>
     </DialogContent>
     <DialogActions>
-      <Button onClick={onClose} color="primary">
-        Cancel
+      <Button onClick={() => handleIsModifiedData()} color="primary">
+        Annuler
       </Button>
-      <Button color="primary">
-        Save
+      <Button onClick={() => handleSaveQuestion(editedQuestion)} color="primary">
+        Sauvegarder
       </Button>
     </DialogActions>
   </Dialog>

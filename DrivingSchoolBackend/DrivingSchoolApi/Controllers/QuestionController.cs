@@ -71,7 +71,14 @@ public class QuestionController : ControllerBase
         // Update properties of existingQuestion with values from updatedModel
         existingQuestion.Title = updatedModel.Title;
         existingQuestion.Text = updatedModel.Text;
-        // ... update other properties as needed
+        existingQuestion.Answers = updatedModel.Answers;
+        existingQuestion.AnswerIndex = updatedModel.AnswerIndex;
+        existingQuestion.Themes = updatedModel.Themes;
+        existingQuestion.ImageUri = updatedModel.ImageUri;
+        existingQuestion.ImageUri = updatedModel.ImageUri;
+        existingQuestion.Explanation = updatedModel.Explanation;
+        existingQuestion.IsSerious = updatedModel.IsSerious;
+        existingQuestion.Users = updatedModel.Users;
 
         // Mark the entity as modified
         _dbContext.Entry(existingQuestion).State = EntityState.Modified;

@@ -8,8 +8,6 @@ import EditIcon from '@mui/icons-material/Edit';
 
 interface QuestionsManagerProps {
   questions: Question[];
-  handleCellEdit: (question: Question) => void
-  handleSaveChanges: () => void
   handleEdit: (id: GridRowId) => void 
   handleDelete: (id: GridRowId) => void
 }
@@ -35,7 +33,7 @@ function QuestionsManagerView({ questions, handleEdit, handleDelete }: Questions
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'title', headerName: 'Titre', width: 250, editable: true },
+    { field: 'title', headerName: 'Titre', width: 250, editable: false },
     { field: 'text', headerName: 'Question', width: 800 },
     {
       field: 'actions',
