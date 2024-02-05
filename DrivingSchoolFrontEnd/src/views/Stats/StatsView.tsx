@@ -2,19 +2,12 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import React from "react"
 import {
   LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
 } from "react-native-chart-kit";import { Theme } from "../../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
-const StatsView = ({scores}) => {
-  const sum = scores?.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-  const mean = sum / scores?.length;
 
+const StatsView = ({scores, mean}) => {
   const data = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: [],
     datasets: [
       {
         data: scores ?? [0], // Prevent crash when the score need time to lead TODO handle loading
@@ -34,6 +27,7 @@ const StatsView = ({scores}) => {
         height={256}
         verticalLabelRotation={0}
         bezier
+        fromZero
         withInnerLines={false}
         withOuterLines={false}
         withVerticalLabels={false}

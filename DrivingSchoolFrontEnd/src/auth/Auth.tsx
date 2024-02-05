@@ -141,7 +141,7 @@ const Auth = ({ children }) => {
     if (isLoading) {
       return (
         <View style={styles.centered}>
-          <ActivityIndicator size="large" color={Theme.primary} />
+          <ActivityIndicator size="large" color={Theme.secondary} />
         </View>
       );
     }
