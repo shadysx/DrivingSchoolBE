@@ -1,3 +1,6 @@
+using DrivingSchoolApi.Models;
+using Microsoft.Extensions.FileProviders;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
@@ -52,4 +55,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine("C:","Images", "Questions")),
+    RequestPath = "/images"
+});
+
 app.Run();
+
+

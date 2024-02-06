@@ -10,46 +10,36 @@ function QuestionsManagerViewContainer() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [editedData, setEditedData] = useState<Question[]>([]);
   const [selectedQuestion, setSelectedQuestion] = useState<Question>(createInitialQuestion);
+
+  // Dialog
   const [open, setOpen] = useState<boolean>(false);
+  const [isCreating, setIsCreating] = useState<boolean>(false);
 
   useEffect(() => {
     console.log(editedData)
   }, [editedData])
 
-  // This build a collection of all the edited questions so we can eventually implement
-  // a savechanges button instead of saving directly 
-  const addQuestionToEditedData = (editedQuestion: Question) => {
-    setEditedData((prevEditedData) => {
-      const isQuestionEdited = prevEditedData.some((question) => question.id === editedQuestion.id);
-  
-      if (isQuestionEdited) {
-        // If the question is already in editedData, update it
-        console.log("Was edited")
-        return prevEditedData.map((question) =>
-          question.id === editedQuestion.id ? editedQuestion : question
-        );
-      } else {
-        // If the question is not in editedData, add it
-        console.log("Was not edited")
-        return [...prevEditedData, editedQuestion];
-      }
-    });
-  };
-
-  const showEditDialog = (id: GridRowId, readOnly: boolean = false) => {
+  const showEditDialog = (id: GridRowId) => {
     let question = questions.find(q => q.id == id)
     setSelectedQuestion(question) 
     setOpen(true)
   };
+
+  const handleCreate = () => {
+    setOpen(true)
+    setIsCreating(true)
+  }
 
   const handleDelete = (id: GridRowId) => {
 
   };
 
   const handleCloseDialog = () => {
-    console.log('trigger')
+    //Resting dialog on each close
     setSelectedQuestion(createInitialQuestion)
+    setIsCreating(false);
     setOpen(false);
+    // Stay up to date
     fetchQuestions();
   }
 
@@ -70,12 +60,18 @@ function QuestionsManagerViewContainer() {
   // Pass the data as props to the presentational component
   return (
     <>
-
-    <QuestionsManagerView  
-            questions={questions} 
-            handleDelete={handleDelete}
-            handleEdit={showEditDialog}/>
-    <QuestionViewDialog open={open} onClose={handleCloseDialog} selectedQuestion={selectedQuestion} />
+      <QuestionsManagerView
+        questions={questions}
+        handleCreate={handleCreate}
+        handleEdit={showEditDialog}
+        handleDelete={handleDelete}
+      />
+      <QuestionViewDialog
+        open={open}
+        onClose={handleCloseDialog}
+        selectedQuestion={selectedQuestion}
+        isCreating={isCreating}
+      />
     </>
   )
 }

@@ -8,24 +8,21 @@ import EditIcon from '@mui/icons-material/Edit';
 
 interface QuestionsManagerProps {
   questions: Question[];
+  handleCreate: () => void
   handleEdit: (id: GridRowId) => void 
   handleDelete: (id: GridRowId) => void
 }
 
-function QuestionsManagerView({ questions, handleEdit, handleDelete }: QuestionsManagerProps) {
+function QuestionsManagerView({ questions, handleCreate, handleEdit, handleDelete }: QuestionsManagerProps) {
   const handleProcessRowUpdateError = () => {
     // TODO
   }
 
   function EditToolbar() {
-    const handleClick = () => {
-      // Creation Logic
-    };
-  
     return (
       <GridToolbarContainer>
-        <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
-          Add record
+        <Button color="primary" startIcon={<AddIcon />} onClick={handleCreate}>
+          Ajouter une question
         </Button>
       </GridToolbarContainer>
     );

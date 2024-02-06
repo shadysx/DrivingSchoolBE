@@ -1,4 +1,5 @@
 using DrivingSchoolApi.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,8 +23,10 @@ public class QuestionController : ControllerBase
         return Ok(questions);
     }
 
-    [HttpPost("Create")]
-    public async Task<IActionResult> Create(Question model)
+[HttpPost("Create")]
+public async Task<IActionResult> Create(Question model)
+{
+    try 
     {
         if (!ModelState.IsValid)
         {
@@ -32,9 +35,26 @@ public class QuestionController : ControllerBase
 
         _dbContext.Questions?.Add(model);
         await _dbContext.SaveChangesAsync();
-        
+
+        // // Doing this after the inital save to get the id need for the image save
+        // if (!string.IsNullOrEmpty(model.ImageUri))
+        // {
+        //     string fileLocationOnServer = await Utils.DownloadAndSaveImage(model.ImageUri, model.Id);
+        //     model.ImageUri =  fileLocationOnServer;
+
+        //     // Update the model with the correct ImageUri after saving
+        //     _dbContext.Questions?.Update(model);
+        //     await _dbContext.SaveChangesAsync();
+        // }
+
         return Ok(model);
     }
+    catch (Exception ex)
+    {
+        return BadRequest(ex.ToString());
+    }
+
+}
 
     [HttpPost("BatchCreate")]
     public async Task<IActionResult> BulkCreate(Question[] models)
