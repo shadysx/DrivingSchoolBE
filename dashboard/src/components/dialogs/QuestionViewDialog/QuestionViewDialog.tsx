@@ -224,7 +224,6 @@ const QuestionViewDialog: FC<QuestionViewDialogProps> = ({ open, onClose, select
         
           {/* Right side for Answers */}
           {editedQuestion?.answers?.map((answer, index) => (
-            <>
             <TextField
               key={index}
               label={index === 0 ? `Réponse ${index + 1} (Bonne réponse)` : `Réponse ${index + 1}`}
@@ -238,8 +237,6 @@ const QuestionViewDialog: FC<QuestionViewDialogProps> = ({ open, onClose, select
               style={{ marginTop: 10 }}
               onChange={(e) => handleAnswerChange(index, e.target.value)}
             />
-            </>
-
           ))}
           <TextField
             label="Url Image"
