@@ -30,3 +30,17 @@ export interface User {
   userName: string;
   savedQuestions?: Question[];
 }
+
+
+export const createInitialQuestion = (): Question => ({
+  id: undefined,
+  title: '',
+  text: '',
+  answers: ['', '', ''],
+  answerIndex: undefined,
+  themes: [],
+  imageUri: 'https://designshack.net/wp-content/uploads/placeholder-image.png',
+  explanation: '',
+  users: [],
+  isSerious: false,
+});

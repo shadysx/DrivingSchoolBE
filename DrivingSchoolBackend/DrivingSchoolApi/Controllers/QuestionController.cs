@@ -1,4 +1,5 @@
 using DrivingSchoolApi.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,8 +23,10 @@ public class QuestionController : ControllerBase
         return Ok(questions);
     }
 
-    [HttpPost("Create")]
-    public async Task<IActionResult> Create(Question model)
+[HttpPost("Create")]
+public async Task<IActionResult> Create(Question model)
+{
+    try 
     {
         if (!ModelState.IsValid)
         {
@@ -32,9 +35,26 @@ public class QuestionController : ControllerBase
 
         _dbContext.Questions?.Add(model);
         await _dbContext.SaveChangesAsync();
-        
+
+        // // Doing this after the inital save to get the id need for the image save
+        // if (!string.IsNullOrEmpty(model.ImageUri))
+        // {
+        //     string fileLocationOnServer = await Utils.DownloadAndSaveImage(model.ImageUri, model.Id);
+        //     model.ImageUri =  fileLocationOnServer;
+
+        //     // Update the model with the correct ImageUri after saving
+        //     _dbContext.Questions?.Update(model);
+        //     await _dbContext.SaveChangesAsync();
+        // }
+
         return Ok(model);
     }
+    catch (Exception ex)
+    {
+        return BadRequest(ex.ToString());
+    }
+
+}
 
     [HttpPost("BatchCreate")]
     public async Task<IActionResult> BulkCreate(Question[] models)
@@ -71,7 +91,14 @@ public class QuestionController : ControllerBase
         // Update properties of existingQuestion with values from updatedModel
         existingQuestion.Title = updatedModel.Title;
         existingQuestion.Text = updatedModel.Text;
-        // ... update other properties as needed
+        existingQuestion.Answers = updatedModel.Answers;
+        existingQuestion.AnswerIndex = updatedModel.AnswerIndex;
+        existingQuestion.Themes = updatedModel.Themes;
+        existingQuestion.ImageUri = updatedModel.ImageUri;
+        existingQuestion.ImageUri = updatedModel.ImageUri;
+        existingQuestion.Explanation = updatedModel.Explanation;
+        existingQuestion.IsSerious = updatedModel.IsSerious;
+        existingQuestion.Users = updatedModel.Users;
 
         // Mark the entity as modified
         _dbContext.Entry(existingQuestion).State = EntityState.Modified;

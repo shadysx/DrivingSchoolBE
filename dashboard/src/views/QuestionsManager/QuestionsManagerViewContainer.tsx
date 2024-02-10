@@ -1,102 +1,79 @@
-
 import React, { useEffect, useState } from 'react';
 import QuestionsManagerView from './QuestionsManagerView'; // Import the presentational component
-import { Question } from '../../interfaces/Interfaces'; 
+import { Question, createInitialQuestion } from '../../interfaces/Interfaces'; 
 import axios from "axios"
 import { API, CREATE_QUESTION, GET_QUESTIONS, UPDATE_QUESTION, UPDATE_QUESTIONS } from '../../constants';
-import { GridRowId } from '@mui/x-data-grid';
+import { GridRowId, unstable_gridTabIndexColumnHeaderFilterSelector } from '@mui/x-data-grid';
 import QuestionViewDialog from '../../components/dialogs/QuestionViewDialog/QuestionViewDialog';
 
 function QuestionsManagerViewContainer() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [editedData, setEditedData] = useState<Question[]>([]);
-  const [selectedQuestion, setSelectedQuestion] = useState<Question>();
+  const [selectedQuestion, setSelectedQuestion] = useState<Question>(createInitialQuestion);
+
+  // Dialog
   const [open, setOpen] = useState<boolean>(false);
+  const [isCreating, setIsCreating] = useState<boolean>(false);
 
   useEffect(() => {
     console.log(editedData)
   }, [editedData])
 
-  // This build a collection of all the edited questions so we can eventually implement
-  // a savechanges button instead of saving directly 
-  const addQuestionToEditedData = (editedQuestion: Question) => {
-    setEditedData((prevEditedData) => {
-      const isQuestionEdited = prevEditedData.some((question) => question.id === editedQuestion.id);
-  
-      if (isQuestionEdited) {
-        // If the question is already in editedData, update it
-        console.log("Was edited")
-        return prevEditedData.map((question) =>
-          question.id === editedQuestion.id ? editedQuestion : question
-        );
-      } else {
-        // If the question is not in editedData, add it
-        console.log("Was not edited")
-        return [...prevEditedData, editedQuestion];
-      }
-    });
-  };
-
-  const handleEdit = (id: GridRowId) => {
+  const showEditDialog = (id: GridRowId) => {
     let question = questions.find(q => q.id == id)
     setSelectedQuestion(question) 
     setOpen(true)
   };
+
+  const handleCreate = () => {
+    setOpen(true)
+    setIsCreating(true)
+  }
 
   const handleDelete = (id: GridRowId) => {
 
   };
 
   const handleCloseDialog = () => {
+    //Resting dialog on each close
+    setSelectedQuestion(createInitialQuestion)
+    setIsCreating(false);
     setOpen(false);
+    // Stay up to date
+    fetchQuestions();
   }
 
-  // Save the questions
-  const saveQuestionsToServer = async () => {
+  const fetchQuestions = async () => {
     try {
-      console.log("LOG (QuestionManager: saveQuestionsToServer):", JSON.stringify(editedData, null, 4))
-      const result = await axios.put(
-        API + UPDATE_QUESTIONS,
-        JSON.stringify(editedData),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      console.log("LOG QuestionManager: Fetching questions")
+      const response = await axios.get(API + GET_QUESTIONS);
+      setQuestions(response.data);
     } catch (error) {
-      console.error("ERROR making POST request: (QuestionManager: saveQuestionsToServer)", error);
+      console.error('Error fetching questions:', error);
     }
   };
 
   useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const response = await axios.get(API + GET_QUESTIONS);
-        setQuestions(response.data);
-      } catch (error) {
-        console.error('Error fetching questions:', error);
-      }
-    };
-
     fetchQuestions();
   }, []);
 
   // Pass the data as props to the presentational component
   return (
     <>
-
-    <QuestionsManagerView  
-            questions={questions} 
-            handleCellEdit={addQuestionToEditedData} 
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-            handleSaveChanges={saveQuestionsToServer}/>
-    <QuestionViewDialog open={open} onClose={handleCloseDialog} question={selectedQuestion} />
+      <QuestionsManagerView
+        questions={questions}
+        handleCreate={handleCreate}
+        handleEdit={showEditDialog}
+        handleDelete={handleDelete}
+      />
+      <QuestionViewDialog
+        open={open}
+        onClose={handleCloseDialog}
+        selectedQuestion={selectedQuestion}
+        isCreating={isCreating}
+      />
     </>
-
-
   )
 }
 
-export default QuestionsManagerContainer;
+export default QuestionsManagerViewContainer;
