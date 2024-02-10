@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     marginTop: -50,
     borderRadius: 25,
     alignItems: "center",
-    justifyContent: "space-around"
+    justifyContent: "space-between"
   },
   tripleButtonContainer: {
 
