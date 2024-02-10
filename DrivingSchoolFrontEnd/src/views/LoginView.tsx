@@ -30,7 +30,7 @@ const LoginView = () => {
           >
             Se connecter avec Google
           </Button>
-          <Button
+          {/* <Button
             style={styles.connectionButton}
             icon="apple"
             mode="contained"
@@ -38,7 +38,7 @@ const LoginView = () => {
             onPress={() => console.log('Pressed')}
           >
             Se connecter avec Apple
-          </Button>
+          </Button> */}
         </View>
         {user && <Text>Welcome {user.userName}</Text>}
       </SafeAreaView>
