@@ -8,7 +8,7 @@ namespace DrivingSchoolApi.Models
 	{
 		public required string Email {get; set;}
         public required string UserName {get; set;}
-        public List<Question> SavedQuestions { get; set; }
-        public List<QuizzSummary> QuizSummaries {get; set;}
+        public List<Question>? SavedQuestions { get; set; }
+        public List<QuizzSummary>? QuizSummaries {get; set;}
     }
 }
