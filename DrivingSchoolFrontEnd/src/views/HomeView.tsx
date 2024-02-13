@@ -43,6 +43,7 @@ const HomeView: React.FC<any> = ({ navigation }) => {
             }
           />
         </View>
+        <View style={styles.tripleButtonContainer}>
         <View style={styles.heading}>
           <Text style={styles.headingText}>Plus</Text>
         </View>
@@ -100,6 +101,7 @@ const HomeView: React.FC<any> = ({ navigation }) => {
         >
           Commencer un examen
         </Button>
+        </View>
       </View>
       <Portal>
         <Dialog visible={visible} onDismiss={hideDialog}>
@@ -137,6 +139,10 @@ const styles = StyleSheet.create({
     marginTop: -50,
     borderRadius: 25,
     alignItems: "center",
+    justifyContent: "space-between"
+  },
+  tripleButtonContainer: {
+
   },
   heading: {
     alignSelf: "flex-start",
@@ -153,8 +159,6 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   homeButtonsContainer: {
-    marginTop: 20,
-    marginBottom: 50,
   },
   homeVerticalButtonsContainer: {
     width: Dimensions.get("window").width - 40,

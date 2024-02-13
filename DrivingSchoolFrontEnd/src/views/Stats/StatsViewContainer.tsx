@@ -12,10 +12,6 @@ const StatsViewContainer = ({navigation}) => {
 
   const {user} = useAuth()
 
-  useEffect(() => {
-    console.log('mean', mean)
-  })
-
   // TODO, create an endpoint to get only the user related summaryies
   useEffect(() => {
     const fetchQuestionsSummariesFromApi = async () => {
@@ -30,6 +26,7 @@ const StatsViewContainer = ({navigation}) => {
         let responseData: QuizzSummary[] = await response.json();
         responseData = responseData.filter(rd => rd.userId == user.id);
         let scoresRaw = responseData.map(qs => qs.score)
+        console.log("chec", scoresRaw)
         ComputeMeanForLastSummaries(scoresRaw);
 
       } catch (error: any) {
@@ -41,6 +38,11 @@ const StatsViewContainer = ({navigation}) => {
 
   // Called when fetching summaries, will replace the negative numbers with 0's for the score and compute the mean
   const ComputeMeanForLastSummaries = (scoresRaw: number[]) => {
+    if(scoresRaw == null || scoresRaw.length == 0){
+      setMean(0);
+      return
+    }
+
     scoresRaw = scoresRaw?.map(score => score < 0 ? 0 : score)  
       
     if(scores?.length >= 20){

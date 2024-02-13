@@ -51,6 +51,22 @@ const QuizzView = ({navigation}) => {
     setIsLoading(false)
   }, []);
 
+  useEffect(() => {
+    setIsLoading(true)
+    preloadImages() ;
+    setIsLoading(false)
+  }, [questions])
+  
+
+  const preloadImages = () => {
+    console.log("preloading images")
+    questions?.forEach(question => {
+      if(question.imageUri){
+        console.log("Prefetech", (Image.prefetch(question.imageUri)))
+      }
+    })
+  }
+
   const handleValidation = () => {
 		addAnswer();
     setQuestionCounter((prev) => prev + 1);
