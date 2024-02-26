@@ -98,7 +98,6 @@ public async Task<IActionResult> Create(Question model)
         existingQuestion.ImageUri = updatedModel.ImageUri;
         existingQuestion.Explanation = updatedModel.Explanation;
         existingQuestion.IsSerious = updatedModel.IsSerious;
-        existingQuestion.Users = updatedModel.Users;
 
         // Mark the entity as modified
         _dbContext.Entry(existingQuestion).State = EntityState.Modified;

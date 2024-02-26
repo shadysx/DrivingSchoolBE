@@ -28,6 +28,7 @@ public class UserController: ControllerBase
     {
         if (!ModelState.IsValid)
         {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
             return BadRequest(ModelState);
         }
 
@@ -35,7 +36,6 @@ public class UserController: ControllerBase
         {
             return BadRequest("ID mismatch");
         }
-
         var existingUser = await _dbContext.Users
             .Include(u => u.SavedQuestions)
             .FirstOrDefaultAsync(u => u.Id == id);
