@@ -11,6 +11,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Question, QuizzSummary, QuizzSummaryElement } from "../interfaces/interfaces";
 import ProfileBanner from "../components/ProfileBanner";
 import { useAuth } from "../auth/Auth";
+import LoadingScreen from "../components/LoadingScreen";
+import { useQuestionsContext } from "../contexts/QuestionsContext";
+import { useStatsContext } from "../contexts/StatsContext";
 
 interface QuizzSummaryProps {
   navigation: StackNavigationProp<any, any>;
@@ -22,7 +25,10 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
   questionsWithSelectedAnswers,
 }) => {
   const [quizzSummary, setQuizzSummary] = useState<QuizzSummary>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const {user} = useAuth();
+  const { fetchStatsFromApi } = useStatsContext();
+  const { fetchQuestionsFromApi } = useQuestionsContext();
   const userId = user.id
   const resultText = quizzSummary?.isSuccess
     ? <Text style={{color: Theme.secondary}}>Réussi !</Text>
@@ -30,9 +36,11 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
 
   useEffect(() => {
     computeSummaries();
+    fetchQuestionsFromApi();
   }, []);
 
   const computeSummaries = () => {
+    setIsLoading(true)
     let quizzSummaryElements: QuizzSummaryElement[] = [];
 
     for (const [question, selectedAnswer] of questionsWithSelectedAnswers) {
@@ -66,6 +74,7 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
     };
     setQuizzSummary(quizzSummary);
     postQuizzSummaryToServer(quizzSummary);
+    setIsLoading(false);
   };
 
   const postQuizzSummaryToServer = async (quizzSummary: QuizzSummary) => {
@@ -81,10 +90,18 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
       );
     } catch (error) {
       console.error("Error making POST request:", error);
+    } finally {
+      fetchStatsFromApi();
     }
   };
 
-  return (
+  const handleNewQuiz = () => {
+    navigation.replace("QuizzView");
+  }
+
+  
+
+  return isLoading ? <LoadingScreen/> : (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.topPanel}>
       <View>
@@ -114,7 +131,7 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
           mode="elevated"
           textColor="black"
           buttonColor={Theme.secondary}
-          onPress={() => navigation.replace("QuizzView")}
+          onPress={handleNewQuiz}
         >
           Encore
         </Button>

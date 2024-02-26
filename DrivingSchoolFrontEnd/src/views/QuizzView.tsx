@@ -4,68 +4,25 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  Button,
   TouchableOpacity,
 } from "react-native";
-import React, { useEffect, useMemo, useState } from "react";
-import { API, Theme } from "../constants";
+import React, { useState } from "react";
+import { Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import QuizzSummaryView from "./QuizzSummaryView";
-import { useAuth } from "../auth/Auth";
 import { Question } from "../interfaces/interfaces";
+import { useQuestionsContext } from "../contexts/QuestionsContext";
 
 const QuizzView = ({navigation}) => {
-  const {setIsLoading} = useAuth();
-  const [questions, setQuestions] = useState<Question[] | null>(null);
   const [questionCounter, setQuestionCounter] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number>(-1);
   const [definedTimer] = useState<number>(30);
   const [askedQuestionsNumber] = useState<number>(50);
 	const [questionsWithSelectedAnswers, setQuestionsWithSelectedAnswer] = useState<Map<Question, number> | null>(new Map<Question, number>())
 
-  useEffect(() => {
-    console.log("----------");
-  });
-
-  useEffect(() => {
-    const fetchQuestionsFromApi = async () => {
-      console.log("fetching");
-      try {
-        const response = await fetch(
-          API + "question/getall"
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        let responseData: Question[] = await response.json();
-        responseData = responseData.sort(() => Math.random() - 0.5);
-        setQuestions(responseData);
-      } catch (error: any) {
-        // setError(error);
-      } finally {
-      }
-    };
-    setIsLoading(true)
-    fetchQuestionsFromApi();
-    setIsLoading(false)
-  }, []);
-
-  useEffect(() => {
-    setIsLoading(true)
-    preloadImages() ;
-    setIsLoading(false)
-  }, [questions])
-  
-
-  const preloadImages = () => {
-    console.log("preloading images")
-    questions?.forEach(question => {
-      if(question.imageUri){
-        console.log("Prefetech", (Image.prefetch(question.imageUri)))
-      }
-    })
-  }
+  const { state } = useQuestionsContext();
+  const { questions } = state;
 
   const handleValidation = () => {
 		addAnswer();

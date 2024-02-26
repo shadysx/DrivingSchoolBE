@@ -17,8 +17,6 @@ interface AuthContextType {
   handleGoogleSignIn: () => Promise<void>;
   handleLogout: () => Promise<void>;
   checkUserInAsyncStorage: () => Promise<void>;
-  isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const AuthContext = React.createContext<AuthContextType>({
@@ -26,8 +24,6 @@ export const AuthContext = React.createContext<AuthContextType>({
   handleGoogleSignIn: async () => {},
   handleLogout: async () => {},
   checkUserInAsyncStorage: async () => {},
-  isLoading: false,
-  setIsLoading: () => {},
 });
 
 export function useAuth() {
@@ -137,7 +133,7 @@ const Auth = ({ children }) => {
     setIsLoading(false);
   }
 
-    // Render loading indicator if isLoading is true
+  const LoadingScreen = () => {
     if (isLoading) {
       return (
         <View style={styles.centered}>
@@ -145,10 +141,13 @@ const Auth = ({ children }) => {
         </View>
       );
     }
+  }
   return (
-    <AuthContext.Provider value={{user, handleGoogleSignIn, handleLogout, checkUserInAsyncStorage, isLoading, setIsLoading}}>
+    isLoading ? 
+    <LoadingScreen/> :
+    (<AuthContext.Provider value={{user, handleGoogleSignIn, handleLogout, checkUserInAsyncStorage}}>
     {children}
-  </AuthContext.Provider>
+  </AuthContext.Provider>)
   )
 }
 

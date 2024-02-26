@@ -9,5 +9,5 @@ export const Theme = {
 }
 
 // export const API = "http://192.168.0.110:5143/" // Windows server
-// export const API = "http://localhost:5143/"
-export const API = "http://213.213.230.92:5143/"
+export const API = "http://localhost:5143/"
+// export const API = "http://213.213.230.92:5143/"

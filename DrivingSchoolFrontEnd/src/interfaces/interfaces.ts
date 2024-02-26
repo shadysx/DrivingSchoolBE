@@ -33,3 +33,8 @@ export interface User {
   userName: string;
   savedQuestions?: Question[];
 }
+
+export interface GetStatsResponse {
+  mean: number,
+  scores: number[]
+}
