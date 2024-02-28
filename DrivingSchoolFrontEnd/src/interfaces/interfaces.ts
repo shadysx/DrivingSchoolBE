@@ -25,6 +25,7 @@ export interface Question {
   explanation: string;
   users: User[];
   isSerious: boolean;
+  cacheImageUri: string;
 }
 
 export interface User {

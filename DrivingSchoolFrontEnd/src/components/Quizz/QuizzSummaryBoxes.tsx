@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { Theme } from "../../constants";
 import { QuizzSummary, QuizzSummaryElement } from "../../interfaces/interfaces";
 
@@ -39,13 +39,13 @@ const QuizzSummaryElementBox: React.FC<QuizzSummaryElementBoxProps> = ({
   const handlePress = () => {
     navigation.navigate("QuizzSummaryDetailView", { element });
   };
-
   return (
     <View style={styles.quizzSummaryElementBox}>
       <TouchableOpacity onPress={() => handlePress()}>
+        
         <Image
           style={[styles.image, { borderColor: borderColor }]}
-          source={{ uri: element.question.imageUri }}
+          source={{uri: element.question.cacheImageUri}}
         />
       </TouchableOpacity>
     </View>

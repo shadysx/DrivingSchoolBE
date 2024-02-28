@@ -57,8 +57,7 @@ export const useStatsContext = (): StatsContextInterface => {
 const StatsContextProvider = ({ children }) => {
   const initialState = { questions: [] };
   const [state, dispatch] = useReducer(statsReducer, initialState);
-  const [isStatsContextLoading, setIsStatsContextLoading] =
-    useState<boolean>(false);
+  const [isStatsContextLoading, setIsStatsContextLoading] = useState<boolean>(false);
   const { user } = useAuth();
 
   const fetchStatsFromApi = async () => {
@@ -81,7 +80,7 @@ const StatsContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchStatsFromApi();
+
   }, []);
 
   return (

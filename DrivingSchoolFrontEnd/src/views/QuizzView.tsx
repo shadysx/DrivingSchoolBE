@@ -6,44 +6,40 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import QuizzSummaryView from "./QuizzSummaryView";
 import { Question } from "../interfaces/interfaces";
 import { useQuestionsContext } from "../contexts/QuestionsContext";
+import { useQuizContext } from "../contexts/QuizContext";
 
 const QuizzView = ({navigation}) => {
-  const [questionCounter, setQuestionCounter] = useState<number>(0);
+  // const [questionCounter, setQuestionCounter] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number>(-1);
-  const [definedTimer] = useState<number>(30);
-  const [askedQuestionsNumber] = useState<number>(50);
-	const [questionsWithSelectedAnswers, setQuestionsWithSelectedAnswer] = useState<Map<Question, number> | null>(new Map<Question, number>())
 
-  const { state } = useQuestionsContext();
-  const { questions } = state;
+  const { questionsState } = useQuestionsContext();
+  const { questions } = questionsState;
 
+  const { addSummaryElement, state } = useQuizContext();
+  const { questionCounter, definedTimer } = state;
+
+  // On user submit
   const handleValidation = () => {
-		addAnswer();
-    setQuestionCounter((prev) => prev + 1);
+    addSummaryElement(questions[questionCounter], selectedAnswer);
+    // Prevent to have an answer already selected 
     setSelectedAnswer(-1);
   };
 
+  // In case of timeout we still need to add the elements
   const handleTimeOut = () => {
-		addAnswer();
-    setQuestionCounter((prev) => prev + 1);
+    addSummaryElement(questions[questionCounter], selectedAnswer);
+    // Prevent to have an answer already selected 
 		setSelectedAnswer(-1);
   };
 
-	const addAnswer = () => {
-		// Add the questions to a map with the associted selected answer so we can compute them in the quizz summary
-		if(questions && questionsWithSelectedAnswers){
-			questionsWithSelectedAnswers.set(questions[questionCounter], selectedAnswer)
-		}
-	}
-
-	const isQuizzPlaying: boolean = questionCounter < askedQuestionsNumber	
+	const isQuizzPlaying: boolean = questionCounter < 50	
   return (
     <View style={{ flex: 1 }}>
       {questions && isQuizzPlaying && (
@@ -64,7 +60,7 @@ const QuizzView = ({navigation}) => {
             <Image
               style={styles.questionImage}
               source={{
-                uri: questions[questionCounter].imageUri,
+                uri: questions[questionCounter].cacheImageUri,
               }}
             />
           </View>
@@ -102,7 +98,7 @@ const QuizzView = ({navigation}) => {
         </>
       </SafeAreaView>
       )}
-			{!isQuizzPlaying && <QuizzSummaryView navigation={navigation} questionsWithSelectedAnswers={questionsWithSelectedAnswers}/>}
+			{!isQuizzPlaying && <QuizzSummaryView navigation={navigation} />}
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import { View, Dimensions, StyleSheet, Image } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   Button,
@@ -21,11 +21,19 @@ import HorizontalCardButton from "../components/HorizontalCardButton";
 import VerticalCardButton from "../components/VerticalCardButton";
 import { useAuth } from "../auth/Auth";
 import SettingsMenu from "../components/SettingsMenu";
+import { useQuizContext } from "../contexts/QuizContext";
 
 const HomeView: React.FC<any> = ({ navigation }) => {
   const [visible, setVisible] = React.useState(false);
 
+  const { resetQuiz } = useQuizContext();
+
   const hideDialog = () => setVisible(false);
+
+  const handleQuizStart = () => {
+    resetQuiz();
+    navigation.navigate("QuizzView")
+  }
 
   return (
     <SafeAreaView style={styles.container} edges={["bottom"]}>
@@ -97,7 +105,7 @@ const HomeView: React.FC<any> = ({ navigation }) => {
           mode="elevated"
           textColor="white"
           buttonColor={Theme.black}
-          onPress={() => navigation.navigate("QuizzView")}
+          onPress={handleQuizStart}
         >
           Commencer un examen
         </Button>

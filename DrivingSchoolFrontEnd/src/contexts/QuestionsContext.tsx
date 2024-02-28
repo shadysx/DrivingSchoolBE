@@ -6,11 +6,15 @@ import React, {
   useState,
 } from "react";
 import { Image } from "react-native";
-import { Question } from "../interfaces/interfaces";
+import { Question, QuizzSummary } from "../interfaces/interfaces";
 import { API } from "../constants";
+import cacheImage from "../Utils";
+import axios from "axios";
+import navigation from "../navigation/navigation";
+import { useStatsContext } from "./StatsContext";
 
 const QuestionsContext = createContext<QuestionsContextInterface>({
-  state: {
+  questionsState: {
     questions: [],
   },
   dispatch: () => {}, // Placeholder dispatch function
@@ -18,7 +22,7 @@ const QuestionsContext = createContext<QuestionsContextInterface>({
 });
 
 interface QuestionsContextInterface {
-  state: {
+  questionsState: {
     questions: Question[];
   };
   dispatch: React.Dispatch<QuestionsAction>;
@@ -30,12 +34,13 @@ interface QuestionsAction {
   payload: Question[];
 }
 
-const questionsReducer = (state, action) => {
+const questionsReducer = (questionsState, action) => {
   switch (action.type) {
     case "SET_QUESTIONS":
-      return { ...state, questions: action.payload };
-    default:
-      return state;
+      return { ...questionsState, questions: action.payload };
+      break;
+
+      return questionsState;
   }
 };
 
@@ -53,32 +58,44 @@ export const useQuestionsContext = (): QuestionsContextInterface => {
 
 const QuestionsContextProvider = ({ children }) => {
   const initialState = { questions: [] };
-  const [state, dispatch] = useReducer(questionsReducer, initialState);
+  const [questionsState, dispatch] = useReducer(questionsReducer, initialState);
   const [isQuestionsLoading, setIsQuestionsLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    const preloadImages = async () => {
-      setIsQuestionsLoading(true);
-      console.log("preloading images");
-      try {
-        const promises = state.questions.map(async (question) => {
-          if (question.imageUri) {
-            await Image.prefetch(question.imageUri);
-          }
-        });
-
-        await Promise.all(promises);
-        console.log("[QuestionsContextProvider]: Images preloading done");
-      } catch (error) {
-        console.error("Error preloading images:", error);
-        // Handle error as needed
-      } finally {
-        setIsQuestionsLoading(false);
-      }
+    // Navigation function
+    const navigateToScreen = (navigation) => {
+      // Implement navigation logic here
+      // For example, you can use React Navigation to navigate to the specified screen
+      // navigation.navigate(screenName);
     };
 
-    preloadImages();
-  }, [state]);
+  useEffect(() => {
+    const preloadImagesInCache = async () => {
+      try {
+        if(questionsState.questions == null || questionsState.questions.length == 0){
+          console.log("0 null", questionsState.questions)
+          return
+        }
+    // Use Promise.all to await all cacheImage calls
+      await Promise.all(questionsState.questions.map(async (question: Question) => {
+        question.cacheImageUri = await cacheImage(question.imageUri);
+      }));
+
+      }
+      catch (error){
+  
+      }
+      finally {
+        console.log("[QuestionsContextProvider]: Images preloading done");
+      }
+    }
+
+    preloadImagesInCache()
+    // preloadImages();
+  }, [questionsState]);
+
+
+
+
 
   const fetchQuestionsFromApi = async () => {
     setIsQuestionsLoading(true);
@@ -104,7 +121,7 @@ const QuestionsContextProvider = ({ children }) => {
 
   return (
     <QuestionsContext.Provider
-      value={{ state, dispatch, fetchQuestionsFromApi }}
+      value={{ questionsState, dispatch, fetchQuestionsFromApi}}
     >
       {children}
     </QuestionsContext.Provider>

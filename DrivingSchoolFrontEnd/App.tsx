@@ -16,6 +16,7 @@ import StatsView from "./src/views/Stats/StatsView";
 import { Theme } from "./src/constants";
 import { QuestionsContextProvider } from "./src/contexts/QuestionsContext";
 import { StatsContextProvider } from "./src/contexts/StatsContext";
+import { QuizContextProvider } from "./src/contexts/QuizContext";
 
 export default function App() {
   const [quizzSummary, setQuizzSummary] = React.useState<QuizzSummary>();
@@ -25,9 +26,12 @@ export default function App() {
   return (
     <PaperProvider>
         <Auth>
+          
           <QuestionsContextProvider>
             <StatsContextProvider>
+          <QuizContextProvider>
               <Navigation />
+            </QuizContextProvider>
             </StatsContextProvider>
           </QuestionsContextProvider>
         </Auth>
