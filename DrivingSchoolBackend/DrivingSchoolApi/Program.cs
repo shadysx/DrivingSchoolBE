@@ -55,13 +55,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine("C:","Images", "Questions")),
-    RequestPath = "/images"
-});
-
 app.Run();
 
 
