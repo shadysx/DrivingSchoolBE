@@ -25,6 +25,7 @@ export interface Question {
   explanation: string;
   users: User[];
   isSerious: boolean;
+  cacheImageUri: string;
 }
 
 export interface User {
@@ -32,4 +33,9 @@ export interface User {
   email: string;
   userName: string;
   savedQuestions?: Question[];
+}
+
+export interface GetStatsResponse {
+  mean: number,
+  scores: number[]
 }

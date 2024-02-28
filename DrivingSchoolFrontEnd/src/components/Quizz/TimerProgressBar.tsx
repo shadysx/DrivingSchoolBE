@@ -16,9 +16,6 @@ export const TimerProgressBar: React.FC<any> = ({ definedTimer, questionCounter 
             handleTimeOut();
             return;
         }
-
-        console.log(timeLeft)
-  
         const timer = setInterval(() => {
             setTimeLeft(prev => prev - 1);
         }, 1000);

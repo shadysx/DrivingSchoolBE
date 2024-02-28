@@ -4,89 +4,42 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  Button,
   TouchableOpacity,
 } from "react-native";
-import React, { useEffect, useMemo, useState } from "react";
-import { API, Theme } from "../constants";
+import React, { useEffect, useState } from "react";
+import { Theme } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import QuizzSummaryView from "./QuizzSummaryView";
-import { useAuth } from "../auth/Auth";
 import { Question } from "../interfaces/interfaces";
+import { useQuestionsContext } from "../contexts/QuestionsContext";
+import { useQuizContext } from "../contexts/QuizContext";
 
 const QuizzView = ({navigation}) => {
-  const {setIsLoading} = useAuth();
-  const [questions, setQuestions] = useState<Question[] | null>(null);
-  const [questionCounter, setQuestionCounter] = useState<number>(0);
+  // const [questionCounter, setQuestionCounter] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number>(-1);
-  const [definedTimer] = useState<number>(30);
-  const [askedQuestionsNumber] = useState<number>(50);
-	const [questionsWithSelectedAnswers, setQuestionsWithSelectedAnswer] = useState<Map<Question, number> | null>(new Map<Question, number>())
 
-  useEffect(() => {
-    console.log("----------");
-  });
+  const { questionsState } = useQuestionsContext();
+  const { questions } = questionsState;
 
-  useEffect(() => {
-    const fetchQuestionsFromApi = async () => {
-      console.log("fetching");
-      try {
-        const response = await fetch(
-          API + "question/getall"
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        let responseData: Question[] = await response.json();
-        responseData = responseData.sort(() => Math.random() - 0.5);
-        setQuestions(responseData);
-      } catch (error: any) {
-        // setError(error);
-      } finally {
-      }
-    };
-    setIsLoading(true)
-    fetchQuestionsFromApi();
-    setIsLoading(false)
-  }, []);
+  const { addSummaryElement, state } = useQuizContext();
+  const { questionCounter, definedTimer } = state;
 
-  useEffect(() => {
-    setIsLoading(true)
-    preloadImages() ;
-    setIsLoading(false)
-  }, [questions])
-  
-
-  const preloadImages = () => {
-    console.log("preloading images")
-    questions?.forEach(question => {
-      if(question.imageUri){
-        console.log("Prefetech", (Image.prefetch(question.imageUri)))
-      }
-    })
-  }
-
+  // On user submit
   const handleValidation = () => {
-		addAnswer();
-    setQuestionCounter((prev) => prev + 1);
+    addSummaryElement(questions[questionCounter], selectedAnswer);
+    // Prevent to have an answer already selected 
     setSelectedAnswer(-1);
   };
 
+  // In case of timeout we still need to add the elements
   const handleTimeOut = () => {
-		addAnswer();
-    setQuestionCounter((prev) => prev + 1);
+    addSummaryElement(questions[questionCounter], selectedAnswer);
+    // Prevent to have an answer already selected 
 		setSelectedAnswer(-1);
   };
 
-	const addAnswer = () => {
-		// Add the questions to a map with the associted selected answer so we can compute them in the quizz summary
-		if(questions && questionsWithSelectedAnswers){
-			questionsWithSelectedAnswers.set(questions[questionCounter], selectedAnswer)
-		}
-	}
-
-	const isQuizzPlaying: boolean = questionCounter < askedQuestionsNumber	
+	const isQuizzPlaying: boolean = questionCounter < 50	
   return (
     <View style={{ flex: 1 }}>
       {questions && isQuizzPlaying && (
@@ -107,7 +60,7 @@ const QuizzView = ({navigation}) => {
             <Image
               style={styles.questionImage}
               source={{
-                uri: questions[questionCounter].imageUri,
+                uri: questions[questionCounter].cacheImageUri,
               }}
             />
           </View>
@@ -145,7 +98,7 @@ const QuizzView = ({navigation}) => {
         </>
       </SafeAreaView>
       )}
-			{!isQuizzPlaying && <QuizzSummaryView navigation={navigation} questionsWithSelectedAnswers={questionsWithSelectedAnswers}/>}
+			{!isQuizzPlaying && <QuizzSummaryView navigation={navigation} />}
     </View>
   );
 };

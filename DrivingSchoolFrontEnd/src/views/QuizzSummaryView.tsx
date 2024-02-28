@@ -5,95 +5,48 @@ import axios from "axios";
 import { API, Theme } from "../constants";
 import QuizzSummaryBoxes from "../components/Quizz/QuizzSummaryBoxes";
 import { Button } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Question, QuizzSummary, QuizzSummaryElement } from "../interfaces/interfaces";
-import ProfileBanner from "../components/ProfileBanner";
-import { useAuth } from "../auth/Auth";
+import LoadingScreen from "../components/LoadingScreen";
+import { useQuestionsContext } from "../contexts/QuestionsContext";
+import { useQuizContext } from "../contexts/QuizContext";
 
 interface QuizzSummaryProps {
   navigation: StackNavigationProp<any, any>;
-  questionsWithSelectedAnswers: Map<Question, number> | null;
 }
 
 const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
   navigation,
-  questionsWithSelectedAnswers,
 }) => {
-  const [quizzSummary, setQuizzSummary] = useState<QuizzSummary>();
-  const {user} = useAuth();
-  const userId = user.id
-  const resultText = quizzSummary?.isSuccess
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { fetchQuestionsFromApi } = useQuestionsContext();
+  const { state, resetQuiz } = useQuizContext();
+  const { quizSummary } = state;
+  const resultText = quizSummary?.isSuccess
     ? <Text style={{color: Theme.secondary}}>Réussi !</Text>
     : <Text style={{color: "red"}}>Raté...</Text>
 
   useEffect(() => {
-    computeSummaries();
+    // TODO Move this to quizContext
+    fetchQuestionsFromApi();
   }, []);
 
-  const computeSummaries = () => {
-    let quizzSummaryElements: QuizzSummaryElement[] = [];
+  const handleNewQuiz = () => {
+    resetQuiz();
+    navigation.navigate("QuizzView");
+  }
+  
 
-    for (const [question, selectedAnswer] of questionsWithSelectedAnswers) {
-      quizzSummaryElements.push({
-          question: question,
-          userAnswerIndex: selectedAnswer,
-          isAnswerCorrect: question.answerIndex === selectedAnswer,
-      });
-    }
-
-    // Score computing
-    let score = 0;
-    quizzSummaryElements.forEach((element) => {
-      // -5 for every serious question that is not answered correctly
-      if (!element.isAnswerCorrect && element.question.isSerious) {
-        score -= 5;
-      }
-      // +1 for every question that is answered correctly
-      if (element.isAnswerCorrect){
-        score += 1;
-      }
-    });
-
-    const isSuccess = score >= 41;
-
-    const quizzSummary: QuizzSummary = {
-      score,
-      isSuccess,
-      quizzSummaryElements,
-      userId 
-    };
-    setQuizzSummary(quizzSummary);
-    postQuizzSummaryToServer(quizzSummary);
-  };
-
-  const postQuizzSummaryToServer = async (quizzSummary: QuizzSummary) => {
-    try {
-      const result = await axios.post(
-        API + "QuizSummary/Create",
-        JSON.stringify(quizzSummary),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    } catch (error) {
-      console.error("Error making POST request:", error);
-    }
-  };
-
-  return (
+  return isLoading ? <LoadingScreen/> : (
     <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.topPanel}>
       <View>
         <Text style={styles.scoreText}>
-           Votre score est de {quizzSummary?.score}/50, {resultText}
+           Votre score est de {quizSummary?.score}/50, {resultText}
         </Text>
       </View>
       <ScrollView style={styles.boxesScrollView}>
-        <QuizzSummaryBoxes quizzSummary={quizzSummary} navigation={navigation}/>
+        <QuizzSummaryBoxes quizzSummary={quizSummary} navigation={navigation}/>
       </ScrollView>
       </View>
       <View style={styles.bottomPanel}>
@@ -114,7 +67,7 @@ const QuizzSummaryView: React.FC<QuizzSummaryProps> = ({
           mode="elevated"
           textColor="black"
           buttonColor={Theme.secondary}
-          onPress={() => navigation.replace("QuizzView")}
+          onPress={handleNewQuiz}
         >
           Encore
         </Button>

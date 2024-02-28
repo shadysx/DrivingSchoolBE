@@ -50,7 +50,7 @@ const QuizzSummaryDetailView: React.FC<QuizzSummaryDetailViewProps> = ({
         <Image
           style={styles.questionImage}
           source={{
-            uri: quizzSummaryElement.question.imageUri,
+            uri: quizzSummaryElement.question.cacheImageUri,
           }}
         />
       </View>
