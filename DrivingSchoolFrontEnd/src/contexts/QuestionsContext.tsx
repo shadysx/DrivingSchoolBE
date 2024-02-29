@@ -12,6 +12,7 @@ import cacheImage from "../Utils";
 import axios from "axios";
 import navigation from "../navigation/navigation";
 import { useStatsContext } from "./StatsContext";
+import { useAuth } from "../auth/Auth";
 
 const QuestionsContext = createContext<QuestionsContextInterface>({
   questionsState: {
@@ -61,21 +62,14 @@ const QuestionsContextProvider = ({ children }) => {
   const [questionsState, dispatch] = useReducer(questionsReducer, initialState);
   const [isQuestionsLoading, setIsQuestionsLoading] = useState<boolean>(false);
 
-    // Navigation function
-    const navigateToScreen = (navigation) => {
-      // Implement navigation logic here
-      // For example, you can use React Navigation to navigate to the specified screen
-      // navigation.navigate(screenName);
-    };
-
   useEffect(() => {
     const preloadImagesInCache = async () => {
       try {
         if(questionsState.questions == null || questionsState.questions.length == 0){
-          console.log("0 null", questionsState.questions)
           return
         }
-    // Use Promise.all to await all cacheImage calls
+
+      // Use Promise.all to await all cacheImage calls
       await Promise.all(questionsState.questions.map(async (question: Question) => {
         question.cacheImageUri = await cacheImage(question.imageUri);
       }));

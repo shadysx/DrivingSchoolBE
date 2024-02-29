@@ -14,6 +14,7 @@ import { TimerProgressBar } from "../components/Quizz/TimerProgressBar";
 import { Theme } from "../constants";
 import { TextInput } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import CachedImage from "../components/CachedImage";
 
 
 interface QuizzSummaryDetailViewProps {
@@ -47,12 +48,9 @@ const QuizzSummaryDetailView: React.FC<QuizzSummaryDetailViewProps> = ({
   return (
     <SafeAreaView style={{ flex: 1 }} edges={["bottom"]}>
       <View style={styles.topContainer}>
-        <Image
-          style={styles.questionImage}
-          source={{
-            uri: quizzSummaryElement.question.cacheImageUri,
-          }}
-        />
+      <View style={styles.questionImage}>
+          <CachedImage url={ quizzSummaryElement.question.imageUri } />
+        </View>
       </View>
       <View style={styles.bottomContainer}>
         <Text style={styles.questionText}>

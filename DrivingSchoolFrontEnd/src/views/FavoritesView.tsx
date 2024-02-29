@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../auth/Auth";
 import { API, Theme } from "../constants";
 import { Question, QuizzSummaryElement } from "../interfaces/interfaces";
+import CachedImage from "../components/CachedImage";
 
 const FavoritesView = ({ navigation }) => {
   const [questions, setQuestions] = useState<Question[] | null>(null);
@@ -27,18 +28,17 @@ const FavoritesView = ({ navigation }) => {
     };
     fetchQuestionsFromApi();
   },[]);
+
+  const renderItem = ({ item }) => (
+    <FavoriteLine question={item} navigation={navigation} />
+  );
+
   return (
-    <ScrollView style={styles.container}>
-      {user.savedQuestions?.map((question, index) => {
-        return (
-          <FavoriteLine
-            key={index}
-            question={question}
-            navigation={navigation}
-          />
-        );
-      })}
-    </ScrollView>
+          <FlatList
+          data={user.savedQuestions}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
   );
 };
 
@@ -63,6 +63,10 @@ const FavoriteLine: React.FC<FavoriteLineProps> = ({
     });
     // navigation.navigate("HomeView");
   };
+
+
+
+
   return (
     <TouchableOpacity
       style={styles.lineContainer}
@@ -71,9 +75,9 @@ const FavoriteLine: React.FC<FavoriteLineProps> = ({
       <View style={styles.leftContainer}>
         <Text>{question.text}</Text>
       </View>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: question.imageUri }} />
-      </View>
+        <View style={styles.image}>
+          <CachedImage url={ question.imageUri } />
+        </View>
     </TouchableOpacity>
   );
 };
@@ -95,10 +99,13 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 5,
   },
-  imageContainer: {},
+  imageContainer: {
+    borderRadius: 10
+  },
   image: {
     width: 120,
     height: "100%",
+    borderRadius: 10
   },
 });
 

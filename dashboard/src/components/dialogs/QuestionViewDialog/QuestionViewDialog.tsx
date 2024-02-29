@@ -12,6 +12,7 @@ import axios from 'axios';
 import { API, CREATE_QUESTION, UPDATE_QUESTION, UPDATE_QUESTIONS } from '../../../constants';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
+import Resizer from 'react-image-file-resizer';
 
 interface QuestionViewDialogProps {
   open: boolean;
@@ -76,6 +77,16 @@ const QuestionViewDialog: FC<QuestionViewDialogProps> = ({ open, onClose, select
     await uploadImage(file);
   };
 
+  const resizeImage = (file, maxWidth, maxHeight) => {
+    return new Promise((resolve, reject) => {
+      Resizer.imageFileResizer( file, maxWidth, maxHeight, 'JPEG', 100, 0, (uri) => {
+          resolve(uri);
+        },
+        'blob'
+      );
+    });
+  };
+
   const uploadImage = async (file: File) => {
     try {
       const storage = getStorage();
@@ -84,6 +95,15 @@ const QuestionViewDialog: FC<QuestionViewDialogProps> = ({ open, onClose, select
       const newUrl = await getDownloadURL(snapshot.ref)
       setEditedQuestion((prevQuestion) => ({ ...prevQuestion, imageUri: newUrl }));
       console.log('Uploaded a blob or file!', snapshot);
+
+      const resizedImage = await resizeImage(file, 350, 250)
+      
+      const resizedImageRef = ref(storage, `images/thumbnails/${uuidv4()}.jpg`)
+      const snapshotResizedImage = await uploadBytes(resizedImageRef, resizedImage as Blob);
+      const newResizedImageUrl = await getDownloadURL(snapshotResizedImage.ref)
+      console.log("resizedURL", newResizedImageUrl)
+
+     
       setIsModified(true);
     } catch (error) {
       console.error('Error uploading image:', error);

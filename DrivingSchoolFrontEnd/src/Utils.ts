@@ -24,6 +24,10 @@ const cacheImage = async (url, maxWidth = 600, maxHeight = 800) => {
     // console.log("Retrieved in cache", `file://${imagePath}`);
 
     return `file://${imagePath}`;
+
+    // TO prevent cache using
+    // return url;
+
   } catch (error) {
     console.error('Error caching image:', error);
     throw error;

@@ -80,7 +80,7 @@ const StatsContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-
+    fetchStatsFromApi()
   }, []);
 
   return (
