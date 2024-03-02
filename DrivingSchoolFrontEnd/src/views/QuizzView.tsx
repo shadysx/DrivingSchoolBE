@@ -14,6 +14,7 @@ import QuizzSummaryView from "./QuizzSummaryView";
 import { Question } from "../interfaces/interfaces";
 import { useQuestionsContext } from "../contexts/QuestionsContext";
 import { useQuizContext } from "../contexts/QuizContext";
+import CachedImage from "../components/CachedImage";
 
 const QuizzView = ({navigation}) => {
   // const [questionCounter, setQuestionCounter] = useState<number>(0);
@@ -57,12 +58,10 @@ const QuizzView = ({navigation}) => {
                 color={Theme.primary}
               />
             </View>
-            <Image
-              style={styles.questionImage}
-              source={{
-                uri: questions[questionCounter].cacheImageUri,
-              }}
-            />
+            <View style={styles.questionImage}>
+            <CachedImage
+                url={questions[questionCounter].imageUri }             />
+            </View>
           </View>
           <View style={styles.bottomContainer}>
             <Text style={styles.questionText}>

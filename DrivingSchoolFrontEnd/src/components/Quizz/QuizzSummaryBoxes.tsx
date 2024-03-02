@@ -45,7 +45,7 @@ const QuizzSummaryElementBox: React.FC<QuizzSummaryElementBoxProps> = ({
         
         <Image
           style={[styles.image, { borderColor: borderColor }]}
-          source={{uri: element.question.cacheImageUri}}
+          source={{uri: element.question.thumbnailUri}}
         />
       </TouchableOpacity>
     </View>

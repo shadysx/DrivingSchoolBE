@@ -63,10 +63,6 @@ const FavoriteLine: React.FC<FavoriteLineProps> = ({
     });
     // navigation.navigate("HomeView");
   };
-
-
-
-
   return (
     <TouchableOpacity
       style={styles.lineContainer}
@@ -76,7 +72,7 @@ const FavoriteLine: React.FC<FavoriteLineProps> = ({
         <Text>{question.text}</Text>
       </View>
         <View style={styles.image}>
-          <CachedImage url={ question.imageUri } />
+          <CachedImage url={ question.thumbnailUri } />
         </View>
     </TouchableOpacity>
   );

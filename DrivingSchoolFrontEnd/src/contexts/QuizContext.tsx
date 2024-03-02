@@ -132,8 +132,6 @@ const QuizContextProvider = ({ children }) => {
       isAnswerCorrect: userAnswerIndex == question.answerIndex,
     };
 
-    // Fetch image in cache or write if its not already
-    question.cacheImageUri = await cacheImage(question.imageUri);
     computeScore(newSummaryElement);
     dispatch({ type: "ADD_SUMMARY_ELEMENT", payload: newSummaryElement });
   };
@@ -186,7 +184,7 @@ const postQuizSummaryToServer = async (quizSummary: QuizzSummary) => {
     }
   }, [state.questionCounter]);
 
-  useEffect(() => {console.log("useeffect", state)}, [state]);
+  useEffect(() => {console.log("IP = ", API)}, [state]);
 
   return (
     <QuizContext.Provider

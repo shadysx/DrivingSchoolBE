@@ -19,6 +19,7 @@ export interface Question {
   answerIndex?: number;
   themes?: string[];
   imageUri?: string;
+  thumbnailUri?: string;
   explanation?: string;
   users?: User[];
   isSerious?: boolean;

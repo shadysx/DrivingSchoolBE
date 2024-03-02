@@ -95,7 +95,7 @@ public async Task<IActionResult> Create(Question model)
         existingQuestion.AnswerIndex = updatedModel.AnswerIndex;
         existingQuestion.Themes = updatedModel.Themes;
         existingQuestion.ImageUri = updatedModel.ImageUri;
-        existingQuestion.ImageUri = updatedModel.ImageUri;
+        existingQuestion.ThumbnailUri = updatedModel.ThumbnailUri;
         existingQuestion.Explanation = updatedModel.Explanation;
         existingQuestion.IsSerious = updatedModel.IsSerious;
 

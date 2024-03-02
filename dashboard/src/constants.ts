@@ -1,4 +1,5 @@
-export const API = "http://213.213.230.92:5143"
+// export const API = "http://213.213.230.92:5143"
+export const API = "http://localhost:5143"
 export const GET_QUESTIONS = "/Question/GetAll"
 export const CREATE_QUESTION = "/Question/Create"
 export const UPDATE_QUESTION = "/Question/Update"

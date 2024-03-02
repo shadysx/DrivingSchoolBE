@@ -69,9 +69,10 @@ const QuestionsContextProvider = ({ children }) => {
           return
         }
 
-      // Use Promise.all to await all cacheImage calls
+        // will store the thumbnails in cache to prevent loading
       await Promise.all(questionsState.questions.map(async (question: Question) => {
-        question.cacheImageUri = await cacheImage(question.imageUri);
+        question.thumbnailUri = await cacheImage(question.thumbnailUri);
+        question.imageUri = await cacheImage(question.imageUri);
       }));
 
       }

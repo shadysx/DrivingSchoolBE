@@ -79,7 +79,7 @@ const QuestionViewDialog: FC<QuestionViewDialogProps> = ({ open, onClose, select
 
   const resizeImage = (file, maxWidth, maxHeight) => {
     return new Promise((resolve, reject) => {
-      Resizer.imageFileResizer( file, maxWidth, maxHeight, 'JPEG', 100, 0, (uri) => {
+      Resizer.imageFileResizer( file, maxWidth, maxHeight, 'JPEG', 60, 0, (uri) => {
           resolve(uri);
         },
         'blob'
@@ -87,23 +87,25 @@ const QuestionViewDialog: FC<QuestionViewDialogProps> = ({ open, onClose, select
     });
   };
 
+  // This will upload an image and a thumbnail
   const uploadImage = async (file: File) => {
     try {
+      let resizedImage = await resizeImage(file, 1050, 750)
       const storage = getStorage();
       const imageRef = ref(storage, `images/${uuidv4()}.jpg`)
-      const snapshot = await uploadBytes(imageRef, file);
+      const snapshot = await uploadBytes(imageRef, resizedImage as Blob);
       const newUrl = await getDownloadURL(snapshot.ref)
-      setEditedQuestion((prevQuestion) => ({ ...prevQuestion, imageUri: newUrl }));
       console.log('Uploaded a blob or file!', snapshot);
 
-      const resizedImage = await resizeImage(file, 350, 250)
+      console.log("resizedURL full ", newUrl)
+      resizedImage = await resizeImage(file, 525, 375)
       
       const resizedImageRef = ref(storage, `images/thumbnails/${uuidv4()}.jpg`)
       const snapshotResizedImage = await uploadBytes(resizedImageRef, resizedImage as Blob);
       const newResizedImageUrl = await getDownloadURL(snapshotResizedImage.ref)
       console.log("resizedURL", newResizedImageUrl)
 
-     
+      setEditedQuestion((prevQuestion) => ({ ...prevQuestion, imageUri: newUrl, thumbnailUri: newResizedImageUrl }));
       setIsModified(true);
     } catch (error) {
       console.error('Error uploading image:', error);
